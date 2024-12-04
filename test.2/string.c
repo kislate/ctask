@@ -53,26 +53,27 @@ int main(void)
     }
 
         while(fgets(words,10,stdin)!=NULL && words[0]!='\0')//读到结尾或者空行
-    {
+    {//fgets()会留一个位置给\0;
         i=0;
-        while(words[i]!='\n' && words[i] !='\0')
+        while(words[i]!='\n' && words[i] !='\0')//一种情况，满了，另一种情况，没满（换行）
         {
             i++;
         }
         if(words[i]=='\n')
         {
             words[i]='\0';
-        }
+        }//这里可以起到拼接字符串的作用
         else 
         {
-            while (getchar()!='\n')
+            while (getchar()!='\n')//意味着你同一行内超出的部分都没了。
             {
                 continue;
-            }
+            }//会一直删掉后续输入直到遇到\n；
         }
-        fputs(words,stdout);
-    }
-    puts("Done");
+        puts(words);//输入中的\n都已经被删掉了。
+    }//其实就是我们习惯于换行结束输入，当我们结束输入时如果用了\n但是它应该结束却不结束的时候，就会把多余的输入删掉，
+    //而且就算我们以\n结束了然后存储在里面以后把末尾的那个\n去掉
+    puts("Done");//这里就是改良后的上面那串代码
 
     
     fputc('c',stdout);//这里是输出个字符；
