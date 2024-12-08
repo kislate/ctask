@@ -19,10 +19,13 @@ void Plate_Move(int n, char A, char B, char C)
 	}
 
 }
-int main()
+int main (void)
 {
-	int n = 0;
+	int n=0;
 	scanf("%d", &n);
 	Plate_Move(n, 'A', 'B', 'C');  //n为几个圆盘，A,B,C分别对应A，B，C三个柱子
 	return 0;
 }
+
+
+

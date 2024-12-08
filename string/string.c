@@ -84,6 +84,42 @@ int main(void)
     //不像fgets会读取'\n',而且默认的是stdin输入。
 
 
+    char str2[10]={'H','e','l','l','o'};
+
+    puts(str2);//这里会输出Hello，后面会一直输出乱码，因为没有、0程序会一直需寻找\0；
+
+    char flower[80];
+    char addon[]="s smell like old shoes.";
+    puts("What is your favorite flower?");
+    strcat(flower,addon);//这个函数会把addon的内容拼接到flower的后面
+    puts(flower);
+    puts(addon);//这个函数不会改变addon的内容
+
+    int available=0;
+
+    available=80-strlen(flower);//这个函数会返回字符串的长度，不包括\0
+    //这里就可以计算剩余空间，这样就可以防止溢出。
+    strncat(flower,addon,available);//这个函数只会最多拼接available个字符
+
+    strcmp("kislate","kislate");//这个函数可以对比字符串
+    //我们不能直接拿两个字符串的变量名来比较，因为他们代表的都是地址
+    //我们可以用strcmp()函数来比较两个字符串，这个函数会返回一个整数
+    //可以用来判断用户输入和期望值是否一样，而且可以用来排序，就是从首字母开始排序，直到不同或者一个字符串结束
+    //这时候就会返回一个整数，如果是0，就是相等，如果是负数，就是第一个字符串小，如果是正数，就是第一个字符串大
+    
+    //这个函数是区分大小写的，如果不想区分大小写，可以用stricmp()函数
+
+    stricmp("kislate","KISLATE");//==0;
+    //在ASCII码中，大写字母的值小于小写字母的值，所以大写字母会排在小写字母前面
+    //stricmp的比较方式是先把两个字符串的字母都转换成小写，然后再比较
+    //非字母字符不会被转换，所以这个函数只能用来比较字母
+
+    strncmp("kislate","kislate",3);
+    //这个函数可以比较两个字符串的前n个字符，如果相等就返回0，如果不相等就返回一个整数
+    //就是可以比较字符串的开头部分
+
+
+
 
 }
 //其实puts，fputs都是给他一个地址，然后往后遍历数据，
