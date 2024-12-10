@@ -263,18 +263,8 @@ void link_order(STU *head)
             
             //pb向后移
             pb=pb->next;
+            //先把最小的节点放在最前面，然后再把第二小的放在第二个，以此类推
         }
-        /*
-        // pf: 1 -> 3 -> 2 -> 4
-        // pb:      ^
-        // temp:    3
-
-        // After swapping:
-        // pf: 1 -> 2 -> 3 -> 4
-        // pb:      ^
-        // temp:    3
-        */
-
 
 
         pf=pf->next;

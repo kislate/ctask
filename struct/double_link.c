@@ -76,7 +76,7 @@ void double_link_delete_num(STU **p_head,int num)
         {
             if((*p_head)->next==NULL)//只有一个节点的情况
             {
-                *p_head=pb->next;
+                *p_head=pb->next;//这里的next是NULL
             }
             else//有多个节点的情况
             {
@@ -91,6 +91,7 @@ void double_link_delete_num(STU **p_head,int num)
                 pf=pb->front;//让pf指向找到的节点的前一个节点
                 pf->next=pb->next; //前一个结点的next保存后一个结点的地址
                 (pb->next)->front=pf; //后一个结点的front保存前一个结点的地址
+                /*md，搞这么绕*/
             }
             else//删除尾节点
             {
