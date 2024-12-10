@@ -87,7 +87,10 @@ int main(void)
     char str2[10]={'H','e','l','l','o'};
 
     puts(str2);//这里会输出Hello，后面会一直输出乱码，因为没有、0程序会一直需寻找\0；
+//
 
+
+//strcat()
     char flower[80];
     char addon[]="s smell like old shoes.";
     puts("What is your favorite flower?");
@@ -100,7 +103,11 @@ int main(void)
     available=80-strlen(flower);//这个函数会返回字符串的长度，不包括\0
     //这里就可以计算剩余空间，这样就可以防止溢出。
     strncat(flower,addon,available);//这个函数只会最多拼接available个字符
+//_strcat()
 
+
+
+//strcmp()
     strcmp("kislate","kislate");//这个函数可以对比字符串
     //我们不能直接拿两个字符串的变量名来比较，因为他们代表的都是地址
     //我们可以用strcmp()函数来比较两个字符串，这个函数会返回一个整数
@@ -117,6 +124,117 @@ int main(void)
     strncmp("kislate","kislate",3);
     //这个函数可以比较两个字符串的前n个字符，如果相等就返回0，如果不相等就返回一个整数
     //就是可以比较字符串的开头部分
+//_strcmp()
+
+
+//strcpy()
+    strcpy(flower,"Rose");//这个函数可以把后面的字符串拷贝到前面的字符串中
+    //这时候我们第一个参数不一定指向数组的开始，可以从中间开始拷贝
+    //strcpy会把原字符串中的内容覆盖掉，然后把新的字符串拷贝进去，\0也会被拷贝进去
+    const char *orig="beast";
+    char copy[40]="Be the best that you can be.";
+    char *ps;
+
+    puts(orig);
+    ps=strcpy(copy+7,orig);//这个函数会返回一个指向目标字符串的指针
+    //这个函数会把orig的内容拷贝到copy的第7个字符开始的位置
+    puts(copy);
+    puts(ps);//这里会输出beast，因为'\0'会把‘that’的t给覆盖掉;
+
+    strncpy(copy,"The worst",5);//这个函数会把copy的前5个字符替换成后面的字符串,
+    //不会覆盖后面的字符，但是因为不会拷贝\0，所以一般设定的大小参数n一般比目标数组的大小少一
+//_strcpy()
+
+//sprintf()
+    sprintf(flower,"A %s in the hand is worth %d in the bush.","bird",10);//这个函数可以把格式化的字符串存储到目标字符串中
+    //这个函数会返回一个整数，表示存储的字符的数量
+    //这个函数可以用来把数字转换成字符串
+    //这个函数可以用来把字符串拼接到另一个字符串中
+    //其实就是把printf打印的东西存储到一个字符串中
+
+
+/*下面总结了一些其他字符串函数
+
+    char *strchr(const char *str,int ch);
+    //这个函数会在字符串中查找第一个出现的字符，然后返回一个指向该字符的指针
+    //如果没有找到，就会返回一个空指针
+
+    char *strrchr(const char *str,int ch);
+    //这个函数会在字符串中查找最后一个出现的字符，然后返回一个指向该字符的指针
+    //如果没有找到，就会返回一个空指针
+
+    char *strstr(const char *str1,const char *str2);
+    //这个函数会在字符串中查找第一个出现的str2字符串，然后返回一个指向该字符串的指针
+    //如果没有找到，就会返回一个空指针
+    
+    char *strtok(char *str,const char *delim);
+    //这个函数会把字符串分割成几个部分，然后返回第一个部分的指针
+    //这个函数会把字符串中的分隔符替换成\0
+
+    {
+    char str[] = "Hello, world! This is a test.";
+    const char delim[] = " ,.!"; // 分隔符：空格、逗号、点
+
+    // 第一次调用 strtok，传递要分割的字符串
+    char *token = strtok(str, delim);
+
+    // 后续调用 strtok，传递 NULL
+    while (token != NULL) {
+        printf("Token: %s\n", token);
+        token = strtok(NULL, delim);
+    }
+    
+    size_t strspn(const char *str1,const char *str2);
+    //这个函数会返回str1中第一个不在str2中的字符的位置
+    //这个函数会返回一个整数，表示str1中第一个不在str2中的字符的位置，就是从0开始的
+    //这个函数可以用来检查字符串中是否有非法字符
+    
+    size_t strcspn(const char *str1,const char *str2);
+    //这个函数会返回str1中第一个在str2中的字符的位置
+    //这个函数会返回一个整数，表示str1中第一个在str2中的字符的位置
+    //这个函数可以用来检查字符串中是否有合法字符
+
+    char *strpbrk(const char *str1,const char *str2);
+    //这个函数会返回str1中第一个在str2中出现的字符的位置
+    //这个函数会返回一个指向str1中第一个在str2中出现的字符的指针
+    //这个函数可以用来检查字符串中是否有合法字符
+
+    char *strlwr(char *str);
+    //这个函数会把字符串中的大写字母转换成小写字母
+    //这个函数会返回一个指向转换后的字符串的指针
+    //这个函数会改变原字符串
+    //这个函数只能用来转换字母
+    
+    char *strupr(char *str);
+    //这个函数会把字符串中的小写字母转换成大写字母
+    //这个函数会返回一个指向转换后的字符串的指针
+    //这个函数会改变原字符串
+    //这个函数只能用来转换字母
+
+    char *strrev(char *str);
+    //这个函数会把字符串中的字符的顺序反转
+
+    char *strset(char *str,int ch);
+    //这个函数会把字符串中的所有字符都设置成ch
+    //这个函数会返回一个指向设置后的字符串的指针
+    //这个函数会改变原字符串
+
+    char *strnset(char *str,int ch,size_t n);
+    //这个函数会把字符串中的前n个字符都设置成ch
+    //这个函数会返回一个指向设置后的字符串的指针
+    //这个函数会改变原字符串
+
+    char *strerror(int errnum);
+    //这个函数会返回一个指向错误信息的字符串的指针
+    
+    size_t strlen(const char *str);
+    //这个函数会返回字符串的长度，不包括\0
+
+    char *strdup(const char *str);
+    //这个函数会返回一个指向str的副本的指针
+    //这个函数会返回一个指向新字符串的指针
+
+*/
 
 
 
