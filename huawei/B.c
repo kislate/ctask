@@ -31,17 +31,18 @@ int main(void)
 {
     int n;
     scanf("%d",&n);
-    int arr[100000];
+    int arr[1000000]={0};
     int markArr[1000000]={0};
     int max=0;
     for(int i=0;i<n;i++)
     {
         scanf("%d",&arr[i]);
         markArr[arr[i]]++;
-        if(markArr[arr[i]]>=arr[i]&&arr[i]>max)
+        if((markArr[arr[i]]>=arr[i])&&(arr[i]>=max))
         {
             max=arr[i];
         }
     }
     printf("%d",max);
-}
+}//这道题审错了
+//这个方法是错的
