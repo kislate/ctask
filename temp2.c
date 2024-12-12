@@ -101,23 +101,22 @@ int main(void)
                 {
                     p_new=(STU*)malloc(sizeof(STU));
                     scanf("%s %s %d %d %d %d",p_new->num,p_new->name,&p_new->score.english,&p_new->score.math,&p_new->score.physics,&p_new->score.c_language);
+                    p_new->score.avg = (p_new->score.english+p_new->score.math+p_new->score.physics+p_new->score.c_language)/4.0;
                     link_creat_head(&head,p_new);
                 }
-                link_sort(&head);
                 break;
             case 2:
-                link_sort(&head);
                 link_print_all(head);
                 break;
             case 3:
                 scanf("%s %d %d",&num,&course,&score);
                 modify_score(head,num,course,score);
-                link_sort(&head);
                 break;
             case 4:
                 avg_score(head);
                 break;
             case 5:
+                link_sort(&head);
                 link_print_short(head);
                 break;
         }
@@ -168,7 +167,6 @@ void link_print_short(STU *head)
 void avg_score(STU *head)
 {
     STU *p_mov = head;
-    link_sort(&head);
     while(p_mov!=NULL)
     {
         p_mov->score.avg = (p_mov->score.english+p_mov->score.math+p_mov->score.physics+p_mov->score.c_language)/4.0;
@@ -206,6 +204,7 @@ void modify_score(STU *head,char *num,int course,int score)
 
 void link_sort(STU **head)
 {
+    STU *start= *head;
     STU *pb,*pf,temp;
     pb = pf =*head;
     if(*head == NULL || pb->next == NULL)
@@ -231,6 +230,7 @@ void link_sort(STU **head)
         }
         pf = pf->next;
     }
+    *head = start;
 }
 
 
