@@ -8,9 +8,9 @@
 ### 目录
 
 - [介绍](README.md)
-- [基本语法](kislate_work)
-- [示例代码](#示例代码)
-- [参考资料](#参考资料)
+- [kislate的仓库](kislate_workshop)
+- [promisun的仓库](promisun_workshop）
+- [等待您的加入](#参考资料)
 
 ### 介绍
 
