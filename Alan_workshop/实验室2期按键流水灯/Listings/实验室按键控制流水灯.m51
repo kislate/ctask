@@ -1,0 +1,204 @@
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    11/19/2024  23:19:15  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\实验室按键控制流水灯 PRINT (.\Listings\实验室按键控制流水灯.
+>> m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\实验室按键控制流水灯 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0001H     UNIT         ?DT?MAIN
+                    0009H     0017H                  *** GAP ***
+            BIT     0020H.0   0000H.1   UNIT         ?BI?MAIN
+                    0020H.1   0000H.7                *** GAP ***
+            IDATA   0021H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     008CH     UNIT         ?C_C51STARTUP
+            CODE    008FH     0081H     UNIT         ?PR?KEYSCAN?MAIN
+            CODE    0110H     004EH     UNIT         ?PR?UPDATELIGHTS?MAIN
+            CODE    015EH     0028H     UNIT         ?PR?MAIN?MAIN
+            CODE    0186H     0014H     UNIT         ?PR?_DELAY?MAIN
+            CODE    019AH     0006H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\实验室按键控制流水灯 (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN
+  +--> ?PR?KEYSCAN?MAIN
+  +--> ?PR?UPDATELIGHTS?MAIN
+  +--> ?PR?_DELAY?MAIN
+
+?PR?KEYSCAN?MAIN
+  +--> ?PR?_DELAY?MAIN
+
+?PR?UPDATELIGHTS?MAIN
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  11/19/2024  23:19:15  PAGE 2
+
+
+  +--> ?PR?KEYSCAN?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\实验室按键控制流水灯 (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  B:0020H.0       PUBLIC        paused
+  B:00B0H.0       PUBLIC        P3_0
+  B:00B0H.1       PUBLIC        P3_1
+  C:015EH         PUBLIC        main
+  D:0008H         PUBLIC        mode
+  C:00E7H         PUBLIC        KeyScan
+  C:0110H         PUBLIC        UpdateLights
+  C:0186H         PUBLIC        _Delay
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        xms
+  -------         DO            
+  D:0005H         SYMBOL        i
+  D:0004H         SYMBOL        j
+  -------         ENDDO         
+  C:0186H         LINE#         4
+  C:0186H         LINE#         5
+  C:0186H         LINE#         7
+  C:018AH         LINE#         8
+  C:018AH         LINE#         9
+  C:018CH         LINE#         10
+  C:018EH         LINE#         12
+  C:018EH         LINE#         13
+  C:0190H         LINE#         14
+  C:0192H         LINE#         15
+  C:0197H         LINE#         16
+  C:0199H         LINE#         17
+  -------         ENDPROC       _DELAY
+  C:00D3H         SYMBOL        L?0035
+  C:00E0H         SYMBOL        L?0036
+  -------         PROC          L?0034
+  -------         ENDPROC       L?0034
+  C:00D3H         SYMBOL        L?0035
+  C:00E0H         SYMBOL        L?0036
+  -------         PROC          KEYSCAN
+  C:00E7H         LINE#         20
+  C:00E7H         LINE#         21
+  C:00E7H         LINE#         22
+  C:00EAH         LINE#         23
+  C:00F1H         LINE#         24
+  C:00F4H         LINE#         25
+  C:00F7H         LINE#         26
+  C:00FAH         LINE#         27
+  C:00FAH         LINE#         28
+  C:00FAH         LINE#         29
+  C:00FDH         LINE#         30
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  11/19/2024  23:19:15  PAGE 3
+
+
+  C:0104H         LINE#         31
+  C:0107H         LINE#         32
+  C:010AH         LINE#         33
+  C:010DH         LINE#         34
+  C:010DH         LINE#         35
+  C:010DH         LINE#         36
+  C:010FH         LINE#         37
+  -------         ENDPROC       KEYSCAN
+  -------         PROC          UPDATELIGHTS
+  C:0110H         LINE#         43
+  C:0110H         LINE#         44
+  C:011CH         LINE#         45
+  C:011CH         LINE#         46
+  C:011CH         LINE#         47
+  C:011CH         LINE#         48
+  C:011CH         LINE#         49
+  C:011CH         LINE#         50
+  C:011CH         LINE#         51
+  C:011CH         LINE#         52
+  C:011CH         LINE#         53
+  C:011FH         LINE#         54
+  C:0122H         LINE#         55
+  C:0125H         LINE#         57
+  C:0125H         LINE#         58
+  C:0128H         LINE#         59
+  C:012BH         LINE#         60
+  C:0131H         LINE#         61
+  C:0137H         LINE#         62
+  C:013DH         LINE#         63
+  C:0143H         LINE#         64
+  C:0149H         LINE#         65
+  C:014CH         LINE#         66
+  C:014EH         LINE#         68
+  C:014EH         LINE#         69
+  C:014EH         LINE#         70
+  C:014EH         LINE#         71
+  C:014EH         LINE#         72
+  C:014EH         LINE#         73
+  C:014EH         LINE#         74
+  C:014EH         LINE#         75
+  C:0151H         LINE#         76
+  C:0157H         LINE#         77
+  C:015DH         LINE#         78
+  C:015DH         LINE#         79
+  C:015DH         LINE#         80
+  -------         ENDPROC       UPDATELIGHTS
+  -------         PROC          MAIN
+  -------         DO            
+  D:0007H         SYMBOL        key
+  -------         ENDDO         
+  C:015EH         LINE#         82
+  C:015EH         LINE#         83
+  C:015EH         LINE#         86
+  C:015EH         LINE#         87
+  C:015EH         LINE#         88
+  C:0161H         LINE#         91
+  C:0164H         LINE#         92
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  11/19/2024  23:19:15  PAGE 4
+
+
+  C:0164H         LINE#         93
+  C:0166H         LINE#         94
+  C:0170H         LINE#         95
+  C:0170H         LINE#         96
+  C:0173H         LINE#         97
+  C:0173H         LINE#         98
+  C:0175H         LINE#         99
+  C:0175H         LINE#         102
+  C:0178H         LINE#         103
+  C:0178H         LINE#         104
+  C:017BH         LINE#         105
+  C:017DH         LINE#         107
+  C:017DH         LINE#         108
+  C:0184H         LINE#         109
+  C:0184H         LINE#         110
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+Program Size: data=10.1 xdata=0 code=416
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

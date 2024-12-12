@@ -1,0 +1,139 @@
+C51 COMPILER V9.60.7.0   MAIN                                                              11/19/2024 23:19:14 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          
+   3          // ????
+   4          void Delay(unsigned int xms) //@11.0592MHz
+   5          {
+   6   1          unsigned char i, j;
+   7   1          while (xms)
+   8   1          {
+   9   2              i = 2;
+  10   2              j = 199;
+  11   2              do
+  12   2              {
+  13   3                  while (--j);
+  14   3              } while (--i);
+  15   2              xms--;
+  16   2          }
+  17   1      }
+  18          
+  19          // ?????????
+  20          unsigned char KeyScan()
+  21          {
+  22   1          if (P3_0 == 0) {  // ??1
+  23   2              Delay(20);
+  24   2              if (P3_0 == 0) {
+  25   3                  while (P3_0 == 0);  // ??????
+  26   3                  return 1;
+  27   3              }
+  28   2          }
+  29   1          if (P3_1 == 0) {  // ??2
+  30   2              Delay(20);
+  31   2              if (P3_1 == 0) {
+  32   3                  while (P3_1 == 0);  // ??????
+  33   3                  return 2;
+  34   3              }
+  35   2          }
+  36   1          return 0;
+  37   1      }
+  38          
+  39          // ????
+  40          unsigned char mode = 0;  // ?????
+  41          bit paused = 0;          // ????
+  42          
+  43          void UpdateLights() {
+  44   1          switch (mode)
+  45   1          {
+  46   2              case 0: // ????
+  47   2                  P2 = 0xFE; Delay(500);KeyScan();
+  48   2                  P2 = 0xFD; Delay(500);KeyScan();
+  49   2                  P2 = 0xFB; Delay(500);KeyScan();
+  50   2                  P2 = 0xF7; Delay(500);KeyScan();
+  51   2                  P2 = 0xEF; Delay(500);KeyScan();
+  52   2                  P2 = 0xDF; Delay(500);KeyScan();
+  53   2                  P2 = 0xBF; Delay(500);KeyScan();
+  54   2                  P2 = 0x7F; Delay(500);KeyScan();
+C51 COMPILER V9.60.7.0   MAIN                                                              11/19/2024 23:19:14 PAGE 2   
+
+  55   2                  break;
+  56   2      
+  57   2              case 1: // ????
+  58   2                  P2 = 0x7F; Delay(500);KeyScan();
+  59   2                  P2 = 0xBF; Delay(500);KeyScan();
+  60   2                  P2 = 0xDF; Delay(500);KeyScan();
+  61   2                  P2 = 0xEF; Delay(500);KeyScan();
+  62   2                  P2 = 0xF7; Delay(500);KeyScan();
+  63   2                  P2 = 0xFB; Delay(500);KeyScan();
+  64   2                  P2 = 0xFD; Delay(500);KeyScan();
+  65   2                  P2 = 0xFE; Delay(500);KeyScan();
+  66   2                  break;
+  67   2      
+  68   2              case 2: // ?????
+  69   2                  P2 = 0xFE; Delay(500);KeyScan();
+  70   2                  P2 = 0xFD; Delay(500);KeyScan();
+  71   2                  P2 = 0xFB; Delay(500);KeyScan();
+  72   2                  P2 = 0xF7; Delay(500);KeyScan();
+  73   2                  P2 = 0xEF; Delay(500);KeyScan();
+  74   2                  P2 = 0xDF; Delay(500);KeyScan();
+  75   2                  P2 = 0xBF; Delay(500);KeyScan();
+  76   2                  P2 = 0x7F; Delay(500);KeyScan();
+  77   2                  P2 = 0xFF; Delay(500);KeyScan();
+  78   2                  break;
+  79   2          }
+  80   1      }
+  81          
+  82          void main()
+  83          {
+  84   1          unsigned char key;
+  85   1          
+  86   1          while (1)
+  87   1          {
+  88   2              key = KeyScan(); // ????
+  89   2      
+  90   2              // ????
+  91   2              if (key == 1) // ??1:????
+  92   2              {
+  93   3                  mode++;
+  94   3                  if (mode > 2) mode = 0; // ???3???
+  95   3              }
+  96   2              if (key == 2) // ??2:??/??
+  97   2              {
+  98   3                  paused = !paused;
+  99   3              }
+ 100   2      
+ 101   2              // ?????,??????
+ 102   2              if (!paused)
+ 103   2              {
+ 104   3                  UpdateLights(); // ???????
+ 105   3              }
+ 106   2              else
+ 107   2              {
+ 108   3                  Delay(50); // ??????????
+ 109   3              }
+ 110   2          }
+ 111   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    267    ----
+   CONSTANT SIZE    =   ----    ----
+C51 COMPILER V9.60.7.0   MAIN                                                              11/19/2024 23:19:14 PAGE 3   
+
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
