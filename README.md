@@ -9,7 +9,7 @@
 
 - [介绍](README.md)
 - [kislate的仓库](kislate_workshop)
-- [promisun的仓库](promisun_workshop）
+- [promisun的仓库](promisun_workshop)
 - [等待您的加入](#参考资料)
 
 ### 介绍
