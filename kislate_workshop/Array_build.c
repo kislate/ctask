@@ -38,7 +38,7 @@ int *array_at(Array *a,int index){
     if(index>=a->size){
         array_inflate(a,(index/BLOCK_SIZE+1)*BLOCK_SIZE-a->size);
     }
-    return &(a->array[index]);
+    return &(a->array[index]);//返回这个增长后的数组
 };
 
 //数组的释放
@@ -73,7 +73,36 @@ int main(int argc,char *argv[])
 
     int number = 0;
     int cnt=0;
+    while(number != -1){
+        printf("请输入第%d个元素的值：",cnt);
+        scanf("%d",&number);
+        if(number != -1){
+            *array_at(&a,cnt) = number;
+            cnt++;
+        }
+    }//这串代码就是不断给这个结构体赋值；
+
+    printf("数组的大小是：%d\n",arrat_size(&a));
+    printf("数组的元素是：");
+    array_foreach(&a,cnt);//size和cnt不一定是一样的
+    printf("\n");//这个是遍历数组的代码
+
     
     return 0;
+
 }
+
+//在普通的数组实现的过程中
+//当你使用malloc分配空间的时候，虽然只赋值了3个元素
+//但是如果你直接给第10号赋值，它也会正常地打印这个第十号数值，因为你是在动态区分配的
+//但是实际上这是一个很隐蔽的越界问题，因为你只分配了3个元素，但是你却给第10号赋值了
+
+//不完美的地方*2
+
+//不能完全利用数组的空间
+//而且数据迁移的时候，如果数组足够大，那么就会存在一段时间，同时占用了两倍数组所需的内存，导致速率变慢
+
+//解决方案
+
+//链表
 
