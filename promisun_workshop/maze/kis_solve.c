@@ -60,7 +60,6 @@ void move(int i,int mg[][15])
         mg[pos[i][0]][pos[i][1]]=1;//回溯，把原来的点还原
     }
     }
-    mg[pos[i][0]][pos[i][1]]=1;//回溯，把原来的点还原（理论上这个可以删）
     return;
 }
 
