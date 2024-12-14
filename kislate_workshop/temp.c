@@ -27,60 +27,138 @@
 #include<stdlib.h>
 #include<string.h>
 typedef struct c_node{
-    char data;
+    int num;
+    char ch;
     struct c_node *next;
+    struct c_node *prev;
 }C_NODE;
-void createLinkList(C_NODE **head,char *s);
-int BolanLinkList(C_NODE *head);
-int main(void)
-{   
-    char s[1000];
-    scanf("%[^\n]",s);
-    C_NODE *head,*p;
-    *head = *p =NULL;
-    creatLinkList(&head,s);
-    BolanLinkList(head);
+
+//这里的四个函数都是a先出，b后出；
+int add(int a,int b)//a 和 b 不分顺序
+{
+    return a+b;
+} 
+
+int minus(int a,int b)//注意一下，到时候逆过来的时候，先出栈的应该放在b；
+{
+    return b-a;
 }
 
-void createLinkList(C_NODE **head,char *s)
+int times(int a,int b)//这里也是不分顺序
+{
+    return a*b;
+}
+
+int divide(int a,int b)//注意这里也是逆着过来的；
+{
+    return b/a;
+}
+//
+
+
+void createLinkList(C_NODE **head, C_NODE **tail,char *s)
 {
     C_NODE *p_new;
     C_NODE *p_mov = *head;
     while(*s != '\0')
     {
         p_new = (C_NODE*)malloc(sizeof(C_NODE));
-        p_new->data = *s;
+        p_new->num = 0;
+        p_new->ch = 0;
+        while(*s == ' ')
+        {
+            s++;
+        }
+
+        if(*s>='0'&&*s<='9')
+        {
+            while(*s != ' ')
+            {
+                p_new->num = p_new->num*10 + (*s) - '0';
+                s++;
+            }
+        }
+        else
+        {
+            p_new->ch = *s;
+            s++;
+        }
+
         p_new->next = NULL;
+        p_new->prev = NULL;//防止野指针；
         if(*head == NULL)
         {
             *head = p_new;
         }
         else 
         {
+            p_new->prev = p_mov;
             p_mov->next = p_new;
         }
         p_mov = p_new;//如果是p_mov = p_mov->next;的话那么在第一个节点的时候就会出现问题，
         //因为一开始p_mov是NULL;然后*head所指向的地方发生了变化，但是p_mov没有发生变化，所以在第一个节点的时候就会出现问题
         s++;
     }
+    *tail = p_new;
 }
 
-int BolanLinkList(C_NODE *head)
-{
-    C_NODE *start,*p_mov,*p_mark;
-    p_mov = start = head;
-    
-    for(p_mov = head;p_mov != NULL;p_mov = p_mov->next)
-    {
-        if(p_mov->data == '+')
-        {
-            int num1 ,num2;
-            num1 = 0; num2 = 0;
-            int sum =0;
-            for(p_mark=head;p_mark->next !=p_mov;p_mark = p_mark->next);
-            for(start = head;start->next != p_mark;start = start->next);
-            num1 += start->data - '0';
-            for(p_mark=head;p_mark->next !=p_mark;p_mark = p_mark->next)
-        }
-    }
+int BolanLinkList(C_NODE **tail);
+
+int main(void)
+{   
+    char s[1000];
+    scanf("%[^\n]",s);
+    C_NODE *head,*p,*tail;
+    head = p = NULL;
+    createLinkList(&head,&tail,s);
+    int ret = BolanLinkList(head);
+    printf("%d",ret);
 }
+int BolanLinkList(C_NODE **tail)
+{
+    if((*tail)->prev == NULL)
+    {
+        return (*tail)->num;
+    }
+
+    if((*tail)->num != 0)
+    {
+        *tail=(*tail)->prev;
+        return (*tail)->num;
+    }
+
+    if((*tail)->ch == '+')
+    {
+        *tail=(*tail)->prev;
+        int num1 = BolanLinkList(tail);
+        int num2 = BolanLinkList(tail);
+        return add(num1,num2);
+    }
+
+    if((*tail)->ch == '-')
+    {
+        *tail=(*tail)->prev;
+        int num1 = BolanLinkList(tail);
+        int num2 = BolanLinkList(tail);
+        return minus(num1,num2);
+    }
+
+    if((*tail)->ch == '*')
+    {
+        *tail=(*tail)->prev;
+        int num1 = BolanLinkList(tail);
+        int num2 = BolanLinkList(tail);
+        return times(num1,num2);
+    }
+
+    if((*tail)->ch == '/')
+    {
+       *tail=(*tail)->prev;
+        int num1 = BolanLinkList(tail);
+        int num2 = BolanLinkList(tail);
+        return divide(num1,num2);
+    }
+
+
+}
+
