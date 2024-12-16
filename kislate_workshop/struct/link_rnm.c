@@ -258,35 +258,167 @@ void modify_score(STU *head,char *num,int course,int score)
     }
 }
 
-void link_sort(STU **head)
+// void link_sort(STU **head)
+// {
+//     STU *start= *head;
+//     STU *pb,*pf,temp;
+//     pb = pf =*head;
+//     if(*head == NULL || pb->next == NULL)
+//     {
+//         return ;
+//     }
+//     while(pf->next != NULL)
+//     {
+//         pb = pf->next;
+//         while(pb != NULL)
+//         {
+//             if(pf->score.avg > pb->score.avg)
+//             {
+//                 temp = *pb;
+//                 *pb = *pf;
+//                 *pf = temp;
+
+//                 temp.next = pb->next;
+//                 pb->next = pf->next;
+//                 pf->next = temp.next;
+//             }
+//             pb = pb->next;
+//         }
+//         pf = pf->next;
+//     }
+//     *head = start;
+// }
+
+void link_sort(STU **head)//这是一个交换指针域的做法
 {
-    STU *start= *head;
-    STU *pb,*pf,temp;
-    pb = pf =*head;
+    STU *pb,*pf;
+    STU *rpb,*rpf;
+    STU *temp;
+    STU *start = *head;
+    rpb = rpf= pb = pf = *head;
     if(*head == NULL || pb->next == NULL)
     {
-        return ;
+        return ;//可以自己加printf()，反正意思就是不需要排序；
     }
     while(pf->next != NULL)
     {
+        rpb = pf;
         pb = pf->next;
         while(pb != NULL)
         {
             if(pf->score.avg > pb->score.avg)
             {
-                temp = *pb;
-                *pb = *pf;
-                *pf = temp;
+                if(pf == *head)
+                {
+                    *head = pb;
+                    rpb->next = pf;
+                    temp = pb->next;//这里不要用temp->next;
+                    //你他妈的瞎几把传一个不知道的next
+                    pb->next = pf->next;
+                    pf->next = temp;
+                    
+                    temp = pb;
+                    pb = pf;
+                    pf = temp;
+                }
+                else
+                {
+                    rpf->next = pb;//rpf指向的结构体的下一个结构体地址改为pb指向的结构体的地址；
+                    rpb->next = pf;//rpb指向的结构体的下一个结构体地址改为pf指向的结构体的地址；
+                    temp = pb->next;//把pb指向的结构体的下一个结构体地址存起；
+                    pb->next = pf->next;//把pb指向的结构体的下一个结构体地址改为pf指向的结构体的下一个结构体地址；
+                    pf->next = temp;//把pf指向的结构体的下一个结构体地址改为pb指向的结构体的下一个结构体地址；
 
-                temp.next = pb->next;
-                pb->next = pf->next;
-                pf->next = temp.next;
+                    temp = pb;
+                    pb = pf;
+                    pf = temp;
+                    
+                }
             }
+            //这里有一个很隐蔽的错误
+            //就是说当你pb和pf的指针域交换了以后
+            //pb跑的next的时候，它的next已经变了，它会跑到前面去，就会有死循环。
+            rpb = pb;
             pb = pb->next;
-        }
+        } //交换指针域;
+        rpf = pf;
         pf = pf->next;
     }
-    *head = start;
+    *head = start;//这是一个大寄的做法，因为start变了啊，傻逼
 }
 
+void link_sort(STU **head)
+{
+    if (*head == NULL || (*head)->next == NULL)
+    {
+        return;
+    }
 
+    STU *i, *j, *prev_i, *prev_j, *temp;
+    for (i = *head; i != NULL; i = i->next)
+    {
+        for (j = i->next, prev_j = i; j != NULL; prev_j = j, j = j->next)
+        {
+            if (i->score.avg > j->score.avg)
+            {
+                if (i == *head)
+                {
+                    *head = j;
+                }
+                else
+                {
+                    prev_i->next = j;
+                }
+                prev_j->next = i;
+
+                temp = i->next;
+                i->next = j->next;
+                j->next = temp;
+
+                temp = i;
+                i = j;
+                j = temp;
+            }
+        }
+        prev_i = i;
+    }
+}//完全简化
+//这个是正确的
+
+void link_sort(STU **head)
+{
+    if (*head == NULL || (*head)->next == NULL)
+    {
+        return;
+    }
+
+    STU *pf, *pb, *rpf, *rpb, *temp;
+    // rpb = rpf = pb = pf = *head;
+    for (pf = *head; pf != NULL; pf = pf->next)
+    {
+        for (pb = pf->next, rpb = pf; pb != NULL; rpb = pb,pb = pb->next)
+        {
+            if (pf->score.avg > pb->score.avg)
+            {
+                if (pf == *head)
+                {
+                    *head = pb;
+                }
+                else
+                {
+                    rpf->next = pb;
+                }
+                pb->next = pf;
+
+                temp = pf->next;
+                pf->next = pb->next;
+                pb->next = temp;
+
+                temp = pf;
+                pf = pb;
+                pb = temp;
+            }
+        }
+        rpf = pf;
+    }
+}

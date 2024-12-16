@@ -1,5 +1,8 @@
 {
     "files.associations": {
         "ctype.h": "c"
-    }
+    },
+    "C_Cpp.errorSquiggles": "enabled",
+    "problems.showCurrentInStatus": true,
+    "problems.visibility": true
 }
