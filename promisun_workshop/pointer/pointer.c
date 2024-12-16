@@ -4,7 +4,7 @@ char*strcopy(char*, const char *);
 int main(void) 
 {
     char *s1,*s2,*s3; 
-    s1 = (char*)malloc(50); //Èô·ÖÅä¿Õ¼ä£¬ÔòÖ¸ÕëÖ¸ÏòÎ´Öª£¬ºÜÎ£ÏÕ
+    s1 = (char*)malloc(50); //è‹¥åˆ†é…ç©ºé—´ï¼Œåˆ™æŒ‡é’ˆæŒ‡å‘æœªçŸ¥ï¼Œå¾ˆå±é™©
     s2 = (char*)malloc(50); 
     s3 = (char*)malloc(50); 
     scanf("%s",s2); 
@@ -13,15 +13,16 @@ int main(void)
     printf("%s\n",s1); 
     s3=strcopy(s1,s2); 
     printf("%s",s3);
-    free(s1); //ÊÍ·Å
+    free(s1); //é‡Šæ”¾
     free(s2);
 	free(s3);
     return 0; 
 }
-/*½«×Ö·û´®s¸´ÖÆ¸ø×Ö·û´®t£¬²¢ÇÒ·µ»Ø´®tµÄÊ×µØÖ·*/ 
+/*å°†å­—ç¬¦ä¸²så¤åˆ¶ç»™å­—ç¬¦ä¸²tï¼Œå¹¶ä¸”è¿”å›ä¸²tçš„é¦–åœ°å€*/ 
 char *strcopy (char *t,const char *s) 
 {
 	char *p=t; 
     while(*t++ = *s++); 
     return p; 
 }
+//ä¸ºä½•å¤´æ­Œä¸è¿‡ï¼Œæ— è¯­ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚
