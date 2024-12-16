@@ -15,6 +15,7 @@ int main(void)
     printf("%s",s3);
     free(s1); //释放
     free(s2);
+	free(s3);//注意，这里指针的位置已经改变了
     return 0; 
 }
 /*将字符串s复制给字符串t，并且返回串t的首地址*/ 
@@ -24,4 +25,4 @@ char *strcopy (char *t,const char *s)
     while(*t++ = *s++); 
     return p; 
 }
-//为何头歌不过，无语。。。。。。。。。。
+
