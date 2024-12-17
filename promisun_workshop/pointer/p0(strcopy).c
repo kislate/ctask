@@ -25,5 +25,5 @@ char *strcopy (char *t,const char *s)
     while(*t++ = *s++); 
     return p; 
 }
-//为何头歌不过，无语。。。。。。。。。。
-//free(s3)->free过的再free
+//Q:Q:为何头歌不过，无语。。。。。。。。。。（但dev-c++能运行）
+//A:free(s3)->free过的再free
