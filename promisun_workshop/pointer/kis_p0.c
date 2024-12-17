@@ -4,7 +4,7 @@ char*strcopy(char*, const char *);
 int main(void) 
 {
     char *s1,*s2,*s3; 
-    s1 = (char*)malloc(50); //若分配空间，则指针指向未知，很危险
+    s1 = (char*)malloc(50); //若不分配空间，则指针指向未知，很危险
     s2 = (char*)malloc(50); 
     s3 = (char*)malloc(50); 
     scanf("%s",s2); 
