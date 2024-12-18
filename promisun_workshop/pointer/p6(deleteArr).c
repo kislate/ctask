@@ -42,28 +42,31 @@
 #include<string.h>
 int delSubstr(char *s,const char* t)//s中删t
 {
-    int i=0,len1=strlen(s),len2=strlen(t);
-    char *p[5];
-    p[0]=strstr(s,t);
-    for(;p[i]!=NULL;)
+    int i=0,len2=strlen(t);
+    char *p=strstr(s,t);
+    while(p!=NULL)
     {
-        i++;
-        if(i>=1) p[i]=strstr(p[i-1]+1,t);
-    }
-    for(int j=0;j<i;j++)
-    {
-        for(char* pp=s;pp<s+len1&&(*pp)!='\0';pp++)
+    	int len1=strlen(s);//len1会随数组改变而改变 
+    	for(char* pp=s;pp<s+len1;pp++)
         {
-            if(pp==p[j])
+            if(pp==p)//遇到substr
                 {
-                    for(;(pp+len2)<(s+len1)&&*(pp+len2)!='\0';pp++)
+                    for(;(pp+len2)<(s+len1);pp++)
                         *pp=*(pp+len2);
                     *pp='\0';
-                    break;
+                    break;//删子串
                 }
         }
+        i++;
+//       if(i>=1) p=strstr(s,t);//继续找————>注意：如果是p=strstr(s,t)则每次会从新字符串头部开找
+//                              若遇上aabcbccabc abc本应输出————>abcc,但实际会输出c(aabcbccabc——>abccabc——>cabc——>c)
+//                              故应使用p=strstr(p,t)即删除后从上一次找到的起始位置继续找
+        if(i>=1) p=strstr(p,t);//********
     }
+    if(!i)return 0;
+    return 1;
 }
+
 int main()
 {
     char str[50],substr[10];//可以动态分配使内存无冗余
@@ -72,6 +75,7 @@ int main()
     scanf("%[^\n]",substr);
 //	fgets(str,50,stdin);
 //	fgets(substr,10,stdin);
-    delSubstr(str,substr);
-    printf("%s",str);
+    int g=delSubstr(str,substr);
+    printf("%s\n",str);
+    printf("%d",g);
 }
