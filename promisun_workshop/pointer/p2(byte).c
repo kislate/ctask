@@ -8,3 +8,24 @@
 
 // 输出：十六进制的字母小写输出(2个十六进制数之间空格隔开)
 // 0 0 0 1 e 2 4 0
+#include<stdio.h>
+int main()
+{
+    int n;
+    char c,d;
+    char *p=(char*)&n+3;
+    scanf("%d",&n);
+    do
+    {
+        int a,b;
+        a = ((*p)>>4)&0x0f;
+        b = (*p)&0x0f;
+        // if(a>=10) c='a'+a-10;
+        // else c='0'+a;
+        // if(b>=10) c='a'+b-10;
+        // else c='0'+b;
+        p--;
+        //printf("%c %c",c);
+        printf("%d %d ",a,b);
+    } while(p>=(char*)&n);
+}

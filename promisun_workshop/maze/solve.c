@@ -52,3 +52,4 @@ int main()
     }
     move(0,mg);
 }
+//未回溯故运行结果不正确，正确见kis_solve
