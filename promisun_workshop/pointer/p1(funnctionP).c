@@ -57,11 +57,12 @@ int main(void)
         }
 
 
-        getchar();
+        getchar(); //清除缓存区换行符（输choice的遗留）
         printf("input the first string please!\n");
-        scanf("%s",a);
+        scanf("%[^\n]",a);
+        getchar(); //清除缓存区换行符（输a的遗留）
         printf("input the second string please!\n");
-        scanf("%s",b);
+        scanf("%[^\n]",b);
         result=(*p)(a,b);
         printf("the result is %s\n", result);
     }
@@ -93,11 +94,12 @@ int main(void)
         } while (choice<1||choice>4);
 	
 		if(choice==4) return 0;
-        getchar();
+        getchar(); //清除缓存区换行符（输choice的遗留）
         printf("input the first string please!\n");
-        scanf("%s",a);
+        scanf("%[^\n]",a);
+        getchar(); //清除缓存区换行符（输a的遗留）
         printf("input the second string please!\n");
-        scanf("%s",b);
+        scanf("%[^\n]",b);
         result=(*p[choice-1])(a,b);
         printf("the result is %s\n", result);
     }

@@ -74,7 +74,7 @@ int main()
 	getchar();
     scanf("%[^\n]",substr);
 //	fgets(str,50,stdin);
-//	fgets(substr,10,stdin);
+//	fgets(substr,10,stdin);//后续算字符串长度时可能因为换行符而加1出现错误
     int g=delSubstr(str,substr);
     printf("%s\n",str);
     printf("%d",g);
