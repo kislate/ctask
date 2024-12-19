@@ -63,7 +63,8 @@ void scheduler(void)
 {
     char c;
     int n=0;//任务数
-    while((c=getchar())!='\n')
+//   while((c=getchar())!= '\n')
+    while(scanf("%c", &c) == 1 && c != '\n')
     {
         diaoyong[n++]=c-'0';
     }
@@ -75,4 +76,5 @@ int main()
     return 0;
 }
 
-//为何头歌又不过，明明dev-c++运行完全没问题
+//Q:为何头歌又不过，明明dev-c++运行完全没问题
+//A:因为在dev-c++中输入时会自动加上回车，而在在线编译器中不会，故在在线编译器中要用scanf("%c", &c) == 1 && c != '\n'来判断输入是否结束
