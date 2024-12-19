@@ -43,6 +43,7 @@ int Multiply(char*s,char*t)
 
 //进位
     for(int m=0;!(carry==0&&result[m+1]==0);pos++) //应该有一些特殊情况没考虑到，判断循环结束的条件可能有纰漏
+    //————>如果result改为字符串数组，则对result进行自增再*result得到后续字符串与0比较则判断循环结束没问题
     {
         if(result[m]>9)
         {
