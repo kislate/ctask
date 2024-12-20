@@ -31,29 +31,111 @@ q w e r 1 2 3 4 ? @ %
 qwer1234?@%
 qwer12345?@%
 
-开始你的任务吧，祝你成功！  */
+开始你的任务吧，祝你成功！  *///该题没讲清楚删结点是把所有相同或相近字符的结点都删掉还是只删一个(该程序只删一个)
 #include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 struct Node
 {
     char value;
-    struct Node *pNext;
+    struct Node *next;
 };
 typedef struct Node node;
-void init (node *phead);//初始化
-node * addback(node *phead,int date);//尾部加节点
 
-
+node * createList(void);//创建链表(尾插法)
+void addback(node *q,char c);//尾部加节点
+node *operateSimilar(node *phead,char c);//找到链表中与c最接近的结点并操作
+void printList(node *phead);//遍历链表
+node * deleteNode(node* p,node *phead);//删除结点
 
 int main()
 {
+    node *phead=createList();
+    char c;
+    scanf(" %c",&c);//防止前导空格影响
 
+    node *p=phead;
+    for(;p!=NULL;p=p->next)
+        printf("%c ",p->value);
+    printf("\n");
+    printList(phead);
+    
+    phead=operateSimilar(phead,c);
+    printList(phead);
+    
+    return 0;
 }
 
-void init (node *phead)
+node *createList(void)
 {
-
+    node *head=NULL,*p,*tail=NULL;
+    char c;
+    while((c=getchar())!='\n')
+    {
+        p=(node*)malloc(sizeof(node));
+        p->value=c;
+        if(head==NULL)
+            head=p;//首结点插入空表
+        else
+            tail->next=p;//其余结点插入尾部
+        tail=p;//尾插法
+    }
+    if (tail != NULL) {
+        tail->next = NULL;
+    }
+    return head;
 }
-node * addback(node *phead,int date)
-{
 
+void printList(node *phead)
+{
+    node *p=phead;
+    for(;p!=NULL;p=p->next)
+        printf("%c",p->value);
+    printf("\n");
+}
+
+node *operateSimilar(node *phead,char c)//
+{
+    node  *p=phead,*q=NULL,*last=NULL;//q标记最近点,便于添加操作;last指向p的前一个结点,便于删除操作
+    int min=100;
+
+    for(;p!=NULL&&p->value!=c;)
+    {
+        last = p;
+        if(abs(p->value-c)<min)
+        {
+            min=abs(p->value-c);
+            q=p;
+        }
+        p=p->next;
+    } 
+    if(p==NULL) addback(q,c);//没找到
+    else 
+    {
+        return deleteNode(last,phead);
+    }
+    return phead;
+}
+
+node* deleteNode(node* p,node *phead)
+{
+    if(p==NULL) //说明头部即要删去的结点
+    {
+        node *q=phead;
+        phead=phead->next;
+        free(q);
+        return phead;
+    }
+    node *temp = p->next;
+    p->next = p->next->next;
+    free(temp);//free不能直接free（p->next）否则会出错
+    return phead;
+}
+
+void addback(node *q,char c)
+{
+    node *p=(node*)malloc(sizeof(node));
+    p->value=c;
+    p->next=q->next;
+    q->next=p;
 }
