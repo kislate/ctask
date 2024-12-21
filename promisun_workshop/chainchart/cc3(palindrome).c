@@ -29,6 +29,7 @@ false
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 typedef struct c_node{
     char data;
     struct c_node *next;
@@ -37,7 +38,7 @@ int main()
 {
     char s[1000],*pc=s;
     int len=0;
-    C_NODE *head,*p;
+    C_NODE *head=NULL,*p;
     scanf("%[^\n]",s);
     createLinkList(&head,s);   
     for(p=head;p;p=p->next) len++;
@@ -55,22 +56,50 @@ typedef struct c_node{
 
 void createLinkList(C_NODE **headp, char s[]) 
 {
-/************************************* BEGIN *******************************************/
-
-
-   
-
-
-/************************************* BEGIN *******************************************/
+    int i=0;
+    C_NODE *head=NULL,*p,*tail=NULL;
+    while(s[i]!='\0'&&s[i]!='\n')
+    {
+        p=(C_NODE*)malloc(sizeof(C_NODE));
+        p->data=s[i++];
+        if(head==NULL)
+            head=p;//首结点插入空表
+        else
+            tail->next=p;//其余结点插入尾部
+        tail=p;//尾插法
+    }
+    if (tail != NULL) {
+        tail->next = NULL;
+    }
+    *headp=head;
 }
 
 void judgePalindrome(C_NODE *head)
 {
 /************************************* BEGIN *******************************************/
-
-
-
-
+    C_NODE *s,*t;
+    int len=0;
+    for(s=head;s;s=s->next) len++;
+    s=head;
+    if(len%2)
+        for(int i=0;i<=len/2;i++)
+            s=s->next;
+    else
+        for(int i=0;i<len/2;i++)
+            s=s->next;
+    t=s;
+    for(int i=1,j=len/2-1;i<=len/2;i++,j--)
+    {
+        s=head;
+        for(int m=0;m<j;m++) s=s->next;//找到对应位置
+        if(s->data!=t->data)
+        {
+            printf("false\n");
+            return;
+        }
+        t=t->next;
+    }
+    printf("true\n");
 
 /************************************* BEGIN *******************************************/
 }
