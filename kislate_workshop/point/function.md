@@ -122,3 +122,110 @@ int main() {
 
 这个示例展示了如何定义和使用一个返回指向包含 5 个 `int` 类型元素的数组的指针的函数。
 ```
+
+
+# 函数和函数指针的区别
+
+## 函数
+
+- **定义**：函数是一个具有特定功能的代码块，可以通过函数名进行调用。
+- **语法**：函数的定义包括返回类型、函数名、参数列表和函数体。
+- **调用**：通过函数名和参数列表来调用函数。
+
+### 示例
+
+```c
+#include <stdio.h>
+
+// 定义一个函数，接受两个整数参数并返回它们的和
+int add(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    int result = add(3, 4); // 调用函数
+    printf("Result: %d\n", result);
+    return 0;
+}
+```
+
+```c
+#include <stdio.h>
+
+// 定义一个函数，接受两个整数参数并返回它们的和
+int add(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    // 定义一个函数指针，指向接受两个整数参数并返回整数的函数
+    int (*funcPtr)(int, int) = add;
+
+    // 使用函数指针调用函数
+    int result = funcPtr(3, 4);
+    printf("Result: %d\n", result);
+    return 0;
+}
+```
+
+char **p[3](char *, char *) 和 char **(*p)[3](char *, char *) 的区别在于它们声明的对象类型不同：
+
+char **p[3](char *, char *) 声明了一个包含 3 个元素的函数数组，每个函数接受两个 char * 参数并返回一个 char **。
+char **(*p)[3](char *, char *) 声明了一个指向包含 3 个元素的函数数组的指针，每个函数接受两个 char * 参数并返回一个 char **。
+示例代码
+char **p[3](char *, char *) 示例
+```c
+#include <stdio.h>
+
+// 定义一个函数，接受两个字符指针参数并返回字符指针的指针
+char **exampleFunction(char *a, char *b) {
+    static char *result[2];
+    result[0] = a;
+    result[1] = b;
+    return result;
+}
+
+// 定义一个函数数组，每个函数接受两个字符指针参数并返回字符指针的指针
+char **p[3](char *, char *) = {exampleFunction, exampleFunction, exampleFunction};
+
+int main() {
+    // 使用函数数组中的函数
+    char *str1 = "Hello";
+    char *str2 = "World";
+    char **result = p[0](str1, str2);
+    printf("Result: %s, %s\n", result[0], result[1]);
+
+    return 0;
+}
+```
+在这个例子中，`p` 是一个包含 3 个元素的函数数组，每个函数接受两个 `char * `参数并返回一个 `char **`。
+
+`char **(*p)[3](char *, char *)` 示例
+```c
+#include <stdio.h>
+
+// 定义一个函数，接受两个字符指针参数并返回字符指针的指针
+char **exampleFunction(char *a, char *b) {
+    static char *result[2];
+    result[0] = a;
+    result[1] = b;
+    return result;
+}
+
+// 定义一个函数数组，每个函数接受两个字符指针参数并返回字符指针的指针
+char **array[3](char *, char *) = {exampleFunction, exampleFunction, exampleFunction};
+
+// 定义一个指向包含 3 个元素的函数数组的指针
+char **(*p)[3](char *, char *) = &array;
+
+int main() {
+    // 使用函数数组中的函数
+    char *str1 = "Hello";
+    char *str2 = "World";
+    char **result = (*p)[0](str1, str2);
+    printf("Result: %s, %s\n", result[0], result[1]);
+
+    return 0;
+}
+```
+在这个例子中，`p `是一个指向包含 3 个元素的函数数组的指针，每个函数接受两个 `char *` 参数并返回一个 `char **`。通过 `*p` 解引用指针 `p`，我们可以访问函数数组 `array`，然后通过 `(*p)[0]` 访问数组中的函数。
