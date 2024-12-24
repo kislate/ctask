@@ -18,18 +18,60 @@ src/step6/matrix1.in
 
 开始你的任务吧，祝你成功！
 */
+// #include<stdio.h>
+// #include<stdlib.h>
+// int main(int argc,char *argv[])
+// {
+//     FILE *fp1,*fp2;
+//     if(argc!=1)
+//     {
+//         printf("Arguments error!\n");
+//         exit(-1);
+//     }
+
+//     if(!(fp1 = fopen("argv[0]","r")))
+//     {
+//         printf("Can't open file!\n");
+//         exit(-1);
+//     }
+
+//     if(!(fp2 = fopen("matrix.out","w")))
+//     {
+//         printf("Can't open file!\n");
+//         fclose(fp1);
+//         exit(-1);
+//     }
+//     int n,m;
+//     fscanf(fp1,"%d %d",&n,&m);
+//     int matrix[100][100];
+//     for(int i = 0;i<n;i++)
+//     {
+//         for(int j = 0;j<m;j++)
+//         {
+//             fscanf(fp1,"%d",&matrix[i][j]);
+//         }
+//     }
+//     for(int i = m-1;i>=0;i--)
+//     {
+//         for(int j = 0;j<n;j++)
+//         {
+//             fprintf(fp2,"%d",matrix[j][i]);
+//             if(j!=n-1)
+//                 fputs(' ',fp2);
+//         }
+//         fprintf(fp2,"\n");
+//     }
+//     fclose(fp1);
+//     fclose(fp2);
+// }
 #include<stdio.h>
 #include<stdlib.h>
 int main(int argc,char *argv[])
 {
     FILE *fp1,*fp2;
-    if(argc!=1)
-    {
-        printf("Arguments error!\n");
-        exit(-1);
-    }
-
-    if(!(fp1 = fopen("argv[0]","r")))
+    char filename[100];
+    scanf("%s",filename);
+    if(!(fp1 = fopen(filename,"r")))
     {
         printf("Can't open file!\n");
         exit(-1);
@@ -56,8 +98,11 @@ int main(int argc,char *argv[])
         for(int j = 0;j<n;j++)
         {
             fprintf(fp2,"%d",matrix[j][i]);
-            if(j!=n-1)
-                fputs(' ',fp2);
+            if(j != n-1)
+            {
+                fputc(' ',fp2);//这回过了吧
+            }
+
         }
         fprintf(fp2,"\n");
     }
