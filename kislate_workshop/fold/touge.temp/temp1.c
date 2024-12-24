@@ -31,12 +31,11 @@ type test1.c
 指令错误
 
 开始你的任务吧，祝你成功！*/
-#include <stdio.h>
+#include<stdio.h>
 #include <stdlib.h>
-#include <string.h>
-
+#include<string.h>
 void display_file_with_line_numbers(const char *filename, int paginate) {
-    FILE *file = fopen(filename, "r");
+    FILE *file = fopen("src/step1_1/test1.c", "r");
     if (!file) {
         printf("无法打开文件 %s", filename);
         return;
@@ -47,17 +46,21 @@ void display_file_with_line_numbers(const char *filename, int paginate) {
     int line_count = 0;
 
     while (fgets(line, sizeof(line), file)) {
-        printf("%d: %s", line_number++, line);
+        printf("%d  %s", line_number++, line);
         if (paginate && ++line_count % 10 == 0) {
+            line_number = 1;
             char c;
-            while ((c = getchar()) != 'q');
+            while ((c = getchar()) != 'q')
+            break;
         }
     }
 
     fclose(file);
 }
-
-int main() {
+int main()
+{
+	// 请在此处编辑您的代码
+	/********** Begin **********/
     char command[256];
     fgets(command, sizeof(command), stdin);
     char *token = strtok(command, " \n");
@@ -78,6 +81,6 @@ int main() {
     } else {
         printf("指令错误");
     }
-
-    return 0;
+	/********** End **********/
+	return 0; 
 }
