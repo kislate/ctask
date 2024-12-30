@@ -1,10 +1,15 @@
-#include <stdio.h>
-#include <unistd.h> // for sleep function
-
-int main(void) {
-    printf("First Page\n");
-    sleep(2); // 延迟2秒
-    printf("\033[2J\033[H"); // 清屏并移动光标到左上角
-    printf("Second Page\n");
+#include<stdio.h>
+#define swap(x,y) x = x + y ; y = x - y ; x = x - y
+int main(void)
+{
+    int a = 1 , b = 1;
+    for(int i = 0 ;i < 3 ;i++)
+    {
+        static int a;
+        printf("%d %d\n",a++,b++);
+    }
+    swap(a,b);
+    printf("%d %d",a,b);
+    a ^=(-1)<<5;
     return 0;
 }
