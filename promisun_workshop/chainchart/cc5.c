@@ -60,7 +60,7 @@ int main(void){
     printf("\n");
     return 0;  
 }
-//先进先出创建链表
+//先进先出创建链表,队列
 void create_list(struct s_list **headp,int *p)//headp是指向指针的指针，p是指向数组的指针，要改指针则应该传指针地址，故用**headp
 {
     struct s_list *loc_head=NULL,*tail;
@@ -81,7 +81,7 @@ void create_list(struct s_list **headp,int *p)//headp是指向指针的指针，
     *headp=loc_head;
 }
 
-//后进先出创建链表
+//后进先出创建链表，栈
 void create_list(struct s_list **headp,int *p)//headp是指向指针的指针，p是指向数组的指针，要改指针则应该传指针地址，故用**headp
 {
     struct s_list *loc_head=NULL,*s;

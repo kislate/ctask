@@ -72,3 +72,57 @@ int main()
 }
 
 //此题之后需改进
+//傻逼了，因为位数有限，上述进位根本不需要自己判断循环条件，直接让其循环400都行，反正0怎么操作都是0
+//后续打印时也可以直接从400位开始，遇到第一个不为0的数就开始打印，不用再去判断pos
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define Max 400 //两个不超过200位的非负整数积不超过400位
+int result[Max]={0};
+
+void Multiply(char*s,char*t)
+{
+    int len1=strlen(s),len2=strlen(t);
+    char*p=s+len1-1,*q=t+len2-1;//指向低位
+    for(int i=0;p>=s;p--,i++)
+    {
+        for(int j=0;q>=t;q--,j++)
+        {
+            result[i+j]=result[i+j]+(p[0]-'0')*(q[0]-'0');
+        }
+        q=t+len2-1;//重置
+
+    }//此时result内各数没进位,且均不超过200*81*（1.1）=17820;
+    int carry=0;//保存进位
+
+//进位
+    for(int m=0;m<400;) //不用管，进位就行
+    {
+        if(result[m]>9)
+        {
+            carry=result[m]/10;
+            result[m++]%=10;
+            result[m]+=carry;
+            carry=0;
+        }
+        else m++;
+    }
+}
+int main()
+{
+    char num1[200],num2[200];
+    scanf("%s",num1);
+    scanf("%s",num2);
+    if(num1[0]==0||num2[0]==0) printf("0");
+    else
+	{
+		int k=399;
+		Multiply(num1,num2);
+		for(k;result[k]==0;k--);//找到第一个不为0的位置
+    	for(k;k>=0;k--)
+        	printf("%d",result[k]);
+	}
+    return 0;
+}
