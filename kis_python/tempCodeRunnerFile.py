@@ -1,0 +1,1 @@
+return ' '.join(sorted(sentence.split(), key=lambda x: sorted(x)))
