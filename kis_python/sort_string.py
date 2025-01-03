@@ -12,6 +12,11 @@ Examples
 '''
 def order(sentence):
   # code here
-  return ' '.join(sorted(sentence.split(), key=lambda x: sorted(x)))
+    return ' '.join(sorted(sentence.split(), key=lambda x: sorted(x)))# Unicode 中数字总是排在字母前面，所以直接排序即可
+### key函数是一个高阶函数，用来指定排序的规则，取元素套进函数中得到的返回值来进行比较排序
 
-print("hello world")
+
+
+def order(sentence):
+    return ' '.join(sorted(sentence.split(), key=lambda x: int(''.join(filter(str.isdigit, x)))))
+    
