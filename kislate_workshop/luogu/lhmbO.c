@@ -16,47 +16,9 @@ lhm 有 n 个正整数，他很喜欢它们。lhm 突然想知道这些正整数
 【子任务】
 数据保证：n ≤10000，k ≤1000，正整数均小于 30000。
 */
-// #include<stdio.h>
-// #include<stdlib.h>
-// #include<string.h>
-// #include<math.h>
-// int cmp(const void *a,const void *b)
-// {
-//     return *(int *)a - *(int *)b;
-// }
-// int main(void)
-// {
-//     int n,k;
-//     scanf("%d%d",&n,&k);
-//     int *arr = (int *)malloc(sizeof(int) * n);
-//     if(arr == NULL)
-//     {
-//         fprintf(stderr,"没成\n");
-//         return -1;
-//     }
-//     for(int i = 0 ; i < n ; i++)
-//     {
-//         scanf("%d",arr + i);
-//     }
-//     qsort(arr,n,sizeof(int),cmp);
-//     int cnt = 1;
-//     for(int i = 1 ; i < n ; i++)
-//     {
-//         if(arr[i] != arr[i - 1])
-//         {
-//             cnt++;
-//         }
-//         if(cnt == k)
-//         {
-//             printf("%d\n",arr[i]);
-//             return 0;
-//         }
-//     }
-//     printf("NO RESULT\n");
-//     return 0;
-// }
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 #include<math.h>
 int cmp(const void *a,const void *b)
 {
@@ -64,5 +26,32 @@ int cmp(const void *a,const void *b)
 }
 int main(void)
 {
-    
+    int n,k;
+    scanf("%d%d",&n,&k);
+    int *arr = (int *)malloc(sizeof(int) * n);
+    if(arr == NULL)
+    {
+        fprintf(stderr,"没成\n");
+        return -1;
+    }
+    for(int i = 0 ; i < n ; i++)
+    {
+        scanf("%d",arr + i);
+    }
+    qsort(arr,n,sizeof(int),cmp);
+    int cnt = 1;
+    for(int i = 1 ; i < n ; i++)
+    {
+        if(arr[i] != arr[i - 1])
+        {
+            cnt++;
+        }
+        if(cnt == k)
+        {
+            printf("%d\n",arr[i]);
+            return 0;
+        }
+    }
+    printf("NO RESULT\n");
+    return 0;
 }

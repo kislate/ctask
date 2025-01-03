@@ -18,3 +18,12 @@ printer_error(s) => "8/22"
 '''
 def printer_error(s):
     return "{}/{}".format(len([i for i in s if i not in 'abcdefghijklm']),len)
+
+#### Other Solutions、
+def printer_error(s):
+    return "{}/{}".format(sum(1 for i in s if i not in string.ascii_lowercase[:13]), len(s))
+
+#### import string 表示导入string模块
+import string
+def printer_error(s):
+    return "{}/{}".format(sum(1 for i in s if i not in string.ascii_lowercase[:13]), len(s))

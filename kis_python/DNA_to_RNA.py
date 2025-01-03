@@ -16,3 +16,36 @@ All input is guaranteed to be valid, i.e. each input string will only ever consi
 '''
 def dna_to_rna(dna):
     return dna.replace('T','U')
+
+
+#### Other Solutions
+dna_dict = {
+    'T': 'U',
+    'A': 'A',
+    'C': 'C',
+    'G': 'G'
+}
+
+def DNAtoRNA(dna):
+    rna = []
+    for letter in dna:
+        rna.append(dna_dict[letter])
+    return "".join(rna)
+#def DNAtoRNA(dna):
+#    return "".join([dna_dict[letter] for letter in dna])
+# copilot秒杀
+
+#### Other Solutions
+DNAtoRNA = lambda d: d.replace("T", "U")
+
+#### Other Solutions
+def DNAtoRNA(dna):
+    RNA= ""
+    i = 0
+    for i in dna:
+        if i == "T":
+            RNA = RNA + "U"
+        else:
+            RNA = RNA + i
+    return RNA
+

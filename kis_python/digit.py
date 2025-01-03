@@ -51,3 +51,6 @@ def dig_pow(n, p):
 
 for i in enumerate("abc"):
     print(i)
+    # (0, 'a')
+    # (1, 'b')
+    # (2, 'c')
