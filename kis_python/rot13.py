@@ -19,7 +19,7 @@ def rot13(message):
 # 没成功
 # ord() 函数是 chr() 函数（对于8位的ASCII字符串）或 unichr() 函数（对于Unicode对象）的配对函数，
 
-def rot13(message):
+def rot13(message):# 这是我自己写的
     str = []
     for i in message:
         if i.isalpha():
@@ -68,3 +68,7 @@ def rot13(message):
     return "".join(PAIRS.get(c, c) for c in message)
 # dict.get(key, default=None) 返回指定键的值，如果值不在字典中返回默认值
 # 这里的默认值就是c
+
+def rot13(message):
+    return ''.join(chr((ord(c) - ord('a') + 13) % 26 + ord('a')) if 'a' <= c <= 'z' else chr((ord(c) - ord('A') + 13) % 26 + ord('A')) if 'A' <= c <= 'Z' else c for c in message)
+# 一行代码，顶级压缩

@@ -68,3 +68,18 @@ def fibonacci(n):
         return n
     return fibonacci(n - 1) + fibonacci(n - 2) 
 # 最逆天的算法,使用functools模块的lru_cache装饰器,缓存了递归调用的结果,大大提高了效率
+
+def memoized(f):
+    cache = {}
+    def wrapped(k):
+        if k not in cache:
+            cache[k] = f(k)
+        return cache[k]
+    return wrapped
+
+@memoized
+def fibonacci(n):
+    if n in [0, 1]:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+#自定义装饰器

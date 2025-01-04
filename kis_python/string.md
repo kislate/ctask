@@ -1,6 +1,6 @@
 # `string` 模块
 
-`string` 模块提供了一些有用的常量和函数，用于处理字符串操作。以下是 `string` 模块中的一些常量和函数：
+`string` 模块提供了一些常量和函数，用于处理字符串操作。
 
 ## 常量
 
@@ -140,3 +140,80 @@ def dig_pow(n, p):
 3. `for i, d in enumerate(str(n))` 遍历枚举对象。
 4. `int(d) ** (p + i)` 计算当前位的数字的 `(p + i)` 次幂。
 5. `sum(...)` 计算所有位的幂的和。
+
+## `str.maketrans` 和 `str.translate`
+
+`str.maketrans` 方法用于创建一个字符映射表，用于字符替换。它可以接受两个参数（两个等长的字符串），或者一个字典。
+
+```python
+str.maketrans(x, y)
+```
+
+示例：
+
+```python
+table = str.maketrans('abc', '123')
+print(table)  # 输出: {97: 49, 98: 50, 99: 51}
+```
+
+`str.translate` 方法用于根据给定的映射表（由 `str.maketrans` 创建）替换字符串中的字符。
+
+```python
+str.translate(table)
+```
+
+示例：
+
+```python
+table = str.maketrans('abc', '123')
+result = 'abc'.translate(table)
+print(result)  # 输出: '123'
+```
+
+结合使用 `str.maketrans` 和 `str.translate` 可以实现字符的批量替换或翻译。例如，在你的 `rot13` 函数中：
+
+```python
+def rot13(message):
+    first = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+    trance = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
+    return message.translate(str.maketrans(first, trance))
+
+# 测试
+print(rot13("Hello World!"))  # 输出: Uryyb Jbeyq!
+print(rot13("Uryyb Jbeyq!"))  # 输出: Hello World!
+```
+
+在这个实现中：
+1. `str.maketrans(first, trance)` 创建了一个字符映射表，将 `first` 中的每个字符映射到 `trance` 中的对应字符。
+2. `message.translate(str.maketrans(first, trance))` 使用这个映射表对 `message` 进行字符替换，实现 ROT13 加密/解密。
+
+`str.translate()` 方法可以接受一个字典作为参数，用于字符替换。这个字典的键是要替换的字符的 Unicode 码点，值是替换后的字符的 Unicode 码点。
+
+示例：
+
+```python
+def custom_translate(message):
+    translation_table = {ord('a'): ord('1'), ord('b'): ord('2'), ord('c'): ord('3')}
+    return message.translate(translation_table)
+
+# 测试
+print(custom_translate("abc"))  # 输出: '123'
+print(custom_translate("hello abc world"))  # 输出: 'hello 123 world'
+```
+
+使用字典实现 ROT13：
+
+```python
+def rot13(message):
+    translation_table = {ord(c): ord('A') + (ord(c) - ord('A') + 13) % 26 for c in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'}
+    translation_table.update({ord(c): ord('a') + (ord(c) - ord('a') + 13) % 26 for c in 'abcdefghijklmnopqrstuvwxyz'})
+    return message.translate(translation_table)
+
+# 测试
+print(rot13("Hello World!"))  # 输出: Uryyb Jbeyq!
+print(rot13("Uryyb Jbeyq!"))  # 输出: Hello World!
+```
+
+总结：
+- `str.translate()` 方法可以接受一个字典作为参数，用于字符替换。
+- 字典的键是要替换的字符的 Unicode 码点，值是替换后的字符的 Unicode 码点。
