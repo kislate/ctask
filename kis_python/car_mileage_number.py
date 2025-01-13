@@ -106,3 +106,27 @@ def is_interesting(number, awesome_phrases):
         return 1
     return 0
 
+
+def is_incrementing(number): return str(number) in '1234567890'
+def is_decrementing(number): return str(number) in '9876543210'
+def is_palindrome(number):   return str(number) == str(number)[::-1]
+def is_round(number):        return set(str(number)[1:]) == set('0')
+
+def is_interesting(number, awesome_phrases):
+    tests = (is_round, is_incrementing, is_decrementing,
+             is_palindrome, awesome_phrases.__contains__)
+       
+    for num, color in zip(range(number, number+3), (2, 1, 1)):
+        if num >= 100 and any(test(num) for test in tests):
+            return color
+    return 0
+
+def is_good(n, awesome):
+    return n in awesome or str(n) in "1234567890 9876543210" or str(n) == str(n)[::-1] or int(str(n)[1:]) == 0
+
+def is_interesting(n, awesome):
+    if n > 99 and is_good(n, awesome):
+        return 2
+    if n > 97 and (is_good(n + 1, awesome) or is_good(n + 2, awesome)):
+        return 1
+    return 0
