@@ -147,7 +147,7 @@ int main(void) {
             return 1;
         }
         scanf("%s%d", str[i], &num[i]);
-    }
+    }//获取字典
 
     while (getchar() != '\n');
 
@@ -169,7 +169,7 @@ int main(void) {
             return 1;
         }
         output[0] = '\0';
-
+ 
         while (*start) {
             char *p = strchr(start, '{');
             if (p == NULL) {

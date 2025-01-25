@@ -47,35 +47,37 @@ LimilalaTrench
 字。- 新发现的节点名字互不相同，且均不是昨天派遣潜艇的节点名字。*/
 #include<stdio.h>
 #include<stdlib.h>
-int main(void)
+#include<string.h>
+int cmp(const void *a, const void *b)
 {
-    int n,m,k;
-    scanf("%d%d%d",&n,&m,&k);
-    char **str= (char**)malloc(sizeof(char*)*n);
-    if(str == NULL)
+    return strcmp((char *)a, (char *)b);
+}
+int main()
+{
+    int n, m, k;
+    scanf("%d%d%d", &n, &m, &k);
+    char **yesterday = (char **)malloc(n * sizeof(char *));
+    char **today = (char **)malloc(m * sizeof(char *));
+    char **new = (char **)malloc(k * sizeof(char *));
+    for (int i = 0; i < n; i++)
     {
-        fprintf(stderr,"\"**str\" Memory allocation failed\n");
+        yesterday[i] = (char *)malloc(11 * sizeof(char));
+        scanf("%s", yesterday[i]);
     }
-    for(int i = 0 ; i < n ; i++)
+    for (int i = 0; i < m; i++)
     {
-        str[i] = (char *)malloc(sizeof(char)*11);
-        if(str[i] == NULL)
-        {
-            fprintf(stderr,"\"*str\" Memory allocation failed\n");
-            return 1;
-        }
-        scanf("%s",str[i]);
+        today[i] = (char *)malloc(11 * sizeof(char));
+        scanf("%s", today[i]);
     }
-    for(int i = 0 ; i<m ; i++)
+    for (int i = 0; i < k; i++)
     {
-        char *temp = (char *)malloc(sizeof(char)*11);
-        if(temp == NULL)
-        {
-            fprintf(stderr,"\"temp\" Memory allocation failed\n");
-            return 1;
-        }
-        scanf("%s",temp);
-        free(temp);
+        new[i] = (char *)malloc(11 * sizeof(char));
+        scanf("%s", new[i]);
     }
-    
+    qsort(new, k, sizeof(char *), cmp);
+    for (int i = 0; i < k; i++)
+    {
+        printf("%s\n", new[i]);
+    }
+    return 0;
 }
