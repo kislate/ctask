@@ -1,0 +1,10 @@
+#include<stdio.h>
+int main() {
+    int x, count, a = 1;
+    scanf("%d", &x);
+    for (count = 0; a <= x; count++)
+    {
+        a = a * 2;
+    }
+    printf("%d", count);
+}

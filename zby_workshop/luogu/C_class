@@ -1,0 +1,7 @@
+#include<stdio.h>
+int main() {
+    int a,b,c,result;
+    scanf("%d %d %d",&a,&b,&c);
+    result=a*0.2+b*0.3+c*0.5;
+    printf("%d",result);
+}
