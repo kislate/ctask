@@ -1,0 +1,24 @@
+#include<stdio.h>
+int isprime(int n) {
+    int k, limit;
+    if (n == 2) return 1;
+    if (!(n % 2)) return 0;
+    limit = n / 2;
+    for (k = 3; k <= limit; k += 2)
+        if (!(n % k)) return 0;
+    return 1;
+}
+int main() {
+    int s,sum=0,count=0;
+    scanf("%d",&s);
+    for(int i=2;i<s;i++)
+    {
+        if(isprime(i)&&(sum+i)<=s)
+        {
+            printf("%d\n",i);
+            count++;
+            sum=sum+i;
+        }
+    }
+    printf("%d",count);
+}

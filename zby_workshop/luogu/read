@@ -1,0 +1,40 @@
+#include<stdio.h>
+int main() {
+    int m, n, a[1000], count = 0;
+    scanf("%d %d", &m, &n);
+    for (int i = 0; i < 1000; i++)
+    {
+        a[i] = -1;
+    }
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &a[i]);
+    }
+    int used = 0;
+    int page[100];
+    int last = 0;
+    for (int i = 0; i < 100; i++)
+    {
+        page[i] = -2;
+    }
+    for (int i = 0; i < n; i++)
+    {
+        int b = a[i];
+        int flag = 0;
+        for (int j = 0; j < m; j++)
+        {
+            if (b == page[j]) flag = 1;
+        }
+        if (flag == 0)
+        {
+            count++;
+            if (used < m) page[used++] = b;
+            else {
+                page[last] = b;
+                last = (last + 1) % m;
+            }
+        }
+        flag = 0;
+    }
+    printf("%d", count);
+}
