@@ -9,7 +9,7 @@
 ```python
 @decorator_function
 def some_function():
-    pass
+    
 ```
 
 这相当于：
