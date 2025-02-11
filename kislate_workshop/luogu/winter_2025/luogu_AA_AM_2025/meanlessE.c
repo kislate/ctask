@@ -30,34 +30,83 @@ n , 现在我们想求出通过分解 a，忽略的指数小于 k 的质数，�
 
 
 
-// int is_Prime(long long num)
-// {
-//     if(num == 1)
-//         return 0;
-//     for(long long i = 2; i * i <= num; i++)
-//     {
-//         if(num % i == 0)
-//             return 0;
-//     }
-//     return 1;
-// }
-
 
 
 
 #include <stdio.h>
-long long quck_Pow(long long a, long long b)
-{
-    long long ret = 1;
-    while(b > 0)
-    {
-        if(b & 1)
-            ret *= a;
-        a *= a;
-        b >>= 1;
+
+#define MAX_PRIME 1000000
+
+int primes[MAX_PRIME + 1];
+int prime_count = 0;
+// Sieve of Eratosthenes 来生成素数
+void sieve() {
+    char is_prime[MAX_PRIME + 1];
+    for (int i = 2; i <= MAX_PRIME; i++) 
+        is_prime[i] = 1; //Initialize array
+
+    for (int p = 2; p * p <= MAX_PRIME; p++) {
+        if (is_prime[p]) {
+            for (int i = p * p; i <= MAX_PRIME; i += p) {
+                is_prime[i] = 0;
+            }
+        }
     }
-    return ret;
+    for (int p = 2; p <= MAX_PRIME; p++) {
+        if (is_prime[p]) {
+            primes[prime_count++] = p;
+        }
+    }
 }
+
+void find_prime_Meaningless(long long num,  int k)
+{
+    long long ret = num;
+    long long temp = num;
+    long long origin = num;
+    for(int i = 0; i < prime_count && (long long)primes[i] * primes[i] <= origin; i++)
+    {
+        long long prime = primes[i];
+        long long count = 0;
+        if( num % prime == 0)//分解本身就会帮我们判断其是否是质数，所以无需判断
+        {
+            while( num % prime == 0)
+            {
+                count++;
+                num /= prime;
+                temp /= prime;
+            }
+            if( count < k)
+            {
+                ret = temp;
+            }  
+            else
+            {
+                temp = ret;
+            }
+        }
+    }
+    if (num > 1 ) {
+        ret /= num;
+    }
+    printf("%lld\n", ret);
+}
+
+int main(void)
+{
+    sieve();
+    int q;
+    scanf("%d", &q);
+    for(int i = 0; i < q; i++)
+    {
+        long long a, k;
+        scanf("%lld %lld", &a, &k);
+        find_prime_Meaningless(a, k);
+    }
+    return 0;
+}
+
+
 // void find_prime_Meaningless(long long num, int size_Numbers, int k)
 // {
 //     long long ret = 1;
@@ -81,46 +130,31 @@ long long quck_Pow(long long a, long long b)
 //     }
 //     printf("%lld\n", ret);
 // }
-void find_prime_Meaningless(long long num, int size_Numbers, int k)
-{
-    long long ret = num;
-    long long temp = num;
-    for(int i = 2; i * i<= num; i++)
-    {
-        long long count = 0;
-        if( num % i == 0)//分解本身就会帮我们判断其是否是质数，所以无需判断
-        {
-            while( num % i == 0)
-            {
-                count++;
-                num /= i;
-                temp /= i;
-            }
-            if( count < k)
-            {
-                ret = temp;
-            }  
-            else
-            {
-                temp = ret;
-            }
-        }
-    }
-    if (num > 1 ) {
-        ret /= num;
-    }
-    printf("%lld\n", ret);
-}
 
-int main(void)
-{
-    int q;
-    scanf("%d", &q);
-    for(int i = 0; i < q; i++)
-    {
-        long long a, k;
-        scanf("%lld %lld", &a, &k);
-        find_prime_Meaningless(a,  100000, k);
-    }
-    return 0;
-}
+
+// long long quck_Pow(long long a, long long b)
+// {
+//     long long ret = 1;
+//     while(b > 0)
+//     {
+//         if(b & 1)
+//             ret *= a;
+//         a *= a;
+//         b >>= 1;
+//     }
+//     return ret;
+// }
+
+
+
+// int is_Prime(long long num)
+// {
+//     if(num == 1)
+//         return 0;
+//     for(long long i = 2; i * i <= num; i++)
+//     {
+//         if(num % i == 0)
+//             return 0;
+//     }
+//     return 1;
+// }
