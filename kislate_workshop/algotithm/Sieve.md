@@ -1,6 +1,9 @@
+###### 前言：能够使用`C/C++`的时候尽量不要使用`python`
 ### 预素数表（具体逻辑尚未清楚）
 ```c
 // Sieve of Eratosthenes 来生成素数
+// 这个狗算法，我还以为是基于某个高深数学原理，原来是提前只进行一次素数判断
+// 或许哥德巴赫有机会（确信
 void sieve() {
     char is_prime[MAX_PRIME + 1];
     for (int i = 2; i <= MAX_PRIME; i++) is_prime[i] = 1; //Initialize array
@@ -207,7 +210,7 @@ void find_prime_Meaningless(long long num, int size_Numbers, int k)
 }
 ```
 
-下面采用避免`幂`计算：
+下面采用避免`幂`计算(很好笑的是`c语言`优化到这一步其实已经是可以得了)：
 - 使用`temp`保存是否消除某个因数的两种状态，随计算验证逐步保存
 ```c
 {

@@ -47,3 +47,19 @@ while m > 0:
     heapq.heappush(skills, (t + 1, c))
 print(-skills[0][0])
 
+
+import heapq
+n, m, k =map(int, input().split())
+skills = []
+for _ in range(n):
+    t, c = map(int, input().split())
+    heapq.heappush(skills, (-t, c))
+while m > 0:
+    t, c = heapq.heappop(skills)
+    if -t <= k or c > m:
+        print(-t)
+        break
+    elif c ==  m:
+        print(-t + 1)
+        break
+    m -= c
