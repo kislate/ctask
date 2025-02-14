@@ -40,34 +40,61 @@ Examples
 对于另外20%的数据，保证：T =1,n×m≤36；
 对于另外30%的数据，保证：n和m至少有一个是偶数；
 对于100% 的测试数据，保证：1≤T ≤10,1≤n,m≤1000；*/
-#include<stdio.h>
-int isYes(int n,int m,int sum,int Mark[],int matrix[][1000],int x,int y);
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+void is_Possible(int n, int m);
+bool ot_Easted(vector<int> visited_Maps, vector<vector<int>> map,int x, int y, int n, int m);
+bool Inside(int x, int y, int n, int m);
+vector<pair<int, int>> direction = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 int main(void)
 {
-    int T=0;
-    scanf("%d",&T);
-    for(int i=0;i<T;i++)
+    int T;
+    cin >> T;
+    for(int i = 0; i < T; i++)
     {
-        int r,c;
-        int Mark[1000000]={0};
-        scanf("%d %d",&r,&c);
+        int n, m;
+        cin >> n >> m;
+        is_Possible(n, m);
     }
 }
-int isYes(int n,int m,int sum,int Mark[],int matrix[][1000],int x,int y)
+
+bool Inside(int x, int y, int n, int m)
 {
-    if(sum==0)
+    if(x >= 1 && x <= n && y >= 1 && y <= m)
     {
-        if(Mark[matrix[x][y]+matrix[x-1][y]]!=0||Mark[matrix[x][y]+matrix[x][y-1]]!=0)
+        return true;
+    }
+}
+
+bool not_Easted(vector<int> visited_Maps, vector<vector<int>> map,int x, int y, int n, int m)
+{
+    for(int i = 0; i < 4; i++)
+    {
+        int new_x = x + direction[i].first;
+        int new_y = y + direction[i].second;
+        if(Inside(new_x, new_y, n, m) && visited_Maps[map[new_x][new_y] + map[x][y]]  == 1)
         {
-            matrix[x][y]=0;
-            return 0;
-        }
-        else{
-            return 1;
+            return false;
         }
     }
-    for(int i=1;i<=n*m;i++);
+    for(int i = 0; i < 4; i++)
     {
-        
+        int new_x = x + direction[i].first;
+        int new_y = y + direction[i].second;
+        visited_Maps[map[new_x][new_y] + map[x][y]]  = 1;
     }
+    return true;
+}
+
+void is_Possible(int n, int m){
+    bool found = false;
+    vector<vector<int>> map(n + 2, vector<int>(m + 2, 0));
+    vector<int> visited_Maps(n * m * 2, 0);
+    for(int i = 1; i <= n * m; i++)
+    {}
+    }    
 }

@@ -1,0 +1,5315 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html -->
+<html lang=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        
+        <title>继承和多态 · 恋恋风辰的编程笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="恋恋风辰">
+        <meta name="identifier" content="图书编号" scheme="ISBN">
+        
+    
+    <link rel="stylesheet" href="./继承和多态 · 恋恋风辰的编程笔记_files/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="./继承和多态 · 恋恋风辰的编程笔记_files/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="./继承和多态 · 恋恋风辰的编程笔记_files/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="./继承和多态 · 恋恋风辰的编程笔记_files/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="./继承和多态 · 恋恋风辰的编程笔记_files/plugin(1).css">
+                
+            
+                
+                <link rel="stylesheet" href="./继承和多态 · 恋恋风辰的编程笔记_files/lightbox.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="./继承和多态 · 恋恋风辰的编程笔记_files/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="./继承和多态 · 恋恋风辰的编程笔记_files/website(1).css">
+                
+            
+                
+                <link rel="stylesheet" href="./继承和多态 · 恋恋风辰的编程笔记_files/lou.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://gitbookcpp.llfc.club/gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="https://gitbookcpp.llfc.club/gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    
+    
+
+    <link rel="prev" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase19.html"><link rel="next" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase21.html"><!--<base href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html">--><base href="."></head>
+    <body>
+         
+
+
+
+
+<div class="book without-animation with-summary font-size-2 font-family-1">
+  <div class="header-inner">
+    <!-- LOGO -->
+    <div class="logo"></div>
+    <span class="title">恋恋风辰的编程笔记</span>
+
+    <!-- Search -->
+    
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入要查询的关键字">
+<span id="searchBtn">搜索</span></div>
+
+
+    <!-- Nav -->
+    <ul class="header-nav">
+      <li>
+        <a href="https://llfc.club/" target="_blank">官方博客地址</a>
+      </li><li>
+        <a href="https://space.bilibili.com/271469206" target="_blank">B站</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="book-summary">
+    <div class="book-summary-title">目录</div>
+     
+    <nav role="navigation">
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter expanded" data-level="1.1" data-path="../../../">
+            
+                <a href="https://gitbookcpp.llfc.club/">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="1.2">
+            
+                <span>
+            
+                    
+                    [零基础C++]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="1.2.1" data-path="cppbase01.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase01.html">
+            
+                    
+                    变量和输出
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="cppbase02.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase02.html">
+            
+                    
+                    作用域和存储空间
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="cppbase03.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase03.html">
+            
+                    
+                    头文件和源文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="cppbase04.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase04.html">
+            
+                    
+                    extern的作用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="cppbase05.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase05.html">
+            
+                    
+                    引用类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="1.2.6" data-path="cppbase06.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase06.html">
+            
+                    
+                    指针类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="cppbase07.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase07.html">
+            
+                    
+                    const用法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="cppbase08.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase08.html">
+            
+                    
+                    类型推导和别名
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.9" data-path="cppbase09.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase09.html">
+            
+                    
+                    结构体类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.10" data-path="cppbase10.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase10.html">
+            
+                    
+                    命名空间
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.11" data-path="cppbase11.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase11.html">
+            
+                    
+                    string类用法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.12" data-path="cppbase12.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase12.html">
+            
+                    
+                    vector类用法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.13" data-path="cppbase13.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase13.html">
+            
+                    
+                    迭代器用法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.14" data-path="cppbase14.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase14.html">
+            
+                    
+                    数组知识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.15" data-path="cppbase15.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase15.html">
+            
+                    
+                    多维数组
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.16" data-path="cppbase16.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase16.html">
+            
+                    
+                    常见运算符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.17" data-path="cppbase17.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase17.html">
+            
+                    
+                    语句和作用域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.18" data-path="cppbase18.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase18.html">
+            
+                    
+                    函数用法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.19" data-path="cppbase19.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase19.html">
+            
+                    
+                    类基础用法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active expanded" data-level="1.2.20" data-path="cppbase20.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html">
+            
+                    
+                    继承和多态
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.21" data-path="cppbase21.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase21.html">
+            
+                    
+                    类面试常见问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.22" data-path="cppbase22.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase22.html">
+            
+                    
+                    内存管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.23" data-path="cppbase23.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase23.html">
+            
+                    
+                    智能指针
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.24" data-path="cppbase24.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase24.html">
+            
+                    
+                    可调用对象function
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="1.2.25" data-path="cppbase25.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase25.html">
+            
+                    
+                    stl容器详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="1.2.26" data-path="cppbase26.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase26.html">
+            
+                    
+                    手写双端队列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="1.2.27" data-path="cppbase27.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase27.html">
+            
+                    
+                    手写线程安全智能指针
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="1.2.28" data-path="cppbase28.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase28.html">
+            
+                    
+                    map用法以及手写map
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="1.2.29" data-path="cppbase29.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase29.html">
+            
+                    
+                    unordermap用法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.30" data-path="cppbase30.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase30.html">
+            
+                    
+                    运算符重载
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.31" data-path="cppbase31.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase31.html">
+            
+                    
+                    模板详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="1.3">
+            
+                <span>
+            
+                    
+                    [C++]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1">
+            
+                <span>
+            
+                    
+                    [C++环境搭建]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.1" data-path="../section1/cpp02.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section1/cpp02.html">
+            
+                    
+                    搭建vscode开发环境
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2">
+            
+                <span>
+            
+                    
+                    [C++基础语法]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.2.1" data-path="../section2/cpp03.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section2/cpp03.html">
+            
+                    
+                    输入输出流和变量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.2" data-path="../section2/cpp04.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section2/cpp04.html">
+            
+                    
+                    string类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.3" data-path="../section2/cpp05.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section2/cpp05.html">
+            
+                    
+                    vector类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.4" data-path="../section2/cpp06.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section2/cpp06.html">
+            
+                    
+                    迭代器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.5" data-path="../section2/cpp07.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section2/cpp07.html">
+            
+                    
+                    数组
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.6" data-path="../section2/cpp08.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section2/cpp08.html">
+            
+                    
+                    多维数组
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.7" data-path="../section2/cpp09.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section2/cpp09.html">
+            
+                    
+                    函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3">
+            
+                <span>
+            
+                    
+                    [C++类的认识]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.3.1" data-path="../section3/cpp10.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section3/cpp10.html">
+            
+                    
+                    类和对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.2" data-path="../section3/cpp11.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section3/cpp11.html">
+            
+                    
+                    类的访问控制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.3" data-path="../section3/cpp12.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section3/cpp12.html">
+            
+                    
+                    类的作用域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.4" data-path="../section3/cpp13.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section3/cpp13.html">
+            
+                    
+                    类的构造函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.5" data-path="../section3/cpp14.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section3/cpp14.html">
+            
+                    
+                    类的静态成员
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.6" data-path="../section3/cpp15.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section3/cpp15.html">
+            
+                    
+                    IO流
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.7" data-path="../section3/cpp16.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section3/cpp16.html">
+            
+                    
+                    容器类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.8" data-path="../section3/cpp20.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section3/cpp20.html">
+            
+                    
+                    关联容器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.9" data-path="../section3/cpp25.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section3/cpp25.html">
+            
+                    
+                    拷贝构造和单例模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.10" data-path="../section3/cpp26.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section3/cpp26.html">
+            
+                    
+                    拷贝控制和资源管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.11" data-path="../section3/cpp27.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section3/cpp27.html">
+            
+                    
+                    类的swap操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.12" data-path="../section3/cpp28.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section3/cpp28.html">
+            
+                    
+                    类的拷贝控制案例
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.13" data-path="../section3/cpp30.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section3/cpp30.html">
+            
+                    
+                    右值引用与移动构造函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.14" data-path="../section3/cpp33.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section3/cpp33.html">
+            
+                    
+                    运算符重载
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.15" data-path="../section3/cpp35.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section3/cpp35.html">
+            
+                    
+                    封装继承和多态
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.16" data-path="../section3/cpp36.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section3/cpp36.html">
+            
+                    
+                    类模板和函数模板
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.17" data-path="../section3/cpp41.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section3/cpp41.html">
+            
+                    
+                    重写重载和覆盖的区别
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.18" data-path="../section3/cpp42.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section3/cpp42.html">
+            
+                    
+                    虚函数表原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.19" data-path="../section3/cpp31.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section3/cpp31.html">
+            
+                    
+                    继承面试题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4">
+            
+                <span>
+            
+                    
+                    [C++泛型用法]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.4.1" data-path="../section4/cpp17.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section4/cpp17.html">
+            
+                    
+                    泛型算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.2" data-path="../section4/cpp18.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section4/cpp18.html">
+            
+                    
+                    泛型定制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.3" data-path="../section4/cpp19.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section4/cpp19.html">
+            
+                    
+                    迭代器分类
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5">
+            
+                <span>
+            
+                    
+                    [C++智能指针]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.5.1" data-path="../section5/cpp21.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section5/cpp21.html">
+            
+                    
+                    shared_ptr
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.2" data-path="../section5/cpp22.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section5/cpp22.html">
+            
+                    
+                    unique_ptr和weak_ptr
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.3" data-path="../section5/cpp23.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section5/cpp23.html">
+            
+                    
+                    动态数组
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.4" data-path="../section5/cpp32.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section5/cpp32.html">
+            
+                    
+                    再谈单例模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6">
+            
+                <span>
+            
+                    
+                    [C++内存管理]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.6.1" data-path="../section6/cpp29.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section6/cpp29.html">
+            
+                    
+                    动态内存管理示例
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7">
+            
+                <span>
+            
+                    
+                    [C11新特性]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.7.1" data-path="../section7/cpp34.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section7/cpp34.html">
+            
+                    
+                    lambda表达式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="1.3.8">
+            
+                <span>
+            
+                    
+                    [C++模板]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter expanded" data-level="1.3.8.1" data-path="../section8/cpp37.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section8/cpp37.html">
+            
+                    
+                    模板类的友元和折叠规则
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter expanded" data-level="1.3.8.2" data-path="../section8/cpp38.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section8/cpp38.html">
+            
+                    
+                    forward原样转发
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8.3" data-path="../section8/cpp39.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section8/cpp39.html">
+            
+                    
+                    模拟实现vector
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8.4" data-path="../section8/cpp40.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section8/cpp40.html">
+            
+                    
+                    模板特例化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9">
+            
+                <span>
+            
+                    
+                    [Qt界面编程]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.9.1" data-path="../section9/qt01.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt01.html">
+            
+                    
+                    环境搭建
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.2" data-path="../section9/qt02.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt02.html">
+            
+                    
+                    创建项目和编译
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.3" data-path="../section9/qt03.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt03.html">
+            
+                    
+                    对话框
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.4" data-path="../section9/qt04.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt04.html">
+            
+                    
+                    信号和槽
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.5" data-path="../section9/qt05.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt05.html">
+            
+                    
+                    模态对话框切换
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.6" data-path="../section9/qt06.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt06.html">
+            
+                    
+                    几种封装好的对话框
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.7" data-path="../section9/qt07.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt07.html">
+            
+                    
+                    QT QLineEdit介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.8" data-path="../section9/qt08.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt08.html">
+            
+                    
+                    QT 布局
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.9" data-path="../section9/qt09.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt09.html">
+            
+                    
+                    QT 主窗口
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.10" data-path="../section9/qt10.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt10.html">
+            
+                    
+                    Qt QTextEdit知识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.11" data-path="../section9/qt11.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt11.html">
+            
+                    
+                    Qt 文本高亮
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.12" data-path="../section9/qt12.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt12.html">
+            
+                    
+                    Qt 拖拽事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.13" data-path="../section9/qt13.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt13.html">
+            
+                    
+                    QT 事件系统
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.14" data-path="../section9/qt14.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt14.html">
+            
+                    
+                    Qt 按键事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.15" data-path="../section9/qt15.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt15.html">
+            
+                    
+                    Qt 鼠标事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.16" data-path="../section9/qt16.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt16.html">
+            
+                    
+                    Qt 定时器事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.17" data-path="../section9/qt17.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt17.html">
+            
+                    
+                    Qt MVC结构之Model模型介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.18" data-path="../section9/qt18.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt18.html">
+            
+                    
+                    Qt MVC结构之QItemSelectionModel模型介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.19" data-path="../section9/qt19.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt19.html">
+            
+                    
+                    Qt MVC结构之QItemDelegate介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.20" data-path="../section9/qt20.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt20.html">
+            
+                    
+                    Qt 项目视图便捷类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.21" data-path="../section9/qt21.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt21.html">
+            
+                    
+                    Qt 自定义模型的拖动实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.22" data-path="../section9/qt22.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt22.html">
+            
+                    
+                    Qt 实现电子相册(一)--目录树和向导
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.23" data-path="../section9/qt23.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt23.html">
+            
+                    
+                    QT 实现电子相册(二)--双击展示图片与切换
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.24" data-path="../section9/qt24.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt24.html">
+            
+                    
+                    QT 实现电子相册(三)--导入功能和幻灯片ui设计
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.25" data-path="../section9/qt25.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt25.html">
+            
+                    
+                    QT 实现电子相册(四)--实现播放动画
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.26" data-path="../section9/qt26.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/section9/qt26.html">
+            
+                    
+                    QT 实现电子相册(五)--实现幻灯片的暂停和切换
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10">
+            
+                <span>
+            
+                    
+                    [Boost和网络]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.10.1" data-path="../boost/asio01.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/boost/asio01.html">
+            
+                    
+                    vscode配置C++以及boost库开发环境
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.2" data-path="../boost/asio26.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/boost/asio26.html">
+            
+                    
+                    Docker搭建Linux C++以及boost库开发环境
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.3" data-path="../boost/asio02.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/boost/asio02.html">
+            
+                    
+                    visual studio配置boost库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.4" data-path="../boost/asio03.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/boost/asio03.html">
+            
+                    
+                    socket的创建和连接
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.5" data-path="../boost/asio04.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/boost/asio04.html">
+            
+                    
+                    同步读写接口
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.6" data-path="../boost/asio05.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/boost/asio05.html">
+            
+                    
+                    同步读写的服务器和客户端
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.7" data-path="../boost/asio06.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/boost/asio06.html">
+            
+                    
+                    asio异步读写操作及注意事项
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.8" data-path="../boost/asio07.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/boost/asio07.html">
+            
+                    
+                    简单的异步服务器demo
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.9" data-path="../boost/asio08.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/boost/asio08.html">
+            
+                    
+                    利用C11模拟伪闭包实现连接的安全回收
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.10" data-path="../boost/asio09.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/boost/asio09.html">
+            
+                    
+                    封装发送队列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.11" data-path="../boost/asio10.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/boost/asio10.html">
+            
+                    
+                    处理粘包问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.12" data-path="../boost/asio11.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/boost/asio11.html">
+            
+                    
+                    字节序处理和消息队列的控制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.13" data-path="../boost/asio12.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/boost/asio12.html">
+            
+                    
+                    visual studio配置protobuf
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.14" data-path="../boost/asio13.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/boost/asio13.html">
+            
+                    
+                    visual studio配置jsoncpp
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.15" data-path="../boost/asio14.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/boost/asio14.html">
+            
+                    
+                    asio处理粘包的简易方式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.16" data-path="../boost/asio17.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/boost/asio17.html">
+            
+                    
+                    逻辑层设计和消息完善
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.17" data-path="../boost/asio18.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/boost/asio18.html">
+            
+                    
+                    逻辑层设计
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.18" data-path="../boost/asio19.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/boost/asio19.html">
+            
+                    
+                    asio多线程模型IOServicePool
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.19" data-path="../boost/asio20.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/boost/asio20.html">
+            
+                    
+                    asio多线程模型IOThreadPool
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.20" data-path="../boost/asio21.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/boost/asio21.html">
+            
+                    
+                    利用asio协程调度实现并发服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.21" data-path="../boost/asio22.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/boost/asio22.html">
+            
+                    
+                    asio实现http服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.22" data-path="../boost/asio23.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/boost/asio23.html">
+            
+                    
+                    beast网络库搭建http服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.23" data-path="../boost/asio24.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/boost/asio24.html">
+            
+                    
+                    beast网络库实现websocket服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.24" data-path="../boost/asio25.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/boost/asio25.html">
+            
+                    
+                    答疑汇总
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11">
+            
+                <span>
+            
+                    
+                    [分布式技术]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.11.1" data-path="../distribute/asio15.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/distribute/asio15.html">
+            
+                    
+                    windows配置和编译grpc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11.2" data-path="../distribute/asio16.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/distribute/asio16.html">
+            
+                    
+                    windows配置和使用grpc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11.3" data-path="../distribute/asio27.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/distribute/asio27.html">
+            
+                    
+                    Linux配置和使用grpc
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12">
+            
+                <span>
+            
+                    
+                    [并发编程]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.12.1" data-path="../concurrent/concpp.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp.html">
+            
+                    
+                    C++ 线程基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.2" data-path="../concurrent/concpp02.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp02.html">
+            
+                    
+                    C++ 线程线程管控
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.3" data-path="../concurrent/concpp03.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp03.html">
+            
+                    
+                    C++ 互斥和死锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.4" data-path="../concurrent/concpp04.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp04.html">
+            
+                    
+                    unique_lock，读写锁以及递归锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.5" data-path="../concurrent/concpp05.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp05.html">
+            
+                    
+                    线程安全的单例模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.6" data-path="../concurrent/concpp06.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp06.html">
+            
+                    
+                    利用条件变量构造线程安全队列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.7" data-path="../concurrent/concpp07.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp07.html">
+            
+                    
+                    C++ 并发三剑客future, promise和async
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.8" data-path="../concurrent/concpp08.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp08.html">
+            
+                    
+                    利用并行和函数式编程提高运算效率
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.9" data-path="../concurrent/concpp09.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp09.html">
+            
+                    
+                    Actor和CSP设计模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.10" data-path="../concurrent/concpp10.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp10.html">
+            
+                    
+                    thread,async源码解析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.11" data-path="../concurrent/concpp11.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp11.html">
+            
+                    
+                    原子操作和内存模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.12" data-path="../concurrent/concpp12.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp12.html">
+            
+                    
+                    通过内存顺序实现内存模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.13" data-path="../concurrent/concpp13.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp13.html">
+            
+                    
+                    无锁并发队列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.14" data-path="../concurrent/concpp14.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp14.html">
+            
+                    
+                    利用栅栏实现同步
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.15" data-path="../concurrent/concpp15.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp15.html">
+            
+                    
+                    基于锁实现线程安全的队列和栈容器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.16" data-path="../concurrent/concpp16.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp16.html">
+            
+                    
+                    实现线程安全的查找表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.17" data-path="../concurrent/concpp17.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp17.html">
+            
+                    
+                    实现线程安全的链表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.18" data-path="../concurrent/concpp18.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp18.html">
+            
+                    
+                    线程安全无锁并发栈
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.19" data-path="../concurrent/concpp19.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp19.html">
+            
+                    
+                    风险指针的运用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.20" data-path="../concurrent/concpp20.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp20.html">
+            
+                    
+                    利用引用计数实现无锁栈
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.21" data-path="../concurrent/concpp21.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp21.html">
+            
+                    
+                    利用内存模型优化无锁栈
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.22" data-path="../concurrent/concpp22.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp22.html">
+            
+                    
+                    无锁队列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.23" data-path="../concurrent/concpp23.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp23.html">
+            
+                    
+                    无锁编程四点建议
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.24" data-path="../concurrent/concpp24.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp24.html">
+            
+                    
+                    线程划分任务的方式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.25" data-path="../concurrent/concpp25.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp25.html">
+            
+                    
+                    几种stl算法的并行实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.26" data-path="../concurrent/concpp26.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp26.html">
+            
+                    
+                    线程池原理和实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.27" data-path="../concurrent/concpp27.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp27.html">
+            
+                    
+                    线程池技术补充
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.28" data-path="../concurrent/concpp28.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp28.html">
+            
+                    
+                    中断线程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12.29" data-path="../concurrent/concpp29.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/concurrent/concpp29.html">
+            
+                    
+                    多线程排错思路
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13">
+            
+                <span>
+            
+                    
+                    [C++全栈项目实战]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.13.1" data-path="../project/day01.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day01.html">
+            
+                    
+                    框架概述和登录界面设计
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.2" data-path="../project/day02.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day02.html">
+            
+                    
+                    单例模板和http管理类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.3" data-path="../project/day03.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day03.html">
+            
+                    
+                    visualstudio配置boost
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.4" data-path="../project/day04.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day04.html">
+            
+                    
+                    beast实现http服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.5" data-path="../project/day05.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day05.html">
+            
+                    
+                    处理post请求并解析json数据
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.6" data-path="../project/day06.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day06.html">
+            
+                    
+                    windows编译grpc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.7" data-path="../project/day07.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day07.html">
+            
+                    
+                    visualstudio配置grpc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.8" data-path="../project/day08.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day08.html">
+            
+                    
+                    nodejs实现邮箱认证服务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.9" data-path="../project/day09.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day09.html">
+            
+                    
+                    redis服务搭建
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.10" data-path="../project/day10.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day10.html">
+            
+                    
+                    多服务验证码派发功能
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.11" data-path="../project/day11.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day11.html">
+            
+                    
+                    注册功能
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.12" data-path="../project/day12.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day12.html">
+            
+                    
+                    注册界面完善
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.13" data-path="../project/day13.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day13.html">
+            
+                    
+                    重置界面
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.14" data-path="../project/day14.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day14.html">
+            
+                    
+                    登录和状态服务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.15" data-path="../project/day15.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day15.html">
+            
+                    
+                    客户端Tcp管理类设计
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.16" data-path="../project/day16.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day16.html">
+            
+                    
+                    asio实现tcp服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.17" data-path="../project/day17.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day17.html">
+            
+                    
+                    登录服务验证和客户端数据管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.18" data-path="../project/day18.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day18.html">
+            
+                    
+                    聊天主界面和点击按钮
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.19" data-path="../project/day19.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day19.html">
+            
+                    
+                    实现搜索框和聊天列表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.20" data-path="../project/day20.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day20.html">
+            
+                    
+                    动态加载聊天列表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.21" data-path="../project/day21.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day21.html">
+            
+                    
+                    滚动聊天布局设计
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.22" data-path="../project/day22.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day22.html">
+            
+                    
+                    实现气泡聊天对话框
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.23" data-path="../project/day23.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day23.html">
+            
+                    
+                    侧边栏切换和搜索列表展示
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.24" data-path="../project/day24.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day24.html">
+            
+                    
+                    事件过滤器实现点击位置判断
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.25" data-path="../project/day25.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day25.html">
+            
+                    
+                    实现好友申请界面
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.26" data-path="../project/day26.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day26.html">
+            
+                    
+                    实现联系人列表和好友申请列表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.27" data-path="../project/day27.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day27.html">
+            
+                    
+                    分布式聊天服务设计
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.28" data-path="../project/day28.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day28.html">
+            
+                    
+                    好友查询和申请
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.29" data-path="../project/day29.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day29.html">
+            
+                    
+                    好友认证和聊天通信
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13.30" data-path="../project/day30.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/cpp/project/day30.html">
+            
+                    
+                    项目难点和面试技巧
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4">
+            
+                <span>
+            
+                    
+                    [golang]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1">
+            
+                <span>
+            
+                    
+                    [环境搭建]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.1" data-path="../../go/env/golang01.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/env/golang01.html">
+            
+                    
+                    linux环境搭建和编码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2" data-path="../../go/env/golang02.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/env/golang02.html">
+            
+                    
+                    windows环境搭建和vscode配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2">
+            
+                <span>
+            
+                    
+                    [基础]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.2.1" data-path="../../go/base/golang03.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/base/golang03.html">
+            
+                    
+                    基本变量和demo
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.2" data-path="../../go/base/golang04.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/base/golang04.html">
+            
+                    
+                    Cobra命令行参数库的使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.3" data-path="../../go/base/golang05.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/base/golang05.html">
+            
+                    
+                    slice知识介绍和使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.4" data-path="../../go/base/golang06.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/base/golang06.html">
+            
+                    
+                    map介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3">
+            
+                <span>
+            
+                    
+                    [进阶]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.3.1" data-path="../../go/super/golang07.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/super/golang07.html">
+            
+                    
+                    实现四种排序(快速，冒泡，插入，选择)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.2" data-path="../../go/super/golang08.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/super/golang08.html">
+            
+                    
+                    实现堆排序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.3" data-path="../../go/super/golang09.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/super/golang09.html">
+            
+                    
+                    解密定时器的实现细节
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4" data-path="../../go/super/golang10.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/super/golang10.html">
+            
+                    
+                    使用etcd
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.5" data-path="../../go/super/golang11.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/super/golang11.html">
+            
+                    
+                    函数介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.6" data-path="../../go/super/golang12.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/super/golang12.html">
+            
+                    
+                    结构体struct
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.7" data-path="../../go/super/golang13.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/super/golang13.html">
+            
+                    
+                    接口interface
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.8" data-path="../../go/super/golang14.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/super/golang14.html">
+            
+                    
+                    接口内部实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.9" data-path="../../go/super/golang15.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/super/golang15.html">
+            
+                    
+                    interface应用和复习
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.10" data-path="../../go/super/golang16.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/super/golang16.html">
+            
+                    
+                    反射用法详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.11" data-path="../../go/super/golang17.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/super/golang17.html">
+            
+                    
+                    图解Go协程调度原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.12" data-path="../../go/super/golang18.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/super/golang18.html">
+            
+                    
+                    实现生产者消费者模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.13" data-path="../../go/super/golang19.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/super/golang19.html">
+            
+                    
+                    channel详解和协程优雅退出
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.14" data-path="../../go/super/golang42.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/super/golang42.html">
+            
+                    
+                    defer和panic
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4">
+            
+                <span>
+            
+                    
+                    [项目实战]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.4.1" data-path="../../go/project/golang20.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/project/golang20.html">
+            
+                    
+                    打造高并发日志采集系统（一）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.2" data-path="../../go/project/golang21.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/project/golang21.html">
+            
+                    
+                    打造高并发日志采集系统（二）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.3" data-path="../../go/project/golang22.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/project/golang22.html">
+            
+                    
+                    打造高并发日志采集系统（三）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.4" data-path="../../go/project/golang23.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/project/golang23.html">
+            
+                    
+                    打造高并发日志采集系统（四）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.5" data-path="../../go/project/golang24.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/project/golang24.html">
+            
+                    
+                    打造高并发日志采集系统（五）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.6" data-path="../../go/project/golang25.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/project/golang25.html">
+            
+                    
+                    打造高并发日志采集系统（六）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.7" data-path="../../go/project/golang26.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/project/golang26.html">
+            
+                    
+                    打造高并发日志采集系统（七）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.8" data-path="../../go/project/golang27.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/project/golang27.html">
+            
+                    
+                    打造高并发日志采集系统（八）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.9" data-path="../../go/project/golang28.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/project/golang28.html">
+            
+                    
+                    打造高并发日志采集系统（九）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.10" data-path="../../go/project/golang29.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/project/golang29.html">
+            
+                    
+                    打造高并发日志采集系统（十）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.11" data-path="../../go/project/golang30.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/project/golang30.html">
+            
+                    
+                    谈谈高并发秒拍系统架构设计
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5">
+            
+                <span>
+            
+                    
+                    [存储]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.5.1" data-path="../../go/db/golang34.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/db/golang34.html">
+            
+                    
+                    操作mongo
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.2" data-path="../../go/db/golang35.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/db/golang35.html">
+            
+                    
+                    使用redis
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6">
+            
+                <span>
+            
+                    
+                    [网络]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.6.1" data-path="../../go/net/golang31.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/net/golang31.html">
+            
+                    
+                    netpoll原理(一)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.2" data-path="../../go/net/golang32.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/net/golang32.html">
+            
+                    
+                    netpoll原理(二)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.3" data-path="../../go/net/golang33.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/net/golang33.html">
+            
+                    
+                    化繁为简，写一个简单好用的server
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.4" data-path="../../go/net/golang36.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/net/golang36.html">
+            
+                    
+                    对io.readfull的理解
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7">
+            
+                <span>
+            
+                    
+                    [博客系统]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.7.1" data-path="../../go/blog/golang37.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/blog/golang37.html">
+            
+                    
+                    博客系统后台开发(一)服务结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7.2" data-path="../../go/blog/golang38.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/blog/golang38.html">
+            
+                    
+                    博客系统后台开发(二)添加渲染
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7.3" data-path="../../go/blog/golang39.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/blog/golang39.html">
+            
+                    
+                    博客系统后台开发(三)完善项目并容器化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8">
+            
+                <span>
+            
+                    
+                    [面试]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.8.1" data-path="../../go/interview/golang40.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/interview/golang40.html">
+            
+                    
+                    面试题汇总(一)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8.2" data-path="../../go/interview/golang41.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/go/interview/golang41.html">
+            
+                    
+                    面试题汇总(二)
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5">
+            
+                <span>
+            
+                    
+                    [Python]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1">
+            
+                <span>
+            
+                    
+                    [基础]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.1" data-path="../../python/base/python1.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/base/python1.html">
+            
+                    
+                    变量和函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.2" data-path="../../python/base/python2.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/base/python2.html">
+            
+                    
+                    参数解析argparse
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.3" data-path="../../python/base/python3.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/base/python3.html">
+            
+                    
+                    生成器和迭代器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.4" data-path="../../python/base/python4.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/base/python4.html">
+            
+                    
+                    zip库的使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.5" data-path="../../python/base/python6.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/base/python6.html">
+            
+                    
+                    函数式编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6" data-path="../../python/base/python8.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/base/python8.html">
+            
+                    
+                    定制类和枚举
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.7" data-path="../../python/base/python10.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/base/python10.html">
+            
+                    
+                    元类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.8" data-path="../../python/base/python11.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/base/python11.html">
+            
+                    
+                    异常处理和测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.9" data-path="../../python/base/python15.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/base/python15.html">
+            
+                    
+                    内建模块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.10" data-path="../../python/base/processthread.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/base/processthread.html">
+            
+                    
+                    进程和线程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.11" data-path="../../python/base/rematch.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/base/rematch.html">
+            
+                    
+                    正则表达式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.12" data-path="../../python/base/python19.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/base/python19.html">
+            
+                    
+                    常见的第三方库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.13" data-path="../../python/base/python20.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/base/python20.html">
+            
+                    
+                    网络编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.14" data-path="../../python/base/python22.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/base/python22.html">
+            
+                    
+                    访问数据库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.15" data-path="../../python/base/python28.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/base/python28.html">
+            
+                    
+                    单例模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.16" data-path="../../python/base/pythonio.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/base/pythonio.html">
+            
+                    
+                    文件读写和序列化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2">
+            
+                <span>
+            
+                    
+                    [项目实战]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.2.1" data-path="../../python/proj/python7.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/proj/python7.html">
+            
+                    
+                    打飞机
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.2" data-path="../../python/proj/python16.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/proj/python16.html">
+            
+                    
+                    获取糗事百科段子
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.3" data-path="../../python/proj/python5.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/proj/python5.html">
+            
+                    
+                    2048游戏
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.4" data-path="../../python/proj/python17.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/proj/python17.html">
+            
+                    
+                    urlib爬虫
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.5" data-path="../../python/proj/python18.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/proj/python18.html">
+            
+                    
+                    爬虫中加入cookie
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.6" data-path="../../python/proj/python21.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/proj/python21.html">
+            
+                    
+                    smtp发送邮件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.7" data-path="../../python/proj/python23.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/proj/python23.html">
+            
+                    
+                    requests库爬取猫眼电影
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.8" data-path="../../python/proj/python24.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/proj/python24.html">
+            
+                    
+                    Xpath解析并抓取美女图片
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.9" data-path="../../python/proj/python25.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/proj/python25.html">
+            
+                    
+                    BeautifulSoup介绍和实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.10" data-path="../../python/proj/python26.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/proj/python26.html">
+            
+                    
+                    Ajax爬取今日头条cosplay美女
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.11" data-path="../../python/proj/python27.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/proj/python27.html">
+            
+                    
+                    selenium 抓取买家秀
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.12" data-path="../../python/proj/python29.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/python/proj/python29.html">
+            
+                    
+                    Tinker+BeautifulSoup爬虫
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6">
+            
+                <span>
+            
+                    
+                    [网络编程]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1">
+            
+                <span>
+            
+                    
+                    [protobuffer]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1.1" data-path="../../net/protobuffer/probuff.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/protobuffer/probuff.html">
+            
+                    
+                    protobuffer配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2">
+            
+                <span>
+            
+                    
+                    [tcp基础]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.2.1" data-path="../../net/tcp/cpptcpnian.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/tcp/cpptcpnian.html">
+            
+                    
+                    TCP粘包处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.2" data-path="../../net/tcp/tcpapi.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/tcp/tcpapi.html">
+            
+                    
+                    Linux环境API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.3" data-path="../../net/tcp/econreset.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/tcp/econreset.html">
+            
+                    
+                    ECONNRESET
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.4" data-path="../../net/tcp/newproblem.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/tcp/newproblem.html">
+            
+                    
+                    常见问题总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.5" data-path="../../net/tcp/easyloopser.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/tcp/easyloopser.html">
+            
+                    
+                    简单循环服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.6" data-path="../../net/tcp/easymulser.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/tcp/easymulser.html">
+            
+                    
+                    简单的并发服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3">
+            
+                <span>
+            
+                    
+                    [并发]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.3.1" data-path="../../net/concurrency/ioservertype.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/concurrency/ioservertype.html">
+            
+                    
+                    大并发服务器框架设计
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.2" data-path="../../net/concurrency/selectlearn.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/concurrency/selectlearn.html">
+            
+                    
+                    细说select
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.3" data-path="../../net/concurrency/epoll1.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/concurrency/epoll1.html">
+            
+                    
+                    epoll基础api
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.4" data-path="../../net/concurrency/epoll2.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/concurrency/epoll2.html">
+            
+                    
+                    epoll server
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.5" data-path="../../net/concurrency/miniserver.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/concurrency/miniserver.html">
+            
+                    
+                    epoll 封装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.6" data-path="../../net/concurrency/epollim.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/concurrency/epollim.html">
+            
+                    
+                    epoll注意事项
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4">
+            
+                <span>
+            
+                    
+                    [源码刨析]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.1" data-path="../../net/source/redisset.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/source/redisset.html">
+            
+                    
+                    redis 配置和使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.2" data-path="../../net/source/networkbook.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/source/networkbook.html">
+            
+                    
+                    网络编程资料
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.3" data-path="../../net/source/libevent1.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/source/libevent1.html">
+            
+                    
+                    libevent多线程接口
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.4" data-path="../../net/source/libevent2.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/source/libevent2.html">
+            
+                    
+                    libevent之eventbase
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.5" data-path="../../net/source/libevent3.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/source/libevent3.html">
+            
+                    
+                    libevent之eventloop轮询
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.6" data-path="../../net/source/libevent4.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/source/libevent4.html">
+            
+                    
+                    libevent之bufferevent
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.7" data-path="../../net/source/libevent5.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/source/libevent5.html">
+            
+                    
+                    libevent实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.8" data-path="../../net/source/winlibevent.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/source/winlibevent.html">
+            
+                    
+                    windows环境libevent搭建
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.9" data-path="../../net/source/libevlearn.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/source/libevlearn.html">
+            
+                    
+                    libevent源码刨析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.10" data-path="../../net/source/libiopbase.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/source/libiopbase.html">
+            
+                    
+                    libiop基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.11" data-path="../../net/source/libiop.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/source/libiop.html">
+            
+                    
+                    libiop通讯流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.12" data-path="../../net/source/redis1.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/source/redis1.html">
+            
+                    
+                    对于redis底层框架的理解(一)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.13" data-path="../../net/source/redis2.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/source/redis2.html">
+            
+                    
+                    对于redis底层框架的理解(二)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.14" data-path="../../net/source/redis3.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/source/redis3.html">
+            
+                    
+                    对于redis底层框架的理解(三)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.15" data-path="../../net/source/redis4.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/source/redis4.html">
+            
+                    
+                    对于redis底层框架的理解(四)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.16" data-path="../../net/source/redis5.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/net/source/redis5.html">
+            
+                    
+                    对于redis底层框架的理解(五)
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7">
+            
+                <span>
+            
+                    
+                    [解决方案]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1">
+            
+                <span>
+            
+                    
+                    [python]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1.1" data-path="../../sln/section1/sln01.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/sln/section1/sln01.html">
+            
+                    
+                    搭建python虚拟环境
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2">
+            
+                <span>
+            
+                    
+                    [hexo]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.2.1" data-path="../../sln/section2/hexoblogs.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/sln/section2/hexoblogs.html">
+            
+                    
+                    hexo搭建个人博客
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.2" data-path="../../sln/section2/hexoblogs2.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/sln/section2/hexoblogs2.html">
+            
+                    
+                    hexo问题解决方案
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3">
+            
+                <span>
+            
+                    
+                    [web安全]
+            
+                <i class="exc-trigger fa"></i></span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.3.1" data-path="../../sln/section3/web01.html">
+            
+                <a href="https://gitbookcpp.llfc.club/sections/sln/section3/web01.html">
+            
+                    
+                    解决博客脚本注入问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    
+
+    <li>
+        
+    </li>
+</ul>
+
+</nav>
+     
+  </div>
+
+  <!-- Content nav -->
+  <div class="book-anchor">
+    <div class="book-anchor-title">本篇章节</div>
+
+    <div class="book-anchor-body"><a id="an_1. 类继承（Class Inheritance）" class="anchor-text anchor-h2" title="1. 类继承（Class Inheritance）" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#1-%E7%B1%BB%E7%BB%A7%E6%89%BF%EF%BC%88class-inheritance%EF%BC%89">1. 类继承（Class Inheritance）</a><a id="an_1.1 概述" class="anchor-text anchor-h3" title="1.1 概述" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#11-%E6%A6%82%E8%BF%B0">1.1 概述</a><a id="an_1.2 语法" class="anchor-text anchor-h3" title="1.2 语法" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#12-%E8%AF%AD%E6%B3%95">1.2 语法</a><a id="an_1.3 代码示例" class="anchor-text anchor-h3" title="1.3 代码示例" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#13-%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B">1.3 代码示例</a><a id="an_1.4 执行结果" class="anchor-text anchor-h3" title="1.4 执行结果" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#14-%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C">1.4 执行结果</a><a id="an_2. 虚函数（Virtual Functions）" class="anchor-text anchor-h2" title="2. 虚函数（Virtual Functions）" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#2-%E8%99%9A%E5%87%BD%E6%95%B0%EF%BC%88virtual-functions%EF%BC%89">2. 虚函数（Virtual Functions）</a><a id="an_2.1 概述" class="anchor-text anchor-h3" title="2.1 概述" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#21-%E6%A6%82%E8%BF%B0">2.1 概述</a><a id="an_2.2 语法" class="anchor-text anchor-h3" title="2.2 语法" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#22-%E8%AF%AD%E6%B3%95">2.2 语法</a><a id="an_2.3 代码示例" class="anchor-text anchor-h3" title="2.3 代码示例" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#23-%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B">2.3 代码示例</a><a id="an_2.4 执行结果" class="anchor-text anchor-h3" title="2.4 执行结果" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#24-%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C">2.4 执行结果</a><a id="an_3. 纯虚类与抽象基类（Pure Virtual Classes and Abstract Base Classes）" class="anchor-text anchor-h2" title="3. 纯虚类与抽象基类（Pure Virtual Classes and Abstract Base Classes）" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#3-%E7%BA%AF%E8%99%9A%E7%B1%BB%E4%B8%8E%E6%8A%BD%E8%B1%A1%E5%9F%BA%E7%B1%BB%EF%BC%88pure-virtual-classes-and-abstract-base-classes%EF%BC%89">3. 纯虚类与抽象基类（Pure Virtual Classes and Abstract Base Classes）</a><a id="an_3.1 概述" class="anchor-text anchor-h3" title="3.1 概述" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#31-%E6%A6%82%E8%BF%B0">3.1 概述</a><a id="an_3.2 语法" class="anchor-text anchor-h3" title="3.2 语法" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#32-%E8%AF%AD%E6%B3%95">3.2 语法</a><a id="an_3.3 代码示例" class="anchor-text anchor-h3" title="3.3 代码示例" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#33-%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B">3.3 代码示例</a><a id="an_3.4 执行结果" class="anchor-text anchor-h3" title="3.4 执行结果" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#34-%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C">3.4 执行结果</a><a id="an_4. 继承后的访问控制（Access Control in Inheritance）" class="anchor-text anchor-h2" title="4. 继承后的访问控制（Access Control in Inheritance）" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#4-%E7%BB%A7%E6%89%BF%E5%90%8E%E7%9A%84%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%EF%BC%88access-control-in-inheritance%EF%BC%89">4. 继承后的访问控制（Access Control in Inheritance）</a><a id="an_4.1 概述" class="anchor-text anchor-h3" title="4.1 概述" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#41-%E6%A6%82%E8%BF%B0">4.1 概述</a><a id="an_4.2 语法与影响" class="anchor-text anchor-h3" title="4.2 语法与影响" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#42-%E8%AF%AD%E6%B3%95%E4%B8%8E%E5%BD%B1%E5%93%8D">4.2 语法与影响</a><a id="an_4.3 代码示例" class="anchor-text anchor-h3" title="4.3 代码示例" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#43-%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B">4.3 代码示例</a><a id="an_5. 继承中类的作用域（Scope of Classes in Inheritance）" class="anchor-text anchor-h2" title="5. 继承中类的作用域（Scope of Classes in Inheritance）" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#5-%E7%BB%A7%E6%89%BF%E4%B8%AD%E7%B1%BB%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F%EF%BC%88scope-of-classes-in-inheritance%EF%BC%89">5. 继承中类的作用域（Scope of Classes in Inheritance）</a><a id="an_5.1 概述" class="anchor-text anchor-h3" title="5.1 概述" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#51-%E6%A6%82%E8%BF%B0">5.1 概述</a><a id="an_5.2 代码示例" class="anchor-text anchor-h3" title="5.2 代码示例" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#52-%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B">5.2 代码示例</a><a id="an_5.3 执行结果" class="anchor-text anchor-h3" title="5.3 执行结果" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#53-%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C">5.3 执行结果</a><a id="an_6. 构造函数与拷贝控制（Constructors and Copy Control in Inheritance）" class="anchor-text anchor-h2" title="6. 构造函数与拷贝控制（Constructors and Copy Control in Inheritance）" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#6-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8B%B7%E8%B4%9D%E6%8E%A7%E5%88%B6%EF%BC%88constructors-and-copy-control-in-inheritance%EF%BC%89">6. 构造函数与拷贝控制（Constructors and Copy Control in Inheritance）</a><a id="an_6.1 概述" class="anchor-text anchor-h3" title="6.1 概述" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#61-%E6%A6%82%E8%BF%B0">6.1 概述</a><a id="an_6.2 构造函数的调用顺序" class="anchor-text anchor-h3" title="6.2 构造函数的调用顺序" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#62-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E8%B0%83%E7%94%A8%E9%A1%BA%E5%BA%8F">6.2 构造函数的调用顺序</a><a id="an_6.3 代码示例" class="anchor-text anchor-h3" title="6.3 代码示例" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#63-%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B">6.3 代码示例</a><a id="an_6.4 执行结果" class="anchor-text anchor-h3" title="6.4 执行结果" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#64-%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C">6.4 执行结果</a><a id="an_7. 容器与继承（Containers and Inheritance）" class="anchor-text anchor-h2" title="7. 容器与继承（Containers and Inheritance）" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#7-%E5%AE%B9%E5%99%A8%E4%B8%8E%E7%BB%A7%E6%89%BF%EF%BC%88containers-and-inheritance%EF%BC%89">7. 容器与继承（Containers and Inheritance）</a><a id="an_7.1 概述" class="anchor-text anchor-h3" title="7.1 概述" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#71-%E6%A6%82%E8%BF%B0">7.1 概述</a><a id="an_7.2 切片问题示例" class="anchor-text anchor-h3" title="7.2 切片问题示例" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#72-%E5%88%87%E7%89%87%E9%97%AE%E9%A2%98%E7%A4%BA%E4%BE%8B">7.2 切片问题示例</a><a id="an_7.3 使用指针避免切片" class="anchor-text anchor-h3" title="7.3 使用指针避免切片" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#73-%E4%BD%BF%E7%94%A8%E6%8C%87%E9%92%88%E9%81%BF%E5%85%8D%E5%88%87%E7%89%87">7.3 使用指针避免切片</a><a id="an_7.5 智能指针选择" class="anchor-text anchor-h3" title="7.5 智能指针选择" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#75-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88%E9%80%89%E6%8B%A9">7.5 智能指针选择</a><a id="an_练习题目" class="anchor-text anchor-h2" title="练习题目" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#%E7%BB%83%E4%B9%A0%E9%A2%98%E7%9B%AE">练习题目</a><a id="an_1. 简单继承与成员访问" class="anchor-text anchor-h3" title="1. 简单继承与成员访问" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#1-%E7%AE%80%E5%8D%95%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%88%90%E5%91%98%E8%AE%BF%E9%97%AE">1. 简单继承与成员访问</a><a id="an_2. 虚函数重写与多态性" class="anchor-text anchor-h3" title="2. 虚函数重写与多态性" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#2-%E8%99%9A%E5%87%BD%E6%95%B0%E9%87%8D%E5%86%99%E4%B8%8E%E5%A4%9A%E6%80%81%E6%80%A7">2. 虚函数重写与多态性</a><a id="an_3. 函数重载与隐藏" class="anchor-text anchor-h3" title="3. 函数重载与隐藏" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#3-%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD%E4%B8%8E%E9%9A%90%E8%97%8F">3. 函数重载与隐藏</a><a id="an_4. 抽象类与纯虚函数" class="anchor-text anchor-h3" title="4. 抽象类与纯虚函数" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#4-%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E7%BA%AF%E8%99%9A%E5%87%BD%E6%95%B0">4. 抽象类与纯虚函数</a><a id="an_5. 构造函数与析构函数的继承" class="anchor-text anchor-h3" title="5. 构造函数与析构函数的继承" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#5-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0%E7%9A%84%E7%BB%A7%E6%89%BF">5. 构造函数与析构函数的继承</a></div>
+  </div>
+
+  <div class="book-body">
+    
+    <div class="body-inner">
+       
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <a class="btn pull-left js-toolbar-action" aria-label="" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#"><i class="fa fa-align-justify"></i></a><div class="dropdown pull-right js-toolbar-action"><a class="btn toggle-dropdown" aria-label="Share" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#"><i class="fa fa-share-alt"></i></a></div><a class="btn pull-right js-toolbar-action" aria-label="" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#"><i class="fa fa-facebook"></i></a><a class="btn pull-right js-toolbar-action" aria-label="" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#"><i class="fa fa-twitter"></i></a><div class="dropdown pull-left font-settings js-toolbar-action"><a class="btn toggle-dropdown" aria-label="Font Settings" href="https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html#"><i class="fa fa-font"></i></a></div><h1>
+        
+        <a href="https://gitbookcpp.llfc.club/">继承和多态</a>
+    </h1>
+</div>
+
+
+
+      <div class="page-wrapper" tabindex="-1" role="main">
+        <div class="page-inner">
+          
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+          <section class="normal markdown-section">
+             <h2 id="1-类继承（class-inheritance）">1. 类继承（Class Inheritance）</h2>
+<h3 id="11-概述">1.1 概述</h3>
+<p><strong>类继承</strong> 是面向对象编程（OOP）中的一个核心概念，允许一个类（派生类）从另一个类（基类）继承属性和行为。通过继承，派生类可以重用基类的代码，并根据需要添加新的成员或重写现有成员。</p>
+<h3 id="12-语法">1.2 语法</h3>
+<div class="code-wrapper"><pre><code class="lang-cpp"><span class="code-line"><span class="hljs-keyword">class</span> Base {</span>
+<span class="code-line"><span class="hljs-keyword">public</span>:</span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">baseFunction</span><span class="hljs-params">()</span></span>;</span>
+<span class="code-line"><span class="hljs-keyword">protected</span>:</span>
+<span class="code-line">    <span class="hljs-keyword">int</span> protectedMember;</span>
+<span class="code-line"><span class="hljs-keyword">private</span>:</span>
+<span class="code-line">    <span class="hljs-keyword">int</span> privateMember;</span>
+<span class="code-line">};</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-keyword">class</span> Derived : <span class="hljs-keyword">public</span> Base { <span class="hljs-comment">// 公有继承</span></span>
+<span class="code-line"><span class="hljs-keyword">public</span>:</span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">derivedFunction</span><span class="hljs-params">()</span></span>;</span>
+<span class="code-line">};</span></code><i class="fa fa-clone t-copy"></i></pre></div>
+<h3 id="13-代码示例">1.3 代码示例</h3>
+<div class="code-wrapper"><pre><code class="lang-cpp"><span class="code-line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-comment">// 基类</span></span>
+<span class="code-line"><span class="hljs-keyword">class</span> Animal {</span>
+<span class="code-line"><span class="hljs-keyword">public</span>:</span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">eat</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{</span>
+<span class="code-line">        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Animal eats."</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">    }</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-keyword">protected</span>:</span>
+<span class="code-line">    <span class="hljs-keyword">int</span> age;</span>
+<span class="code-line">};</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-comment">// 派生类</span></span>
+<span class="code-line"><span class="hljs-keyword">class</span> Dog : <span class="hljs-keyword">public</span> Animal {</span>
+<span class="code-line"><span class="hljs-keyword">public</span>:</span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">bark</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{</span>
+<span class="code-line">        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Dog barks."</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">    }</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a)</span> </span>{</span>
+<span class="code-line">        age = a; <span class="hljs-comment">// 访问受保护成员</span></span>
+<span class="code-line">    }</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getAge</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{</span>
+<span class="code-line">        <span class="hljs-keyword">return</span> age;</span>
+<span class="code-line">    }</span>
+<span class="code-line">};</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{</span>
+<span class="code-line">    Dog myDog;</span>
+<span class="code-line">    myDog.eat();    <span class="hljs-comment">// 继承自Animal</span></span>
+<span class="code-line">    myDog.bark();   <span class="hljs-comment">// Dog特有</span></span>
+<span class="code-line"></span>
+<span class="code-line">    myDog.setAge(<span class="hljs-number">5</span>);</span>
+<span class="code-line">    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Dog's age: "</span> &lt;&lt; myDog.getAge() &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span>
+<span class="code-line">}</span></code><i class="fa fa-clone t-copy"></i></pre></div>
+<h3 id="14-执行结果">1.4 执行结果</h3>
+<div class="code-wrapper"><pre><code class="lang-rust"><span class="code-line">Animal eats.</span>
+<span class="code-line">Dog barks.</span>
+<span class="code-line">Dog<span class="hljs-symbol">'s</span> age: <span class="hljs-number">5</span></span></code><i class="fa fa-clone t-copy"></i></pre></div>
+<h2 id="2-虚函数（virtual-functions）">2. 虚函数（Virtual Functions）</h2>
+<h3 id="21-概述">2.1 概述</h3>
+<p><strong>虚函数</strong> 允许派生类重新定义基类中的函数，以实现多态性。在运行时，根据对象的实际类型调用相应的函数版本。</p>
+<h3 id="22-语法">2.2 语法</h3>
+<div class="code-wrapper"><pre><code class="lang-cpp"><span class="code-line"><span class="hljs-keyword">class</span> Base {</span>
+<span class="code-line"><span class="hljs-keyword">public</span>:</span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span></span>;</span>
+<span class="code-line">};</span></code><i class="fa fa-clone t-copy"></i></pre></div>
+<h3 id="23-代码示例">2.3 代码示例</h3>
+<div class="code-wrapper"><pre><code class="lang-cpp"><span class="code-line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-keyword">class</span> Shape {</span>
+<span class="code-line"><span class="hljs-keyword">public</span>:</span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">draw</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{ <span class="hljs-comment">// 虚函数</span></span>
+<span class="code-line">        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Drawing a shape."</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">    }</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="hljs-keyword">virtual</span> ~Shape() {} <span class="hljs-comment">// 虚析构函数</span></span>
+<span class="code-line">};</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-keyword">class</span> Circle : <span class="hljs-keyword">public</span> Shape {</span>
+<span class="code-line"><span class="hljs-keyword">public</span>:</span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">draw</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> override </span>{ <span class="hljs-comment">// 重写虚函数</span></span>
+<span class="code-line">        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Drawing a circle."</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">    }</span>
+<span class="code-line">};</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-keyword">class</span> Square : <span class="hljs-keyword">public</span> Shape {</span>
+<span class="code-line"><span class="hljs-keyword">public</span>:</span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">draw</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> override </span>{ <span class="hljs-comment">// 重写虚函数</span></span>
+<span class="code-line">        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Drawing a square."</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">    }</span>
+<span class="code-line">};</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">render</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Shape&amp; shape)</span> </span>{</span>
+<span class="code-line">    shape.draw(); <span class="hljs-comment">// 动态绑定，根据实际对象类型调用对应的draw()</span></span>
+<span class="code-line">}</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{</span>
+<span class="code-line">    Circle c;</span>
+<span class="code-line">    Square s;</span>
+<span class="code-line">    Shape genericShape;</span>
+<span class="code-line"></span>
+<span class="code-line">    render(c);           <span class="hljs-comment">// 输出: Drawing a circle.</span></span>
+<span class="code-line">    render(s);           <span class="hljs-comment">// 输出: Drawing a square.</span></span>
+<span class="code-line">    render(genericShape); <span class="hljs-comment">// 输出: Drawing a shape.</span></span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span>
+<span class="code-line">}</span></code><i class="fa fa-clone t-copy"></i></pre></div>
+<h3 id="24-执行结果">2.4 执行结果</h3>
+<div class="code-wrapper"><pre><code class="lang-css"><span class="code-line"><span class="hljs-selector-tag">Drawing</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">circle</span>.</span>
+<span class="code-line"><span class="hljs-selector-tag">Drawing</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">square</span>.</span>
+<span class="code-line"><span class="hljs-selector-tag">Drawing</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">shape</span>.</span></code><i class="fa fa-clone t-copy"></i></pre></div>
+<hr>
+<h2 id="3-纯虚类与抽象基类（pure-virtual-classes-and-abstract-base-classes）">3. 纯虚类与抽象基类（Pure Virtual Classes and Abstract Base Classes）</h2>
+<h3 id="31-概述">3.1 概述</h3>
+<p><strong>纯虚函数</strong> 是在基类中声明但不提供实现的虚函数。包含至少一个纯虚函数的类称为 <strong>抽象基类</strong>（Abstract Base Class，ABC）。抽象基类不能被实例化，要求派生类必须实现所有纯虚函数才能被实例化。</p>
+<h3 id="32-语法">3.2 语法</h3>
+<div class="code-wrapper"><pre><code class="lang-cpp"><span class="code-line"><span class="hljs-keyword">class</span> Base {</span>
+<span class="code-line"><span class="hljs-keyword">public</span>:</span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">pureVirtualFunction</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>; <span class="hljs-comment">// 纯虚函数</span></span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printm</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;</span>
+<span class="code-line">};</span></code><i class="fa fa-clone t-copy"></i></pre></div>
+<h3 id="33-代码示例">3.3 代码示例</h3>
+<div class="code-wrapper"><pre><code class="lang-cpp"><span class="code-line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-comment">// 抽象基类</span></span>
+<span class="code-line"><span class="hljs-keyword">class</span> Vehicle {</span>
+<span class="code-line"><span class="hljs-keyword">public</span>:</span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">startEngine</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>; <span class="hljs-comment">// 纯虚函数</span></span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="hljs-keyword">virtual</span> ~Vehicle() {} <span class="hljs-comment">// 虚析构函数</span></span>
+<span class="code-line">};</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-keyword">class</span> Car : <span class="hljs-keyword">public</span> Vehicle {</span>
+<span class="code-line"><span class="hljs-keyword">public</span>:</span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">startEngine</span><span class="hljs-params">()</span> override </span>{</span>
+<span class="code-line">        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Car engine started."</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">    }</span>
+<span class="code-line">};</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-keyword">class</span> Motorcycle : <span class="hljs-keyword">public</span> Vehicle {</span>
+<span class="code-line"><span class="hljs-keyword">public</span>:</span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">startEngine</span><span class="hljs-params">()</span> override </span>{</span>
+<span class="code-line">        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Motorcycle engine started."</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">    }</span>
+<span class="code-line">};</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{</span>
+<span class="code-line">    <span class="hljs-comment">// Vehicle v; // 错误: 不能实例化抽象类</span></span>
+<span class="code-line"></span>
+<span class="code-line">    Car car;</span>
+<span class="code-line">    Motorcycle bike;</span>
+<span class="code-line"></span>
+<span class="code-line">    car.startEngine();     <span class="hljs-comment">// 输出: Car engine started.</span></span>
+<span class="code-line">    bike.startEngine();    <span class="hljs-comment">// 输出: Motorcycle engine started.</span></span>
+<span class="code-line"></span>
+<span class="code-line">    Vehicle* v1 = &amp;car;</span>
+<span class="code-line">    Vehicle* v2 = &amp;bike;</span>
+<span class="code-line"></span>
+<span class="code-line">    v1-&gt;startEngine(); <span class="hljs-comment">// 动态绑定，输出: Car engine started.</span></span>
+<span class="code-line">    v2-&gt;startEngine(); <span class="hljs-comment">// 动态绑定，输出: Motorcycle engine started.</span></span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span>
+<span class="code-line">}</span></code><i class="fa fa-clone t-copy"></i></pre></div>
+<h3 id="34-执行结果">3.4 执行结果</h3>
+<div class="code-wrapper"><pre><code class="lang-undefined"><span class="code-line">Car engine started.</span>
+<span class="code-line">Motorcycle engine started.</span>
+<span class="code-line">Car engine started.</span>
+<span class="code-line">Motorcycle engine started.</span></code><i class="fa fa-clone t-copy"></i></pre></div>
+<h2 id="4-继承后的访问控制（access-control-in-inheritance）">4. 继承后的访问控制（Access Control in Inheritance）</h2>
+<h3 id="41-概述">4.1 概述</h3>
+<p>继承时的 <strong>访问控制</strong> 决定了基类成员在派生类中的可访问性。继承方式主要有三种：<code>public</code>、<code>protected</code> 和 <code>private</code>。它们影响继承成员的访问级别。</p>
+<h3 id="42-语法与影响">4.2 语法与影响</h3>
+<ul>
+<li><strong>公有继承（public inheritance）</strong>：<ul>
+<li>基类的 <code>public</code> 成员在派生类中保持 <code>public</code>。</li>
+<li>基类的 <code>protected</code> 成员在派生类中保持 <code>protected</code>。</li>
+<li>基类的 <code>private</code> 成员在派生类中不可访问。</li>
+</ul>
+</li>
+<li><strong>保护继承（protected inheritance）</strong>：<ul>
+<li>基类的 <code>public</code> 和 <code>protected</code> 成员在派生类中都变为 <code>protected</code>。</li>
+</ul>
+</li>
+<li><strong>私有继承（private inheritance）</strong>：<ul>
+<li>基类的 <code>public</code> 和 <code>protected</code> 成员在派生类中都变为 <code>private</code>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="43-代码示例">4.3 代码示例</h3>
+<div class="code-wrapper"><pre><code class="lang-cpp"><span class="code-line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-keyword">class</span> Base {</span>
+<span class="code-line"><span class="hljs-keyword">public</span>:</span>
+<span class="code-line">    <span class="hljs-keyword">int</span> publicMember;</span>
+<span class="code-line"><span class="hljs-keyword">protected</span>:</span>
+<span class="code-line">    <span class="hljs-keyword">int</span> protectedMember;</span>
+<span class="code-line"><span class="hljs-keyword">private</span>:</span>
+<span class="code-line">    <span class="hljs-keyword">int</span> privateMember;</span>
+<span class="code-line">};</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-keyword">class</span> PublicDerived : <span class="hljs-keyword">public</span> Base {</span>
+<span class="code-line"><span class="hljs-keyword">public</span>:</span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">accessMembers</span><span class="hljs-params">()</span> </span>{</span>
+<span class="code-line">        publicMember = <span class="hljs-number">1</span>;      <span class="hljs-comment">// 可访问</span></span>
+<span class="code-line">        protectedMember = <span class="hljs-number">2</span>;   <span class="hljs-comment">// 可访问</span></span>
+<span class="code-line">        <span class="hljs-comment">// privateMember = 3;  // 错误：privateMember 在派生类中不可访问</span></span>
+<span class="code-line">    }</span>
+<span class="code-line">};</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-keyword">class</span> ProtectedDerived : <span class="hljs-keyword">protected</span> Base {</span>
+<span class="code-line"><span class="hljs-keyword">public</span>:</span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">accessMembers</span><span class="hljs-params">()</span> </span>{</span>
+<span class="code-line">        publicMember = <span class="hljs-number">1</span>;      <span class="hljs-comment">// 转为 protected</span></span>
+<span class="code-line">        protectedMember = <span class="hljs-number">2</span>;   <span class="hljs-comment">// 转为 protected</span></span>
+<span class="code-line">        <span class="hljs-comment">// privateMember = 3;  // 错误</span></span>
+<span class="code-line">    }</span>
+<span class="code-line">};</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-keyword">class</span> PrivateDerived : <span class="hljs-keyword">private</span> Base {</span>
+<span class="code-line"><span class="hljs-keyword">public</span>:</span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">accessMembers</span><span class="hljs-params">()</span> </span>{</span>
+<span class="code-line">        publicMember = <span class="hljs-number">1</span>;      <span class="hljs-comment">// 转为 private</span></span>
+<span class="code-line">        protectedMember = <span class="hljs-number">2</span>;   <span class="hljs-comment">// 转为 private</span></span>
+<span class="code-line">        <span class="hljs-comment">// privateMember = 3;  // 错误</span></span>
+<span class="code-line">    }</span>
+<span class="code-line">};</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{</span>
+<span class="code-line">    PublicDerived pubDer;</span>
+<span class="code-line">    pubDer.publicMember = <span class="hljs-number">10</span>; <span class="hljs-comment">// 可访问</span></span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="hljs-comment">// ProtectedDerived protDer;</span></span>
+<span class="code-line">    <span class="hljs-comment">// protDer.publicMember = 10; // 错误：publicMember 在 ProtectedDerived 中为 protected</span></span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="hljs-comment">// PrivateDerived privDer;</span></span>
+<span class="code-line">    <span class="hljs-comment">// privDer.publicMember = 10; // 错误：publicMember 在 PrivateDerived 中为 private</span></span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span>
+<span class="code-line">}</span></code><i class="fa fa-clone t-copy"></i></pre></div>
+<h2 id="5-继承中类的作用域（scope-of-classes-in-inheritance）">5. 继承中类的作用域（Scope of Classes in Inheritance）</h2>
+<h3 id="51-概述">5.1 概述</h3>
+<p>在继承关系中，类的作用域决定了成员名称的可见性和访问方式。派生类可以访问基类的成员，根据访问控制的不同，还可能需要使用 <strong>作用域解析符</strong> 来访问隐藏的成员。</p>
+<h3 id="52-代码示例">5.2 代码示例</h3>
+<div class="code-wrapper"><pre><code class="lang-cpp"><span class="code-line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-keyword">class</span> Base {</span>
+<span class="code-line"><span class="hljs-keyword">public</span>:</span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{</span>
+<span class="code-line">        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Display from Base"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">    }</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{</span>
+<span class="code-line">        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Show from Base"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">    }</span>
+<span class="code-line">};</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-keyword">class</span> Derived : <span class="hljs-keyword">public</span> Base {</span>
+<span class="code-line"><span class="hljs-keyword">public</span>:</span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{ <span class="hljs-comment">// 隐藏基类的 display</span></span>
+<span class="code-line">        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Display from Derived"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">    }</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">callBaseDisplay</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{</span>
+<span class="code-line">        Base::display(); <span class="hljs-comment">// 使用作用域解析符调用基类的 display</span></span>
+<span class="code-line">    }</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{ <span class="hljs-comment">// 重写 show， show 是虚函数可实现多态</span></span>
+<span class="code-line">        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Show from Derived"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">    }</span>
+<span class="code-line">};</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{</span>
+<span class="code-line">    Derived d;</span>
+<span class="code-line">    d.display();          <span class="hljs-comment">// 调用 Derived::display</span></span>
+<span class="code-line">    d.callBaseDisplay();  <span class="hljs-comment">// 调用 Base::display</span></span>
+<span class="code-line">    d.show();             <span class="hljs-comment">// 调用 Derived::show</span></span>
+<span class="code-line"></span>
+<span class="code-line">    Base* bPtr = &amp;d;</span>
+<span class="code-line">    bPtr-&gt;display(); <span class="hljs-comment">// 调用 Base::display，因为 display 不是虚函数</span></span>
+<span class="code-line">    bPtr-&gt;show();    <span class="hljs-comment">// show 是虚函数，调用 Derived::show；否则调用 Base::show</span></span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span>
+<span class="code-line">}</span></code><i class="fa fa-clone t-copy"></i></pre></div>
+<h3 id="53-执行结果">5.3 执行结果</h3>
+<div class="code-wrapper"><pre><code class="lang-sql"><span class="code-line">Display from Derived</span>
+<span class="code-line">Display from Base</span>
+<span class="code-line"><span class="hljs-keyword">Show</span> <span class="hljs-keyword">from</span> Derived</span>
+<span class="code-line">Display <span class="hljs-keyword">from</span> Base</span>
+<span class="code-line"><span class="hljs-keyword">Show</span> <span class="hljs-keyword">from</span> Base // <span class="hljs-keyword">show</span> 是虚函数则输出: <span class="hljs-keyword">Show</span> <span class="hljs-keyword">from</span> Derived</span></code><i class="fa fa-clone t-copy"></i></pre></div>
+<h2 id="6-构造函数与拷贝控制（constructors-and-copy-control-in-inheritance）">6. 构造函数与拷贝控制（Constructors and Copy Control in Inheritance）</h2>
+<h3 id="61-概述">6.1 概述</h3>
+<p>在继承体系中，类的构造函数和拷贝控制函数（拷贝构造函数、拷贝赋值运算符、析构函数）的调用顺序和行为需要注意。基类的构造函数在派生类之前调用，析构函数则在派生类之后调用。</p>
+<h3 id="62-构造函数的调用顺序">6.2 构造函数的调用顺序</h3>
+<ol>
+<li>基类的 <strong>默认构造函数</strong> 首先被调用，除非派生类在初始化列表中显式调用其他基类构造函数。</li>
+<li>派生类的成员按照声明顺序被构造。</li>
+<li>派生类的构造函数体被执行。</li>
+</ol>
+<h3 id="63-代码示例">6.3 代码示例</h3>
+<div class="code-wrapper"><pre><code class="lang-cpp"><span class="code-line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span>
+<span class="code-line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-keyword">class</span> Base {</span>
+<span class="code-line"><span class="hljs-keyword">public</span>:</span>
+<span class="code-line">    Base() {</span>
+<span class="code-line">        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Base default constructor"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">    }</span>
+<span class="code-line"></span>
+<span class="code-line">    Base(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; name) : name_(name) {</span>
+<span class="code-line">        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Base parameterized constructor: "</span> &lt;&lt; name_ &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">    }</span>
+<span class="code-line"></span>
+<span class="code-line">    Base(<span class="hljs-keyword">const</span> Base&amp; other) : name_(other.name_) {</span>
+<span class="code-line">        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Base copy constructor"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">    }</span>
+<span class="code-line"></span>
+<span class="code-line">    Base&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-keyword">const</span> Base&amp; other) {</span>
+<span class="code-line">        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Base copy assignment"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span> != &amp;other) {</span>
+<span class="code-line">            name_ = other.name_;</span>
+<span class="code-line">        }</span>
+<span class="code-line">        <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;</span>
+<span class="code-line">    }</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="hljs-keyword">virtual</span> ~Base() {</span>
+<span class="code-line">        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Base destructor"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">    }</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-keyword">protected</span>:</span>
+<span class="code-line">    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> name_;</span>
+<span class="code-line">};</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-keyword">class</span> Derived : <span class="hljs-keyword">public</span> Base {</span>
+<span class="code-line"><span class="hljs-keyword">public</span>:</span>
+<span class="code-line">    Derived() : Base(<span class="hljs-string">"Default Derived"</span>) {</span>
+<span class="code-line">        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Derived default constructor"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">    }</span>
+<span class="code-line"></span>
+<span class="code-line">    Derived(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; name, <span class="hljs-keyword">int</span> value) : Base(name), value_(value) {</span>
+<span class="code-line">        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Derived parameterized constructor: "</span> &lt;&lt; value_ &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">    }</span>
+<span class="code-line"></span>
+<span class="code-line">    Derived(<span class="hljs-keyword">const</span> Derived&amp; other) : Base(other), value_(other.value_) {</span>
+<span class="code-line">        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Derived copy constructor"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">    }</span>
+<span class="code-line"></span>
+<span class="code-line">    Derived&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-keyword">const</span> Derived&amp; other) {</span>
+<span class="code-line">        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Derived copy assignment"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span> != &amp;other) {</span>
+<span class="code-line">            Base::<span class="hljs-keyword">operator</span>=(other);</span>
+<span class="code-line">            value_ = other.value_;</span>
+<span class="code-line">        }</span>
+<span class="code-line">        <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;</span>
+<span class="code-line">    }</span>
+<span class="code-line"></span>
+<span class="code-line">    ~Derived() override {</span>
+<span class="code-line">        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Derived destructor"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">    }</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-keyword">private</span>:</span>
+<span class="code-line">    <span class="hljs-keyword">int</span> value_;</span>
+<span class="code-line">};</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{</span>
+<span class="code-line">    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Creating d1:"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">    Derived d1;</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\nCreating d2:"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">    <span class="hljs-function">Derived <span class="hljs-title">d2</span><span class="hljs-params">(<span class="hljs-string">"Custom Derived"</span>, <span class="hljs-number">42</span>)</span></span>;</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\nCopy constructing d3 from d2:"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">    Derived d3 = d2;</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\nAssigning d1 = d2:"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">    d1 = d2;</span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\nExiting main..."</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span>
+<span class="code-line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span>
+<span class="code-line">}</span></code><i class="fa fa-clone t-copy"></i></pre></div>
+<h3 id="64-执行结果">6.4 执行结果</h3>
+<div class="code-wrapper"><pre><code class="lang-sql"><span class="code-line">Creating d1:</span>
+<span class="code-line">Base parameterized constructor: Default Derived</span>
+<span class="code-line">Derived default constructor</span>
+<span class="code-line"></span>
+<span class="code-line">Creating d2:</span>
+<span class="code-line">Base parameterized constructor: Custom Derived</span>
+<span class="code-line">Derived parameterized constructor: 42</span>
+<span class="code-line"></span>
+<span class="code-line">Copy constructing d3 from d2:</span>
+<span class="code-line">Base copy constructor</span>
+<span class="code-line">Derived copy constructor</span>
+<span class="code-line"></span>
+<span class="code-line">Assigning d1 = d2:</span>
+<span class="code-line">Derived copy assignment</span>
+<span class="code-line">Base copy assignment</span>
+<span class="code-line"></span>
+<span class="code-line">Exiting main...</span>
+<span class="code-line">Derived destructor</span>
+<span class="code-line">Base destructor</span>
+<span class="code-line">Derived destructor</span>
+<span class="code-line">Base destructor</span>
+<span class="code-line">Derived destructor</span>
+<span class="code-line">Base destructor</span></code><i class="fa fa-clone t-copy"></i></pre></div>
+<h2 id="7-容器与继承（containers-and-inheritance）">7. 容器与继承（Containers and Inheritance）</h2>
+<h3 id="71-概述">7.1 概述</h3>
+<p><strong>C++ 容器（如 <code>std::vector</code>、<code>std::list</code> 等）</strong> 通常存储对象的副本，而非指向对象的指针。因此，当与继承结合使用时，可能导致 <strong>切片（Object Slicing）</strong> 问题，即仅存储基类部分，丢失派生类特有的信息。为了实现多态性，推荐使用指针或智能指针存储对象。</p>
+<h3 id="72-切片问题示例">7.2 切片问题示例</h3>
+<div class="code-wrapper"><pre><code class="lang-cpp"><span class="code-line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span>
+<span class="code-line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-keyword">class</span> Base {</span>
+<span class="code-line"><span class="hljs-keyword">public</span>:</span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{ <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Base show"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>; }</span>
+<span class="code-line">    <span class="hljs-keyword">virtual</span> ~Base() {}</span>
+<span class="code-line">};</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-keyword">class</span> Derived : <span class="hljs-keyword">public</span> Base {</span>
+<span class="code-line"><span class="hljs-keyword">public</span>:</span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> override </span>{ <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Derived show"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>; }</span>
+<span class="code-line">};</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{</span>
+<span class="code-line">    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;Base&gt; vec;</span>
+<span class="code-line">    Derived d;</span>
+<span class="code-line">    vec.push_back(d); <span class="hljs-comment">// 切片发生，派生类特有部分被丢弃</span></span>
+<span class="code-line"></span>
+<span class="code-line">    vec[<span class="hljs-number">0</span>].show(); <span class="hljs-comment">// 输出: Base show</span></span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span>
+<span class="code-line">}</span></code><i class="fa fa-clone t-copy"></i></pre></div>
+<h3 id="73-使用指针避免切片">7.3 使用指针避免切片</h3>
+<div class="code-wrapper"><pre><code class="lang-cpp"><span class="code-line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span>
+<span class="code-line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span></span>
+<span class="code-line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;memory&gt;</span></span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-keyword">class</span> Base {</span>
+<span class="code-line"><span class="hljs-keyword">public</span>:</span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{ <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Base show"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>; }</span>
+<span class="code-line">    <span class="hljs-keyword">virtual</span> ~Base() {}</span>
+<span class="code-line">};</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-keyword">class</span> Derived : <span class="hljs-keyword">public</span> Base {</span>
+<span class="code-line"><span class="hljs-keyword">public</span>:</span>
+<span class="code-line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> override </span>{ <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Derived show"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>; }</span>
+<span class="code-line">};</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{</span>
+<span class="code-line">    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">unique_ptr</span>&lt;Base&gt;&gt; vec;</span>
+<span class="code-line">    vec.emplace_back(<span class="hljs-built_in">std</span>::make_unique&lt;Derived&gt;());</span>
+<span class="code-line"></span>
+<span class="code-line">    vec[<span class="hljs-number">0</span>]-&gt;show(); <span class="hljs-comment">// 输出: Derived show</span></span>
+<span class="code-line"></span>
+<span class="code-line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span>
+<span class="code-line">}</span></code><i class="fa fa-clone t-copy"></i></pre></div>
+<h3 id="75-智能指针选择">7.5 智能指针选择</h3>
+<ul>
+<li><strong><code>std::unique_ptr</code></strong>：<ul>
+<li>独占所有权，不可复制，只能移动。</li>
+<li>适用于明确的单一所有权场景。</li>
+</ul>
+</li>
+<li><strong><code>std::shared_ptr</code></strong>：<ul>
+<li>共享所有权，可以被多个指针共享和引用计数。</li>
+<li>适用于需要多个所有者的场景。</li>
+</ul>
+</li>
+</ul>
+<h2 id="练习题目">练习题目</h2>
+<h3 id="1-简单继承与成员访问">1. 简单继承与成员访问</h3>
+<p><strong>题目：</strong></p>
+<p>定义一个基类 <code>Person</code>，包含以下成员：</p>
+<ul>
+<li><p><strong>私有成员变量</strong>：<code>name</code>（字符串类型），<code>age</code>（整数类型）</p>
+</li>
+<li><p>公共成员函数</p>
+<p>：</p>
+<ul>
+<li>构造函数：接受姓名和年龄作为参数并初始化成员变量</li>
+<li><code>displayInfo()</code>：打印姓名和年龄</li>
+</ul>
+</li>
+</ul>
+<p>然后，定义一个派生类 <code>Student</code>，继承自 <code>Person</code>，并添加以下内容：</p>
+<ul>
+<li><p><strong>私有成员变量</strong>：<code>studentID</code>（字符串类型）</p>
+</li>
+<li><p>公共成员函数</p>
+<p>：</p>
+<ul>
+<li>构造函数：接受姓名、年龄和学号作为参数，并调用基类构造函数初始化姓名和年龄</li>
+<li>重写 <code>displayInfo()</code>：除了显示姓名和年龄外，还显示学号</li>
+</ul>
+</li>
+</ul>
+<p><strong>要求：</strong></p>
+<ul>
+<li>在 <code>main</code> 函数中，创建一个 <code>Student</code> 对象，并调用 <code>displayInfo()</code> 函数展示信息。</li>
+</ul>
+<p><strong>示例输出：</strong></p>
+<div class="code-wrapper"><pre><code class="lang-yaml"><span class="code-line"><span class="hljs-attr">Name:</span> Alice</span>
+<span class="code-line"><span class="hljs-attr">Age:</span> <span class="hljs-number">20</span></span>
+<span class="code-line">Student ID: S12345</span></code><i class="fa fa-clone t-copy"></i></pre></div>
+<hr>
+<h3 id="2-虚函数重写与多态性">2. 虚函数重写与多态性</h3>
+<p><strong>题目：</strong></p>
+<p>定义一个基类 <code>Shape</code>，包含以下内容：</p>
+<ul>
+<li><p>公共成员函数</p>
+<p>：</p>
+<ul>
+<li>虚函数 <code>draw()</code>：在基类中实现，输出 "Drawing a generic shape."</li>
+</ul>
+</li>
+</ul>
+<p>然后，定义两个派生类 <code>Circle</code> 和 <code>Rectangle</code>，分别重写 <code>draw()</code> 函数，实现各自的输出：</p>
+<ul>
+<li><code>Circle</code> 的 <code>draw()</code> 输出："Drawing a circle."</li>
+<li><code>Rectangle</code> 的 <code>draw()</code> 输出："Drawing a rectangle."</li>
+</ul>
+<p><strong>要求：</strong></p>
+<ul>
+<li>在 <code>main</code> 函数中，创建一个 <code>Shape</code> 类型的指针数组，包含不同类型的 <code>Shape</code> 对象（<code>Circle</code> 和 <code>Rectangle</code>）。</li>
+<li>遍历数组，调用每个对象的 <code>draw()</code> 函数，验证多态性的实现。</li>
+</ul>
+<p><strong>示例输出：</strong></p>
+<div class="code-wrapper"><pre><code class="lang-css"><span class="code-line"><span class="hljs-selector-tag">Drawing</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">circle</span>.</span>
+<span class="code-line"><span class="hljs-selector-tag">Drawing</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">rectangle</span>.</span>
+<span class="code-line"><span class="hljs-selector-tag">Drawing</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">generic</span> <span class="hljs-selector-tag">shape</span>.</span></code><i class="fa fa-clone t-copy"></i></pre></div>
+<hr>
+<h3 id="3-函数重载与隐藏">3. 函数重载与隐藏</h3>
+<p><strong>题目：</strong></p>
+<p>定义一个基类 <code>Calculator</code>，包含以下公共成员函数：</p>
+<ul>
+<li><code>int add(int a, int b)</code>：返回两个整数的和</li>
+<li><code>double add(double a, double b)</code>：返回两个浮点数的和</li>
+</ul>
+<p>然后，定义一个派生类 <code>AdvancedCalculator</code>，继承自 <code>Calculator</code>，并添加以下成员函数：</p>
+<ul>
+<li><code>int add(int a, int b, int c)</code>：返回三个整数的和</li>
+</ul>
+<p><strong>要求：</strong></p>
+<ul>
+<li>在</li>
+</ul>
+<div class="code-wrapper"><pre><code>  main
+</code><i class="fa fa-clone t-copy"></i></pre></div><p>  函数中，创建一个</p>
+<div class="code-wrapper"><pre><code>  AdvancedCalculator
+</code><i class="fa fa-clone t-copy"></i></pre></div><p>  对象，分别调用以下函数，并观察输出：</p>
+<ul>
+<li><code>add(2, 3)</code></li>
+<li><code>add(2.5, 3.5)</code></li>
+<li><code>add(1, 2, 3)</code></li>
+</ul>
+<p><strong>注意：</strong></p>
+<ul>
+<li>观察派生类中新增的 <code>add</code> 函数是否影响基类中的同名函数。</li>
+</ul>
+<p><strong>示例输出：</strong></p>
+<div class="code-wrapper"><pre><code class="lang-undefined"><span class="code-line">5</span>
+<span class="code-line">6</span>
+<span class="code-line">6</span></code><i class="fa fa-clone t-copy"></i></pre></div>
+<hr>
+<h3 id="4-抽象类与纯虚函数">4. 抽象类与纯虚函数</h3>
+<p><strong>题目：</strong></p>
+<p>定义一个抽象基类 <code>Animal</code>，包含以下内容：</p>
+<ul>
+<li><p>公共纯虚函数</p>
+<p>：</p>
+<ul>
+<li><code>void makeSound() const</code>：纯虚函数，用于发出动物的叫声</li>
+</ul>
+</li>
+</ul>
+<p>然后，定义两个派生类 <code>Dog</code> 和 <code>Cat</code>，分别实现 <code>makeSound()</code> 函数：</p>
+<ul>
+<li><code>Dog</code> 的 <code>makeSound()</code> 输出："Woof!"</li>
+<li><code>Cat</code> 的 <code>makeSound()</code> 输出："Meow!"</li>
+</ul>
+<p><strong>要求：</strong></p>
+<ul>
+<li>在 <code>main</code> 函数中，创建 <code>Dog</code> 和 <code>Cat</code> 对象的基类指针，并调用 <code>makeSound()</code> 函数，展示多态性。</li>
+</ul>
+<p><strong>示例输出：</strong></p>
+<div class="code-wrapper"><pre><code class="lang-undefined"><span class="code-line">Woof!</span>
+<span class="code-line">Meow!</span></code><i class="fa fa-clone t-copy"></i></pre></div>
+<hr>
+<h3 id="5-构造函数与析构函数的继承">5. 构造函数与析构函数的继承</h3>
+<p><strong>题目：</strong></p>
+<p>定义一个基类 <code>Vehicle</code>，包含以下内容：</p>
+<ul>
+<li><p>公共成员函数</p>
+<p>：</p>
+<ul>
+<li>构造函数：输出 "Vehicle constructed."</li>
+<li>析构函数：输出 "Vehicle destructed."</li>
+</ul>
+</li>
+</ul>
+<p>然后，定义一个派生类 <code>Car</code>，继承自 <code>Vehicle</code>，并添加以下内容：</p>
+<ul>
+<li><p>公共成员函数</p>
+<p>：</p>
+<ul>
+<li>构造函数：输出 "Car constructed."</li>
+<li>析构函数：输出 "Car destructed."</li>
+</ul>
+</li>
+</ul>
+<p><strong>要求：</strong></p>
+<ul>
+<li>在 <code>main</code> 函数中，创建一个 <code>Car</code> 对象，并观察构造和析构的调用顺序。</li>
+</ul>
+<p><strong>示例输出：</strong></p>
+<div class="code-wrapper"><pre><code class="lang-undefined"><span class="code-line">Vehicle constructed.</span>
+<span class="code-line">Car constructed.</span>
+<span class="code-line">Car destructed.</span>
+<span class="code-line">Vehicle destructed.</span></code><i class="fa fa-clone t-copy"></i></pre></div>
+ 
+          </section>
+          
+    </div>
+    
+</div>
+ 
+          <div class="book-footer">
+            
+            <div class="donate">
+              <div>『 赠人玫瑰 🌹 手有余香 』</div>
+              <button class="donate-btn" onclick="showModal()">赞赏</button>
+            </div>
+             
+            <div class="copyright">Copyright © 2025 王戊辰 版权所有</div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+
+     
+    
+     
+    
+      
+  </div>
+  <script>
+    function showModal() {
+      document.getElementsByClassName("mask")[0].style.display = "block";
+      document.getElementsByClassName("donate-modal")[0].style.display =
+        "block";
+    }
+    // 切换赞赏码
+    function showDonateImg(num) {
+      let alipay = "";
+      let wxpay = ""
+      if(num){
+        wxpay = "hidden"
+      }else{
+        alipay = "hidden"
+      }
+      document.getElementById("wxpay-code").hidden = wxpay;
+      document.getElementById("alipay-code").hidden = alipay;
+      document.getElementsByName("pay-way")[num].checked = "checked";
+    }
+
+    // 关闭赞赏框
+    function closeDonateModal() {
+      document.getElementsByClassName("mask")[0].style.display = "none";
+      document.getElementsByClassName("donate-modal")[0].style.display = "none";
+    }
+
+    var gitbook = gitbook || [];
+    gitbook.push(function () {
+      gitbook.page.hasChanged({"page":{"title":"继承和多态","date":"2024-11-23T09:44:32.000Z","tags":"C++ cppbase","categories":"C++ cppbase","level":"1.2.20","depth":2,"next":{"title":"类面试常见问题","level":"1.2.21","depth":2,"path":"sections/cpp/base/cppbase21.md","ref":"sections/cpp/base/cppbase21.md","articles":[]},"previous":{"title":"类基础用法","level":"1.2.19","depth":2,"path":"sections/cpp/base/cppbase19.md","ref":"sections/cpp/base/cppbase19.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-pro","code","theme-lou","expandable-chapters","back-to-top-button","lightbox"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search-pro":{},"code":{"copyButtons":true},"theme-lou":{"hide-elements":[".summary .gitbook-link",".summary .divider"],"color":"#0ec485","book-anchor-title":"本篇章节","copyright":{"author":"王戊辰"},"forbidCopy":false,"logo":"/static/defaulthead.png","book-summary-title":"目录","search-placeholder":"输入要查询的关键字","favicon":"/static/favicon.ico","appleTouchIconPrecomposed152":"static/apple.png"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"lightbox":{"jquery":true,"sameUuid":false},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","author":"恋恋风辰","lang":"zh-cn","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"图书编号","variables":{"themeLou":{"nav":[{"target":"_blank","url":"https://llfc.club","name":"官方博客地址"},{"target":"_blank","url":"https://space.bilibili.com/271469206","name":"B站"}],"footer":{"donate":{"button":"捐赠","avatar":"/static/head.jpg","nickname":"恋恋风辰","message":"随意打赏，但不要超过一顿早餐钱！","text":"『 赠人玫瑰 🌹 手有余香 』","wxpay":"/static/wechatmoney.jpg","alipay":"/static/zfbmoney.jpg"},"copyright":true}}},"title":"恋恋风辰的编程笔记","gitbook":"*","description":"汇总编程生涯的笔记"},"file":{"path":"sections/cpp/base/cppbase20.md","mtime":"2024-11-23T06:46:01.084Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-01-30T07:54:32.929Z"},"basePath":"../../..","book":{"language":""}});
+    });
+  </script>
+<div class="back-to-top" style="display: block;"><i class="fa fa-arrow-up"></i></div></div>
+
+        
+    <script src="./继承和多态 · 恋恋风辰的编程笔记_files/gitbook.js.下载"></script>
+    <script src="./继承和多态 · 恋恋风辰的编程笔记_files/theme.js.下载"></script>
+    
+        
+        <script src="./继承和多态 · 恋恋风辰的编程笔记_files/jquery.mark.min.js.下载"></script>
+        
+    
+        
+        <script src="./继承和多态 · 恋恋风辰的编程笔记_files/search.js.下载"></script>
+        
+    
+        
+        <script src="./继承和多态 · 恋恋风辰的编程笔记_files/plugin.js.下载"></script>
+        
+    
+        
+        <script src="./继承和多态 · 恋恋风辰的编程笔记_files/expandable-chapters.js.下载"></script>
+        
+    
+        
+        <script src="./继承和多态 · 恋恋风辰的编程笔记_files/plugin(1).js.下载"></script>
+        
+    
+        
+        <script src="./继承和多态 · 恋恋风辰的编程笔记_files/lightbox.min.js.下载"></script>
+        
+    
+        
+        <script src="./继承和多态 · 恋恋风辰的编程笔记_files/buttons.js.下载"></script>
+        
+    
+        
+        <script src="./继承和多态 · 恋恋风辰的编程笔记_files/fontsettings.js.下载"></script>
+        
+    
+        
+        <script src="./继承和多态 · 恋恋风辰的编程笔记_files/lou.js.下载"></script>
+        
+    
+
+    
+
+
+<textarea id="code-textarea"></textarea></body></html>
