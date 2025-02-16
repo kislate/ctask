@@ -354,3 +354,141 @@ int main()
 	free(s);
 	return 0; 
 } 
+
+
+//16.小 S 与 NLP
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+typedef struct{
+	char key[21];
+	int value;
+} dict;
+int main()
+{
+	char c;
+	int m,n;
+	scanf("%d %d",&n,&m);
+	dict *s=(dict *)malloc(n*sizeof(dict));
+	char line[m][50001];
+	//录入异世界数据 
+	for(int i=0;i<n;i++) scanf("%s %d",s[i].key,&s[i].value);
+	getchar();//除换行符 
+	//边输入语句边改值
+	for(int j=0;j<m;j++)
+	{
+		int k=0,r=0;
+		while((c=getchar())!='\n')
+		{
+			if(c!='{') line[j][k++]=c;
+			else {
+				char bi[21]={0};
+				char temp[15]={0};
+				while((c=getchar())!='}')
+					bi[r++]=c;
+				for(int i=0;i<n;i++)
+						if (strcmp(bi,s[i].key) == 0)
+							{
+								sprintf(temp, "%d", s[i].value); //将数值转换为对应的字符形式 
+								strcat(line[j], temp);
+								k+=strlen(temp);
+							}
+				r=0;
+			}
+		}
+		k=0;
+	}
+	//打印输出
+	for(int i=0;i<m;i++)
+	{
+		printf("%s",line[i]);
+		if(i<m-1)
+			printf("\n");
+	}
+	free(s);
+} 
+//洛谷测评三色俱全？？？
+
+
+
+//17.小 S 与时间逆流
+#include <stdio.h>
+#include <string.h>
+void reverse(char *str, int l, int r) {
+    while (l < r) {
+        char temp = str[l];
+        str[l] = str[r];
+        str[r] = temp;
+        l++;
+        r--;
+    }
+}
+void find(char *S) {
+    int n = strlen(S);
+    char minT[101]; // 存储字典序最小的结果
+    strcpy(minT, S); // 初始化为原字符串
+    for (int l = 0; l < n; l++) {
+        for (int r = l; r < n; r++) {
+            char T[101]; // 存储当前翻转后的字符串
+            strcpy(T, S); // 复制原字符串到 T
+            // 翻转区间 [l, r]
+            reverse(T, l, r);
+            // 比较字典序，更新最小的 T
+            if (strcmp(T, minT) < 0) {
+                strcpy(minT, T);
+            }
+        }
+    }
+    // 输出结果
+    printf("%s", minT);
+}
+int main() {
+    char S[101]; // 输入字符串
+    scanf("%s", S); // 读取输入
+    find(S); // 处理并输出结果
+    return 0;
+}
+
+
+
+//18.小 S 与历史长河
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>  
+int main()
+{
+	char s[1001]={0},t[1001]={0};
+	int count=0,ls,rs,lt,rt; 
+	
+	scanf("%s",s);
+	scanf("%s",t);
+	scanf("%d",&count);
+	char **result=(char**)malloc(count*sizeof(char*));
+	for(int i=0;i<count;i++)
+		result[i]=(char*)malloc(8*sizeof(char));
+	//处理 
+	for(int i=0;i<count;i++)
+	{
+		char S[1001]={0},T[1001]={0};
+		scanf("%d %d %d %d",&ls,&rs,&lt,&rt);
+		
+		for(int m=ls-1,p=0;m<rs;m++) S[p++]=s[m];
+		for(int n=lt-1,q=0;n<rt;n++) T[q++]=t[n];
+		
+		if(strcmp(S,T)<0) result[i]="yifusuyi";
+		if(strcmp(S,T)>0) result[i]="erfusuer";
+		if(strcmp(S,T)==0) result[i]="ovo";
+	}
+	//打印结果
+	for(int i=0;i<count;i++)
+		{
+			printf("%s",result[i]);
+			if(i<(count-1))
+				printf("\n");
+		}
+	for (int i=0;i<count;i++) {
+        free(result[i]);
+    }
+    free(result);
+	return 0; 
+} //全是紫色，free有问题吗？
