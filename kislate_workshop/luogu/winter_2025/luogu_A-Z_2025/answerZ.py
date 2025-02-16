@@ -101,4 +101,5 @@ for _ in range(Q):
     print(right_index - left_index)
 
 
+
     

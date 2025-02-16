@@ -42,7 +42,7 @@ int main(void) {
 
 
 
-// 下面这个还是有点慢
+// 下面这个还是慢,TLE
 // void find_prime_Meaningless(long long num, int k) {
 //     long long ret = 1;
 //     for(int i = 2; i * i <= num; i++){

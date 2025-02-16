@@ -1,0 +1,1 @@
+[GitBook C++ Base](https://gitbookcpp.llfc.club/sections/cpp/base/cppbase20.html)

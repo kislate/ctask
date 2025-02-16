@@ -1,5 +1,5 @@
-#ifndef MYSTRING_H
-#define MYSTRING_H
+#ifndef MYSTRING_H // if not define, go to next line
+#define MYSTRING_H // define
 
 #include <stddef.h>
 
