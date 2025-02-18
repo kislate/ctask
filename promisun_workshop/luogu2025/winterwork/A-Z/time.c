@@ -65,3 +65,4 @@ int main() {
 }
 
 //学会使用strcmp，strcpy，strlen等string.h中的函数
+//了解字典序是什么
