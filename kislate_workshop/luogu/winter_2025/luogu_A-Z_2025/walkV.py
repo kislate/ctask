@@ -77,7 +77,7 @@ heapq.heappush(heap, (0, 1, 1, board[1][1], 1))
 #循环遍历棋盘
 found = False
 
-while heap:
+while heap:# heap存着需要遍历的点
     cost, x, y, color, magic = heapq.heappop(heap)
     if x == m and y == m:
         found = True
