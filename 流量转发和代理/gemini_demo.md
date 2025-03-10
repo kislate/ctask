@@ -176,7 +176,7 @@ import configparser
 SERVER_HOST = 'your_server_ip'
 SERVER_PORT = 8080
 LOCAL_HOST = '127.0.0.1'
-LOCAL_PORT = 9090
+LOCAL_PORT = 8080
 BUFFER_SIZE = 4096
 
 def load_secret_key():
