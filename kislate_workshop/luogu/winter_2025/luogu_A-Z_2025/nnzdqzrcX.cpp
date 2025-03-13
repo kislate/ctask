@@ -27,8 +27,6 @@ Ai, Bi, Ci, Di 表示。
 【子任务】
 数据保证：1 ≤s1, s2, s3, s4 ≤20，1 ≤Ai, Bi, Ci, Di ≤60。
 */
-
-
 // 上面的是错误的，下面的是正确的
 #include <iostream>
 #include <vector>
@@ -199,4 +197,26 @@ int main() {
     cout << timeA + timeB + timeC + timeD << endl;
 
     return 0;
+}
+    
+
+
+
+int mintime_Calculation(vector<int>& sorted_Arr, int index) {
+    int sum = 0;
+    for (int i = 0; i < index; i++) {
+        sum += sorted_Arr[i];
+    }
+
+    int half = sum / 2;
+    vector<int> dp(half + 1, 0);
+
+    for (int i = 0; i < index; i++) {
+        //这里类比0-1背包问题，里边的重量和价值都是sorted_Arr[i]，都相等的意思
+        for (int j = half; j >= sorted_Arr[i]; j--) {
+            dp[j] = max(dp[j], dp[j - sorted_Arr[i]] + sorted_Arr[i]);
+        }
+    }
+
+    return sum - dp[half];
 }
