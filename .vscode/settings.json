@@ -1,22 +1,11 @@
 {
-    "python.testing.unittestArgs": [
-        "-v",
-        "-s",
-        "./kis_python",
-        "-p",
-        "*test.py"
-    ],
-    "python.testing.pytestEnabled": false,
-    "python.testing.unittestEnabled": true,
     "files.associations": {
-        "iostream": "cpp",
-        "vector": "cpp",
-        "cmath": "cpp",
         "array": "cpp",
         "atomic": "cpp",
         "*.tcc": "cpp",
         "cctype": "cpp",
         "clocale": "cpp",
+        "cmath": "cpp",
         "cstdarg": "cpp",
         "cstddef": "cpp",
         "cstdint": "cpp",
@@ -29,16 +18,14 @@
         "deque": "cpp",
         "unordered_map": "cpp",
         "unordered_set": "cpp",
+        "vector": "cpp",
         "exception": "cpp",
         "algorithm": "cpp",
-        "functional": "cpp",
-        "iterator": "cpp",
-        "map": "cpp",
         "memory": "cpp",
         "memory_resource": "cpp",
-        "numeric": "cpp",
-        "random": "cpp",
+        "optional": "cpp",
         "string": "cpp",
+        "string_view": "cpp",
         "system_error": "cpp",
         "tuple": "cpp",
         "type_traits": "cpp",
@@ -47,6 +34,7 @@
         "initializer_list": "cpp",
         "iomanip": "cpp",
         "iosfwd": "cpp",
+        "iostream": "cpp",
         "istream": "cpp",
         "limits": "cpp",
         "new": "cpp",
@@ -54,8 +42,6 @@
         "sstream": "cpp",
         "stdexcept": "cpp",
         "streambuf": "cpp",
-        "typeinfo": "cpp",
-        "stdio.h": "c",
-        "string.h": "c"
+        "typeinfo": "cpp"
     }
 }
