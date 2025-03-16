@@ -50,14 +50,66 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-int v[4][2]={{0,1},{0,-1},{1,0},{-1,0}};//四个方向上下左右
+int use=1,flag=0;//use用来判断是否能使用魔法,flag用来回魔；
+int count=20000,temp=0;//金币花费
+int x=0,y=0;//记录当前位置xy
+
+int v[4][2]={{0,1},{0,-1},{1,0},{-1,0}};//四个方向
 //判断是否可以走
 int isOK(int use,int x,int y,int m,int **chess)
 {
     if(x>=0&&x<m&&y>=0&&y<m&&(chess[x][y]!=-1||use==1)) return 1;
     else return 0;
 }
+
 //走
+void move(int **chess,int x,int y,int m)
+{
+    if(x==m-1&&y==m-1)
+    {
+        if(temp<count)
+            count=temp;
+        return;
+    }
+    else
+    {
+        for(int i=0;i<4;i++)
+        {
+            if(isOK(use,x+v[i][0],y+v[i][1],m,chess))
+            {
+                if(chess[x+v[i][0]][y+v[i][1]]==-1)//用魔法（加上前置isOK判断，此时use=1；）
+                {
+                    temp+=2;
+                    use=0;
+                    chess[x+v[i][0]][y+v[i][1]]=chess[x][y];
+                }
+                else if(chess[x+v[i][0]][y+v[i][1]]!=chess[x][y])//不同颜色
+                    temp++;
+                if(!use) flag++;
+                if(flag==2 )//魔法恢复
+                {
+                    use=1;
+                    flag=0;
+                }
+                int t=chess[x][y];
+                chess[x][y]=-1;//尽量防止回头
+                move(chess,x+v[i][0],y+v[i][1],m);
+                //回溯
+                chess[x][y]=t;
+                if(chess[x+v[i][0]][y+v[i][1]]==-1)
+                {
+                    temp-=2;
+                    use=1;
+                    chess[x+v[i][0]][y+v[i][1]]=-1;
+                }
+                else if(chess[x+v[i][0]][y+v[i][1]]!=chess[x][y])
+                    temp--;
+            }
+            else if(i==3)
+                return;
+        }
+    }
+}
 
 int main()
 {
@@ -78,8 +130,11 @@ int main()
         chess[x-1][y-1]=c;
     }
     //开走
-    int use=1;//是否能使用魔法
-
+    move(chess,0,0,m);
+    if(count==20000)
+        printf("-1");
+    else
+        printf("%d",count);
 
     //free
     for(int i=0;i<m;i++)
