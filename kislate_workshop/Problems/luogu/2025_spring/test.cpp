@@ -1,16 +1,29 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
+
+typedef struct{
+    int x, y;
+    int width, height;
+}carpet;
+
 int main(void)
 {
-    int MAX_VOLUME;
-    int SUM_GOODS;
-    cin >> MAX_VOLUME >> SUM_GOODS;
-    vector<int> goods(SUM_GOODS);
-    vector<int> dp(MAX_VOLUME + 1, 0);
-    for(int i = 0; i < SUM_GOODS; i++){
-        cin >> goods[i];
-        for(int j = MAX_VOLUME; j >= goods[i]; j--)
-            dp[j] = max(dp[j], dp[j - goods[i]] + goods[i]);
+    int n;
+    cin >> n;
+    vector<carpet>carpets(n);
+    for(int i = 0; i < n; i++)
+    {
+        cin >> carpets[i].x >> carpets[i].y >> carpets[i].width >> carpets[i].height; 
     }
-    cout << MAX_VOLUME-dp[MAX_VOLUME] << endl;
+    int nx, ny;
+    cin >> nx >> ny;
+    int ans = -1;
+    for(int i = 0; i < n; i++)
+    {
+        if(nx >= carpets[i].x && nx <=carpets[i].x + carpets[i].width && ny >=carpets[i].y && ny<=carpets[i].height+carpets[i].y)
+            ans = i + 1;
+    }
+    cout << ans << endl;
+    return 0;
 }
