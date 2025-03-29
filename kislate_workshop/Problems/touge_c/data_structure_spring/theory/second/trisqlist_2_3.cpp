@@ -43,12 +43,25 @@ void  TriSqList(SqList  &A,SqList  B,SqList  C)
 {
 /**********Begin**********/
 // 代码已经知道A、B、C是递增有序的，所以可以直接比较
-int flag_1 = 3, flag_2 = 3; // 存储了B, C 对于A的三种状态, 0: 小于, 1: 等于, 2: 大于, 3表示已经到达末尾,或未比较
 int i =0 , j = 0, k = 0;
+// i 是A的下标，j是B的下标，k是C的下标
+// 当A中的元素小于B或C中的元素时,根据有序性,可以知道A中的元素不可能在B,C中,跳过,i加1
+// 当A中的元素还未大于任意一个时,先判断B,将B的元素移到>=A的元素,再移动C的元素,然后比较,看此时B,C停下时候的元素是否等于A中的元素
+// 如果等于,则删除A中的元素,否则不删除
+// 直到A中的元素全部遍历完,此时B,C中的元素也都遍历完了,所以直接将A中剩余的元素添加到A中即可
+// 这里的删除是将A中的元素覆盖掉,所以要注意length的变化
 while(i < A.length)
 {
-    
-}
+    while(B.elem[j] < A.elem[i] && j < B.length) j++;
+    while(C.elem[k] < A.elem[i] && k < C.length) k++;
+    if(B.elem[j] == A.elem[i] && C.elem[k] == A.elem[i])
+    {
+        A.length--;// 注意length的变化
+        for(int m = i; m < A.length; m++) A.elem[m] = A.elem[m+1];// 隐含了i++;
+    }
+    else  i++;
+    // 这里的i++是因为A中的元素不等于B,C中的元素,所以要继续遍历A中的元素
+} 
 /**********End**********/
 }
 int main()
