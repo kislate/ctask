@@ -47,7 +47,7 @@ inistack(S), iniQueue(Q);
 for(int i = 0; str[i] != '@'; i++) push(S, i, str[i]), enQueue(Q, str[i]), cnt++;
 for(int i = 0; i < cnt; i++)
 {
-    pop(S, i, temp1), deQueue(Q, temp2);
+    pop(S, 1, temp1), deQueue(Q, temp2);
     if(temp1 != temp2) return 0;
 }
 return 1;
