@@ -38,7 +38,6 @@ typedef struct
 int insert(SqList *L, ElemType x)
 {
 /**********begin**********/
-//扩容
 if (L->length >= L->listsize) {
     // 线性表已满，需要扩容
     ElemType *newBase = (ElemType *)realloc(L->elem, (L->listsize + LISTINCREMENT) * sizeof(ElemType));
@@ -47,15 +46,15 @@ if (L->length >= L->listsize) {
     L->listsize += LISTINCREMENT;
 }
 
-int flag=0,temp1=x,temp2=0;
-//初判（针对头部位置）
+int flag=0,temp1=x,temp2=0;//temp1用于存储插入的元素（让其=x是为了考虑其最大的情况），temp2用于存储后移的元素
+//初判，针对x小于等于第一个元素的情况
 if(x<=L->elem[0]){
     temp1 = L->elem[0];
     L->elem[0] = x;
     flag=1;
 }
 
-for(int i=0; i < L->length; i++)
+for(int i=1; i < L->length; i++)
 {
     //后移
     if(flag){
@@ -63,17 +62,18 @@ for(int i=0; i < L->length; i++)
         L->elem[i] = temp1;
         temp1=temp2;
     }
-    
-    if(x > L->elem[i] && x <= L->elem[i+1]){
-        temp1 = L->elem[i+1];
-        L->elem[++i] = x;
+    //插入
+    if(x > L->elem[i-1] && x <= L->elem[i]){ //用i-1比i+1更好，不会越界
+        temp1 = L->elem[i];
+        L->elem[i] = x;
         flag=1;
-    }
+    }	
 }
 L->elem[L->length++] = temp1;
 
 /**********end**********/
 }
+
 int main()
 {
     SqList L;
