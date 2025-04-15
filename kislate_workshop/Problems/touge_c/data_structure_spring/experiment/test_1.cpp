@@ -104,9 +104,46 @@ status AddList(LISTS &Lists,char ListName[])
     /********** End **********/
 } 
 
+// 15
+status RemoveList(LISTS &Lists,char ListName[])
+// Lists中删除一个名称为ListName的线性表
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    if(Lists.length == 0) return ERROR;
+    int i = 0; 
+    for(i = 0; i < Lists.length; i++){
+        if(strcmp(Lists.elem[i].name, ListName) == 0) break;
+    }
+    if(i == Lists.length) return ERROR;
+    free(Lists.elem[i].L.elem);
+    for(int j = i; j < Lists.length - 1; j++){
+        Lists.elem[j] = Lists.elem[j + 1];
+        strcpy(Lists.elem[j].name, Lists.elem[j + 1].name);
+    }
+    Lists.length--;
+    return OK;
+    
+    /********** End **********/
+}
+
+// 16
+int LocateList(LISTS Lists,char ListName[])
+// 在Lists中查找一个名称为ListName的线性表，成功返回逻辑序号，否则返回0
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    if(Lists.length == 0 ) return 0;
+    for(int i = 0; i < Lists.length; i++)
+    {
+        if(strcmp(Lists.elem[i].name, ListName) == 0) return i + 1;
+    }
+    return ERROR;
+    /********** End **********/
+}
 
 int main() {
-   LISTS Lists;
+	LISTS Lists;
    int n,e;
    char name[30];
    Lists.length=0;
@@ -115,7 +152,6 @@ int main() {
    {
     	scanf("%s",name);
    		AddList(Lists,name);
-        printf("%s\n",Lists.elem[Lists.length-1].name);
       scanf("%d",&e);
       while (e)
       {
@@ -123,11 +159,13 @@ int main() {
       		scanf("%d",&e);
       }
    }
-   for(n=0;n<Lists.length;n++)
-   {
-   		printf("%s ",Lists.elem[n].name);
-   		ListTraverse(Lists.elem[n].L);
-        putchar('\n');
-   }
+   scanf("%s",name);
+   if (n=LocateList(Lists,name))
+   		{
+   			printf("%s ",Lists.elem[n-1].name);
+   			ListTraverse(Lists.elem[n-1].L);
+         putchar('\n');
+   		}
+   else printf("查找失败");
 return 1;
 }
