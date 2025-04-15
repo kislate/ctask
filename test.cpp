@@ -1,28 +1,42 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include "opencv2/opencv.hpp"
+
 using namespace std;
-struct cmp
+using namespace cv;
+
+int main(void)
 {
-    bool operator()(const int&a, const int& b){
-        return a > b;
-    }
-};
-int main(void){
-    priority_queue<int, vector<int>, cmp> heapq;
-    int n;
-    cin >> n;
-    for(int i = 0; i < n; i++)
+    // 打开摄像头（设备编号为 0）
+    VideoCapture cap(0);
+    if (!cap.isOpened())
     {
-        int x;
-        cin >> x;
-        heapq.push(x);
+        cerr << "无法打开摄像头！" << endl;
+        return -1;
     }
-    int ans = 0;
-    while(heapq.size() > 1)
+
+    Mat frame;
+    while (true)
     {
-        int x = heapq.top(); heapq.pop();
-        int y = heapq.top(); heapq.pop();
-        ans += (x + y);
-        heapq.push(x + y);
+        // 从摄像头捕获一帧
+        cap >> frame;
+        if (frame.empty())
+        {
+            cerr << "无法捕获帧！" << endl;
+            break;
+        }
+
+        // 显示捕获的帧
+        imshow("Camera Feed", frame);
+
+        // 按下 'q' 键退出
+        if (waitKey(30) == 'q')
+        {
+            break;
+        }
     }
-    cout << ans << endl;
+
+    // 释放摄像头资源
+    cap.release();
+    destroyAllWindows();
+    return 0;
 }
