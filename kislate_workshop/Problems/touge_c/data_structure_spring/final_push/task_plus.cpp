@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <windows.h> // For SetConsoleOutputCP and SetConsoleCP
+#include <malloc.h>
+#include <windows.h> 
 
 #define TRUE 1
 #define FALSE 0
@@ -17,18 +18,21 @@ typedef int ElemType;
 #define LISTINCREMENT  10
 
 typedef struct{
-    ElemType *elem;
+    ElemType *elem = NULL;// 初始化为NULL
     int length;
     int listsize;
 }SqList;
 
 typedef struct{
-    struct { char name[30]; SqList L; } elem[10];
+    struct { 
+        char name[30]; 
+        SqList L;
+    } elem[10];
     int length;
     int listsize;
 }LISTS;
 
-// 单表操作函数声明（与task.cpp一致）
+
 status InitList(SqList& L);
 status DestroyList(SqList& L);
 status ClearList(SqList& L);
@@ -42,15 +46,24 @@ status ListInsert(SqList& L, int i, ElemType e);
 status ListDelete(SqList& L, int i, ElemType& e);
 status ListTrabverse(SqList L);
 status ListInsertFast(SqList& L);
+status ListTrabverseDetail(SqList L);
 
-// 多表管理函数（严格按demo_plus.md）
 status AddList(LISTS &Lists, char ListName[]) {
-    if(Lists.length >= 10) return ERROR;
+    // 查重:
+    for(int i = 0; i < Lists.length; i++) {
+        if(strcmp(Lists.elem[i].name, ListName) == 0) 
+        {
+            printf("      线性表名重复！\n");
+            return ERROR;
+        }
+    }
+    if(Lists.length >= 10)
+    {
+        printf("      线性表数量已达上限！\n");
+        return ERROR;
+    }
     strcpy(Lists.elem[Lists.length].name, ListName);
-    Lists.elem[Lists.length].L.elem = (ElemType *)malloc(sizeof(ElemType) * LIST_INIT_SIZE);
-    if(Lists.elem[Lists.length].L.elem == NULL) return OVERFLOW;
-    Lists.elem[Lists.length].L.listsize = LIST_INIT_SIZE;
-    Lists.elem[Lists.length].L.length = 0;
+    InitList(Lists.elem[Lists.length].L);
     Lists.length++;
     return OK;
 }
@@ -78,17 +91,20 @@ int LocateList(LISTS Lists, char ListName[]) {
 
 // 附加功能1：最大连续子数组和
 int MaxSubArray(SqList L) {
+    // 采用线性dp, 时间复杂度为O(n), 空间复杂度为O(1)
     if(L.length == 0) return 0;
-    int maxSum = L.elem[0], currSum = L.elem[0];
-    for(int i = 1; i < L.length; i++) {
-        currSum = (currSum > 0) ? currSum + L.elem[i] : L.elem[i];
+    int maxSum = L.elem[0], currSum = L.elem[0] > 0 ? L.elem[0] : 0;
+    for(int i = 1; i < L.length; i++){
+        currSum += L.elem[i];
         if(currSum > maxSum) maxSum = currSum;
+        if(currSum < 0) currSum = 0; // 如果当前和小于0，则重置为0
     }
     return maxSum;
 }
 // 附加功能2：和为K的子数组个数
 int SubArrayNum(SqList L, int k) {
     int count = 0;
+    // O(n^2)的暴力解法
     for(int i = 0; i < L.length; i++) {
         int sum = 0;
         for(int j = i; j < L.length; j++) {
@@ -100,6 +116,9 @@ int SubArrayNum(SqList L, int k) {
 }
 // 附加功能3：顺序表排序
 void sortList(SqList &L) {
+    if(L.elem == NULL) return; // 线性表不存在
+    if(L.length == 0) return; // 线性表为空
+    // 冒泡排序
     for(int i = 0; i < L.length - 1; i++)
         for(int j = 0; j < L.length - 1 - i; j++)
             if(L.elem[j] > L.elem[j+1]) {
@@ -162,12 +181,12 @@ void multiListMenu() {
     printf("      4. 进入某个线性表操作\n");
     printf("      5. 保存某表到文件\n");
     printf("      6. 从文件加载到某表\n");
-    printf("      7. 退出系统\n");
+    printf("      7. 打印线性表\n");
+    printf("      0. 退出系统\n");
     printf("      =====================================\n");
-    printf("      请选择你的操作[1~7]:");
+    printf("      请选择你的操作[0~7]:");
 }
 
-// 单表菜单（与task.cpp一致）
 void singleListMenu() {
     printf("\n");
     printf("      ========== 单线性表操作菜单 ==========\n");
@@ -181,7 +200,7 @@ void singleListMenu() {
     printf("      15. 和为K的子数组   16. 顺序表排序\n");
     printf("      0. 返回多表菜单\n");
     printf("      =====================================\n");
-    printf("      请选择你的操作[1~17]:");
+    printf("      请选择你的操作[0~16]:");
 }
 
 // 单表操作主控
@@ -191,23 +210,30 @@ void singleListControl(SqList &L) {
     int pos, loc, k;
     status result;
     while(op) {
+        system("cls"); // 清屏
         singleListMenu();
         scanf("%d", &op);
         switch(op) {
             case 1:
                 if(InitList(L)==OK) printf("      线性表创建成功！\n");
                 else printf("      线性表创建失败！\n");
-                getchar(); getchar();
+                getchar();
+                printf("      按任意键继续...\n");
+                getchar();
                 break;
             case 2:
                 if(DestroyList(L)==OK) printf("      线性表销毁成功！\n");
                 else printf("      线性表销毁失败！\n");
-                getchar();getchar();
+                getchar();
+                printf("      按任意键继续...\n");
+                getchar();
                 break;
             case 3:
                 if(ClearList(L)==OK) printf("      线性表清空成功！\n");
                 else printf("      线性表清空失败！\n");
-                getchar();getchar();
+                getchar();
+                printf("      按任意键继续...\n");
+                getchar();
                 break;
             case 4:
                 result = ListEmpty(L);
@@ -227,8 +253,8 @@ void singleListControl(SqList &L) {
                 getchar();
                 break;
             case 6:
-                printf("      请输入要获取的元素位置：");
-                scanf("%d", &pos);
+                printf("      请输入要获取的元素位置(按Q返回)：");
+                if(scanf("%d", &pos) != 1) break;
                 result = GetElem(L, pos, e);
                 if(result == INFEASIBLE) printf("      线性表不存在！\n");
                 else if(result == ERROR) printf("      位置不合法！\n");
@@ -238,8 +264,8 @@ void singleListControl(SqList &L) {
                 getchar();
                 break;
             case 7:
-                printf("      请输入要查找的元素值：");
-                scanf("%d", &e);
+                printf("      请输入要查找的元素值(按Q返回)：");
+                if(scanf("%d", &e) != 1) break;
                 loc = LocateElem(L, e);
                 if(loc == INFEASIBLE) printf("      线性表不存在！\n");
                 else if(loc == 0) printf("      未找到该元素！\n");
@@ -249,8 +275,8 @@ void singleListControl(SqList &L) {
                 getchar();
                 break;
             case 8:
-                printf("      请输入要查找前驱的元素值：");
-                scanf("%d", &e);
+                printf("      请输入要查找前驱的元素值(按Q返回)：");
+                if(scanf("%d", &e) != 1) break;
                 result = PriorElem(L, e, pre);
                 if(result == INFEASIBLE) printf("      线性表不存在！\n");
                 else if(result == ERROR) printf("      元素不存在或无前驱！\n");
@@ -260,8 +286,8 @@ void singleListControl(SqList &L) {
                 getchar();
                 break;
             case 9:
-                printf("      请输入要查找后继的元素值：");
-                scanf("%d", &e);
+                printf("      请输入要查找后继的元素值(按Q返回)：");
+                if(scanf("%d", &e) != 1) break;
                 result = NextElem(L, e, next);
                 if(result == INFEASIBLE) printf("      线性表不存在！\n");
                 else if(result == ERROR) printf("      元素不存在或无后继！\n");
@@ -282,8 +308,8 @@ void singleListControl(SqList &L) {
                 getchar();
                 break;
             case 11:
-                printf("      请输入删除位置：");
-                scanf("%d", &pos);
+                printf("      请输入删除位置(按Q返回)：");
+                if(scanf("%d", &pos) != 1) break;
                 result = ListDelete(L, pos, e);
                 if(result == INFEASIBLE) printf("      线性表不存在！\n");
                 else if(result == ERROR) printf("      位置不合法！\n");
@@ -293,7 +319,19 @@ void singleListControl(SqList &L) {
                 getchar();
                 break;
             case 12:
-                if(!ListTrabverse(L)) printf("      线性表是空表！\n");
+                printf("      是否详细显示？(1:是 0:否):");
+                int showIndex;
+                scanf("%d", &showIndex);
+                if(showIndex){
+                    // 12.5
+                    if(ListTrabverseDetail(L) == OK) printf("      线性表遍历成功！\n");
+                    else printf("      线性表遍历失败！\n");
+                }
+                else if(showIndex == 0)
+                {
+                    if(ListTrabverse(L) == OK) printf("      线性表遍历成功！\n");
+                    else printf("      线性表遍历失败！\n");
+                }
                 getchar();
                 printf("      按任意键继续...\n");
                 getchar();
@@ -355,23 +393,33 @@ int main(void) {
     int op = 1;
     char name[30], filename[100];
     while(op) {
+        system("cls"); // 清屏
         multiListMenu();
         scanf("%d", &op);
         switch(op) {
         case 1: // 新建线性表
-            printf("      请输入新表名：");
+            printf("      请输入新表名(按Q返回)：");
             scanf("%s", name);
+            if(strcmp(name, "Q") == 0 || strcmp(name, "q") == 0)
+            {
+                printf("      取消新建线性表！\n");
+                break;
+            }
             if(AddList(Lists, name) == OK)
                 printf("      新建线性表成功！\n");
             else
-                printf("      新建线性表失败（可能已满或重名）！\n");
+                printf("      新建线性表失败！\n");
             getchar();
             printf("      按任意键继续...\n");
             getchar();
             break;
         case 2: // 删除线性表
-            printf("      请输入要删除的表名：");
+            printf("      现有线性表为:\n");
+            printAllListNames(Lists);
+            printf("      请输入要删除的表名(返回请按'Q')：");
             scanf("%s", name);
+            if(!strcmp(name, "Q") || !strcmp(name, "q")) break;
+            // 如果输入的是编号也可以(未实现):
             if(RemoveList(Lists, name) == OK)
                 printf("      删除线性表成功！\n");
             else
@@ -388,8 +436,11 @@ int main(void) {
             break;
         case 4: // 进入某个线性表
         {
-            printf("      请输入要进入的表名：");
+            printf("      现有线性表为:\n");
+            printAllListNames(Lists);
+            printf("      请输入要进入的表名(返回请按Q)：");
             scanf("%s", name);
+            if(!strcmp(name, "Q") || !strcmp(name, "q")) break;
             int idx = LocateList(Lists, name);
             if(idx > 0)
                 singleListControl(Lists.elem[idx-1].L);
@@ -403,8 +454,11 @@ int main(void) {
         }
         case 5: // 保存某表到文件
         {
-            printf("      请输入要保存的表名：");
+            printf("      现有线性表为:\n");
+            printAllListNames(Lists);
+            printf("      请输入要保存的表名(按Q返回)：");
             scanf("%s", name);
+            if(!strcmp(name, "Q") || !strcmp(name, "q")) break;
             int idx = LocateList(Lists, name);
             if(idx > 0) {
                 printf("      请输入文件名：");
@@ -420,8 +474,11 @@ int main(void) {
         }
         case 6: // 从文件加载到某表
         {
-            printf("      请输入要加载到的表名：");
+            printf("      现有线性表为:\n");
+            printAllListNames(Lists);
+            printf("      请输入要加载到的表名(按Q返回)：");
             scanf("%s", name);
+            if(!strcmp(name, "Q") || !strcmp(name, "q")) break;
             int idx = LocateList(Lists, name);
             if(idx > 0) {
                 printf("      请输入文件名：");
@@ -435,7 +492,34 @@ int main(void) {
             getchar();
             break;
         }
-        case 7:
+        case 7: // 打印表
+        {
+            printf("      选择全部打印还是单表打印？(1:全部 2:单表): ");
+            int choice;
+            scanf("%d", &choice);
+            if(choice == 1) {
+                for(int i = 0; i < Lists.length; i++) {
+                    printf("      表名：%s\n", Lists.elem[i].name);
+                    ListTrabverse(Lists.elem[i].L);
+                }
+            } else if(choice == 2) {
+                printf("      请输入要打印的表名：");
+                scanf("%s", name);
+                int idx = LocateList(Lists, name);
+                if(idx > 0) {
+                    ListTrabverse(Lists.elem[idx-1].L);
+                } else {
+                    printf("      未找到该线性表！\n");
+                }
+            } else {
+                printf("      无效选择！\n");
+            }
+            getchar();
+            printf("      按任意键继续...\n");
+            getchar();
+            break;
+        }
+        case 0:
             printf("      再见！\n");
             return 0;
         default:
@@ -620,31 +704,33 @@ status ListTrabverse(SqList L)
         printf("      线性表不存在！\n");
         return 0; // 线性表不存在
     }
-    printf("      是否详细显示？(1:是 0:否):");
-    int showIndex;
-    scanf("%d", &showIndex);
-    if(showIndex)
+    printf("      线性表元素为：\n");
+    printf("      ");
+    for(int i = 0; i < L.length; i++)
     {
-        printf("      线性表的长度为%d：\n" , L.length);
-        printf("      ");
-        for(int i = 0; i < L.length; i++)
-        {
-            printf("%d:%d", i, L.elem[i]);
-            if(i != L.length - 1) putchar(' ');
-        }
-        putchar('\n');
+        printf("%d ", L.elem[i]);
     }
-    else{
-        printf("      线性表的元素为：\n");
-        printf("      ");
-        for(int i = 0; i < L.length; i++)
-        {
-            printf("%d", L.elem[i]);
-            if(i != L.length - 1) putchar(' ');
-        }
-        putchar('\n');
+    printf("\n");
+    return OK;
+}
+
+// 12.5:遍历线性表并输出（详细显示）
+status ListTrabverseDetail(SqList L)
+{
+    if(L.elem == NULL)
+    {
+        printf("      线性表不存在！\n");
+        return 0; // 线性表不存在
     }
-    return 1;
+    printf("      线性表的长度为%d：\n" , L.length);
+    printf("      线性表元素为：\n");
+    printf("      ");
+    for(int i = 0; i < L.length; i++)
+    {
+        printf("%d:%d ", i+1, L.elem[i]);
+    }
+    printf("\n");
+    return OK;
 }
 
 // 13: 快速插入线性表:

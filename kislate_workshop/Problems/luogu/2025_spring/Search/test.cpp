@@ -1,59 +1,69 @@
 #include <bits/stdc++.h>
 using namespace std;
-int dx[4] = {-1, 0, 1, 0 };
-int dy[4] = {0, -1, 0, 1 };
-int n, m, ans = 0;
-vector<vector<vector<vector<int>>> dp;
-vector<vector<int>> maze;
+int dx[4] = {1, 0, -1, 0};
+int dy[4] = {0, 1, 0, -1};
+int n, m;
 struct cmp{
-    bool operator()(const tuple<int, int, int, int, int>& a, const tuple<int, int, int, int, int>& b)
+    // tuple;
+    bool operator()(tuple<int, int, int, int, int> a, tuple<int, int, int, int, int> b)
     {
         return get<0>(a) > get<0>(b);
     }
 };
-int check(int nx, int ny, int color, int &magic, int magic)
+bool check(int nx, int ny)
 {
-    if(nx < 1 || nx > n || ny < 1 || ny > m) return 0;
-    if(maze[nx][ny] == color && !dp[nx][ny][color][magic]) return 1;
-    if(maze[nx][ny] != 0 && !dp[nx][ny][maze[nx][ny]][magic]) return 2;
-    if(maze[nx][ny] == 0 && !magic) return 0;
-    if(maze[nx][ny] == 0 && magic) return 3;
-    return 0;
+    if(nx < 1 || nx > m || ny < 1 || ny > m) return false;
+    return true;
 }
+vector<vector<int>> maze;
+vector<vector<vector<vector<bool>>>> visited;
 int main(void)
 {
-    cin >> n >> m;
-    dp.resize(n+1, vector<vector<int>>(m+1, vector<int>(3, 0)));
-    maze.resize(n+1, vector<int>(m+1, 0));
-    // cost, x, y, color, magic;
+    cin >> m >> n;
+    //  visited[i][j][color][magic] = false;                                                                                                                            
+    visited.resize(m + 1, vector<vector<vector<bool>>>(m + 1, vector<vector<bool>>(2, vector<bool>(2, false))));
+    maze.resize(m + 1, vector<int>(m + 1, -1));
     priority_queue<tuple<int, int, int, int, int>, vector<tuple<int, int, int, int, int>>, cmp> heapq;
-    for(int i = 1; i <= n; i++) for(int j = 1; j <= m; j++) cin >> maze[i][j];
-    heapq.push({0, 1, 1, maze[1][1], 1});
+    for(int i = 0; i < n; i++)
+    {
+        int x, y, color;
+        cin >> x >> y >> color;
+        maze[x][y] = color;
+    }
+    heapq.push({0, 1, 1, maze[1][1], 1});// cost, x, y, color, magic
     while(!heapq.empty())
     {
-        auto [cost, x, y, color, magic] = heapq.top(); heapq.pop();
-        if(x == n && y == m)
-        {
+        auto [cost, x, y, color, magic] = heapq.top();
+        heapq.pop();
+        if(visited[x][y][color][magic]) continue;
+        visited[x][y][color][magic] = true;
+        if(x == m && y == m){
             cout << cost << endl;
             return 0;
         }
-        if(dp[x][y][color]) continue;
-        dp[x][y][color] = 1;
         for(int i = 0; i < 4; i++)
         {
             int nx = x + dx[i], ny = y + dy[i];
-            int type = check(nx, ny, color, magic);
-            if(!type) continue;
-            if(type == 1) heapq.push({cost+0, nx, ny, color, magic});
-            if(type == 2) heapq.push({cost+1, nx, ny, maze[nx][ny], magic});
-            if(type == 3)
+            if(!check(nx, ny)) continue;
+            int ncolor = maze[nx][ny];
+            if(ncolor == 1 || ncolor == 0)
             {
+                int dcost = color == ncolor ? 0 : 1;
+                if(!visited[nx][ny][ncolor][magic])
+                {
+                    heapq.push({cost + dcost, nx, ny, ncolor, 1});
+                }
+            }
+            else
+            {
+                if(magic == 0) continue;
                 for(int j = 0; j < 2; j++)
                 {
-                    int ncolor = (j == 0) ? 1:2;
-                    if(!dp[nx][ny][ncolor])
+                    int tmp_color = j;
+                    int dcost = color == tmp_color ? 2 : 3;
+                    if(!visited[nx][ny][tmp_color][magic - 1])
                     {
-                        heapq.push({color == ncolor ? cost + 2 : cost + 3, nx, ny, ncolor, 0});
+                        heapq.push({cost + dcost, nx, ny, tmp_color, magic - 1});
                     }
                 }
             }
