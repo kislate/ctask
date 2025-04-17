@@ -34,7 +34,24 @@ typedef struct
      int length;
      int listsize;
     } SqList;
-
+    void  TriSqList(SqList  A,SqList  B,SqList  C)
+    {
+    /**********Begin**********/
+    int p=0,q=0,s=0,later=0;
+    while(p<A.length)
+    {
+        while(B.elem[q]<A.elem[p] && q<B.length) q++;
+        while(C.elem[s]<A.elem[p] && s<C.length) s++;
+        if(B.elem[q]==A.elem[p] && C.elem[s]==A.elem[p])
+			p++;
+        else {
+            A.elem[later]=A.elem[p];
+            p++;later++;
+        }
+    }
+    A.length=later;
+     /**********End**********/
+    }
 int main()
 {
     SqList L[3];
@@ -56,11 +73,4 @@ int main()
     for(i=0;i<L[0].length;i++)
         printf(" %d",L[0].elem[i]);
 	return 0;
-}
-void  TriSqList(SqList  &A,SqList  B,SqList  C)
-{
-/**********Begin**********/
-
-
- /**********End**********/
 }

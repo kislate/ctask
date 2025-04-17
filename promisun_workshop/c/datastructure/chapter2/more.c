@@ -21,13 +21,7 @@
 //                  3  9  10  11  30 0
 //                  3  6  7  9 11  13  50  0
 // 预期输出：1  5  7  10  12  20
-void TriLinkList(LinkList  A,LinkList  B,LinkList  C)
-{
-/**********Begin**********/
 
-
- /**********End**********/
-}
 #include<stdio.h>
 #include<stdlib.h>
 typedef int ElemType;
@@ -35,7 +29,45 @@ typedef struct node
    { ElemType data;
      struct node *next;
     } NODE,*LinkList;
+void TriLinkList(LinkList  A,LinkList  B,LinkList  C)
+{
+/**********Begin**********/
+  LinkList pA=A->next,pB=B->next,pC=C->next,pD=A;//* pD为删除结点的前驱结点 */
+  while(pA!=NULL && pB!=NULL && pC!=NULL)
+  {
+      if(pA->data<pB->data)
+      {
+         if(pA->data<pC->data) {pA=pA->next;pD=pD->next;}
+         else if(pA->data>pC->data) pC=pC->next;
+         else {
+          pA=pA->next;
+          pC=pC->next;
+          pD=pD->next;
+         }
+      }
+      else if(pA->data>pB->data) pB=pB->next;
+      else 
+      {
+          if(pA->data<pC->data) {
+            pA=pA->next;
+            pD=pD->next;
+            pB=pB->next;
+          }
+          else if(pA->data>pC->data) pC=pC->next;
+          else {
+            LinkList s=pA->next;
+            pD->next=s;
+            free(pA);
+            pA=s;
+            pB=pB->next;
+            pC=pC->next;
+          }
+      }
+  }
+//烦琐了不少,有点死板了，不过能解决问题（三条链同步进行移动）;实则一条一条的处理会快很多、也会更简洁(参照kislate_workshop\Problems\touge_c\data_structure_spring\theory\second\TriLinkList_2_4.cpp)
 
+/**********End**********/
+}    
 int main()
 {
     LinkList L[3],p;
