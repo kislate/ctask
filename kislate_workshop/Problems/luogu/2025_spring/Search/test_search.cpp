@@ -1,63 +1,49 @@
 #include <bits/stdc++.h>
 using namespace std;
-int n, mem[25], max_len = 0;
-char head;
-string s[25], final_ans = "";
-bool match(int idx, int j, int i);
-void dfs(int idx, int len, string ans);
-int main(void)
+double n, cnt = 0;
+vector<pair<double, double>> cheeses;
+vector<double> visited;
+vector<vector<double>> predistance;
+double cal_distanc(double x1, double x2)
 {
+    return sqrt((cheeses[x1].first - cheeses[x2].first) * (cheeses[x1].first - cheeses[x2].first) + (cheeses[x1].second - cheeses[x2].second) * (cheeses[x1].second - cheeses[x2].second));
+}
+double min_distance = 1e9;
+void dfs(double x, double dis);
+int main(void){
     cin >> n;
-    for(int i = 1; i <= n; i++) cin >> s[i];
-    cin >> head;
-    for(int i = 1; i <= n; i++)
+    cheeses.resize(n+1, {0, 0});
+    visited.resize(n, 0);
+    predistance.resize(n+1, vector<double>(n+1, 0));
+    for(double i = 0; i < n; i++) cin >> cheeses[i].first >> cheeses[i].second;
+    for(double i = 0; i <= n; i++)
+        for(double j = 0; j <= n; j++)
+            predistance[i][j] = cal_distanc(i, j);
+    for(double i = 0; i < n; i++)
     {
-        if(s[i][0] == head)
-        {
-            // 以head为开头的单词
-            string ans = s[i];
-            mem[i] = 1;
-            dfs(i, s[i].length(), ans);
-            mem[i] = 0;
-        }
+        visited[i] = 1, cnt++;
+        dfs(i, predistance[n][i]);
+        visited[i] = 0, cnt--;
     }
-    cout << max_len << endl;
-    // cout << final_ans << endl;
+    cout << fixed << setprecision(2) << min_distance << endl;
+    return 0;
 }
-// 从 idx 的 j位开始, 看能否接上 i 的 j 位
-bool match(int idx, int j, int i)
+void dfs(double x, double dis)
 {
-    string nstr = s[idx];
-    string str = s[i];
-    string nstrcut = nstr.substr(j, nstr.length() - j);
-    string strcut = str.substr(0, nstr.length() - j);
-    // 保证没有包含关系, 确认首尾相连:
-    if(nstrcut == strcut && nstrcut.length() > 0 && strcut.length() != str.length() && nstrcut.length() != nstr.length())
+    if(cnt == n)
     {
-        //cout << "match: " << nstr << " " << str << " " << "from " << nstrcut << " " << strcut << endl;
-        return true;
+        min_distance = min(min_distance, dis);
+        return;
     }
-    //cout << "not match: " << nstr << " " << str << " " << "from " << nstrcut << " " << strcut << endl;
-    return false;
-}
-void dfs(int idx, int len, string ans)
-{
-    if(len > max_len) max_len = len, final_ans = ans; // 更新最大长度和对应的字符串
-    for(int j = 0; j < s[idx].length(); j++)
+    for(double i = 0; i < n; i++)
     {
-        for(int i = 1; i <= n; i++)
+        if(visited[i] == 0)
         {
-            // if(i == idx) continue; // 不能和自己连接
-            if(match(idx, j, i))
-            {
-                if(mem[i] > 1) continue; // 超过两次
-                mem[i]++;
-                string nans = ans + s[i].substr(s[idx].length() - j, s[i].length());
-                // cout << "nans " << nans << endl;
-                dfs(i, len + s[i].length() - (s[idx].length() - j), nans);
-                mem[i]--;
-            }
+            double distance = predistance[x][i];
+            if(dis + distance > min_distance) return;
+            visited[i] = 1, cnt++;
+            dfs(i, dis + distance);
+            visited[i] = 0, cnt--;
         }
     }
 }
-
