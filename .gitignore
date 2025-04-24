@@ -8,3 +8,7 @@
 
 # 忽略vscode配置文件
 .vscode/
+
+# 忽略output文件夹:
+output/
+
