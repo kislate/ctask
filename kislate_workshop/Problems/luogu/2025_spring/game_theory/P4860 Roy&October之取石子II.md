@@ -1,0 +1,73 @@
+# P4860 Roy&October之取石子II
+
+## 题目背景
+
+Roy 和 October 两人在玩另一个取石子的游戏。（第一季请看 P4018）
+
+## 题目描述
+
+游戏规则是这样的：共有 $n$ 个石子，两人每次都只能取 $p^k$ 个（$p$ 为质数，$k=0$ 或 $1$，且 $p^k$ 小于等于当前剩余石子数），谁取走最后一个石子，谁就赢了。
+
+现在 October 先取，问她有没有必胜策略。
+
+若她有必胜策略，输出一行 `October wins!` ；否则输出一行 `Roy wins!`。
+
+## 输入格式
+
+第一行一个正整数 $T$，表示测试点组数。
+
+第 $2$ 行到第 $T+1$ 行，一行一个正整数 $n$，表示石子个数。
+
+## 输出格式
+
+$T$ 行，每行分别为 `October wins!` 或 `Roy wins!`。
+
+## 输入输出样例 #1
+
+### 输入 #1
+
+```
+3
+5
+7
+14
+```
+
+### 输出 #1
+
+```
+October wins!
+October wins!
+October wins!
+```
+
+## 说明/提示
+
+对于 $30\%$ 的数据，$1 \le n \le 30$；
+
+对于 $60\%$ 的数据，$1 \le n \le 10^6$；
+
+对于 $100\%$ 的数据，$1 \le n \le 5 \times 10^7，1 \le T \le 10^5$。
+
+花絮：由于出题人懒得造数据，就把 P4018 的输入直接拿来了 ovo
+
+## `zby`秒杀:
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(void)
+{
+    int n;
+    cin >> n;
+    for(int i = 0;i<n;i++){
+        int temp;
+        cin >> temp;
+        if(temp % 4==0)
+            cout << "Roy wins!" <<endl;
+        else
+            cout << "October wins!" <<endl;
+    }
+    return 0;
+}
+```
