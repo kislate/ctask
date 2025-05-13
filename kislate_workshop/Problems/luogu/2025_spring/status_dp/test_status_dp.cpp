@@ -1,47 +1,44 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-long long state[2005], site[2005], dp[15][2005][2005];
-int n, k, cnt; // cnt 用于记录合法状态的数量
-void dfs(int x, int num, int cur)
+using ull = unsigned long long;
+ull max_weight, sum_people;
+vector<pair<ull, ull>> peoples;
+int main(void)
 {
-    if(cur >= n){
-        site[++cnt] = x;
-        state[cnt] = num;
-        return;
-    }
-    dfs(x, num, cur + 1);                         // 不选当前位
-    dfs(x + (1 << cur), num + 1, cur + 2);        // 当前列放国王, 跳过下一列
- }
-
- // 判断上一行和当前行是否有冲突
- bool compatible(int x, int y)
- {
-    if(site[x] & site[y]) return false;          // 正上方
-    if((site[x] << 1) & site[y]) return false;   // 左上方
-    if(site[x] & (site[y] << 1)) return false;   // 右上方
-    return true;
-  }
-  int main(void)
-  {
-    cin >> n >> k;
-    dfs(0, 0, 0); // 生成所有合法状态, 此时cnt 和 state 和 site就会初始化完毕, 每一行的合法情况不会超出这些限定范围
-    for(int i = 1; i <= cnt; i++) dp[1][i][state[i]] = 1; // 初始化第一行
-    for(int i = 2; i <= n; i++)// 枚举各行
+    cin >> max_weight >> sum_people;
+    peoples.resize(sum_people + 1, {0, 0});
+    // first 是时间, second 是重量
+    for(int i = 1; i <= sum_people; i++) cin >> peoples[i].first >> peoples[i].second;
+    sort(peoples.begin() + 1, peoples.end(), [](const pair<ull, ull>& a, const pair<ull, ull>& b) {
+        if(a.first != b.first) return a.first > b.first;
+        return a.second > b.second;
+    });
+    ull ans = 0;
+    for(int i = 1; i <= sum_people; )
     {
-        for(int x = 1; x <= cnt; x++)// 遍历当前行的合法状态
+        ull now_weight = 0, now_time = 0;
+        bool flag = false;
+        while(i <= sum_people && now_weight + peoples[i].second <= max_weight)
         {
-            for(int y = 1; y <= cnt; y++)// 遍历上一行的合法状态
-            {
-                if(!compatible(x, y)) continue;// 状态冲突
-                for(int l = state[x]; l <= k; l++)// 当前行此合法状态下的总状态数
-                {
-                    dp[i][x][l] += dp[i - 1][y][l - state[x]]; // 计算当前行的合法状态数
-                }
-            }
+            if(!flag && (peoples[i].first != 0 && peoples[i].second != 0)) now_time = peoples[i].first, flag = true;
+            now_weight += peoples[i].second;
+            peoples[i].first = 0, peoples[i].second = 0;
+            i++;
         }
+        int j = i;
+        while(j <= sum_people)
+        {
+            if(now_weight + peoples[j].second > max_weight)
+            {
+                j++;
+                continue;
+            }
+            now_weight += peoples[j].second;
+            peoples[j].first = 0, peoples[j].second = 0;
+            j++;
+        }
+        ans += now_time;
     }
-    long long ans = 0;
-    for(int i = 1; i <= cnt; i++) ans += dp[n][i][k]; // 统计所有合法状态
     cout << ans << endl;
     return 0;
-  }
+}
