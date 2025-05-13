@@ -1,44 +1,48 @@
-#include<bits/stdc++.h>
+
+#include <bits/stdc++.h>
 using namespace std;
 using ull = unsigned long long;
-ull max_weight, sum_people;
+ull W, n;
 vector<pair<ull, ull>> peoples;
+bool isValid(ull state)
+{
+    ull sum = 0;
+    for(ull i = 0; i < n; i++)
+    {
+        sum += peoples[i].second * ((state >> i) & 1);
+        if(sum > W) return false;
+    }
+    return true;
+}
+ull getTime(ull state)
+{
+    ull time = 0;
+    for(ull i = 0; i < n; i++)
+    {
+        if(state & (1 << i))
+        {
+            time = max(time, peoples[i].first);
+        }
+    }
+    return time;
+}
 int main(void)
 {
-    cin >> max_weight >> sum_people;
-    peoples.resize(sum_people + 1, {0, 0});
-    // first 是时间, second 是重量
-    for(int i = 1; i <= sum_people; i++) cin >> peoples[i].first >> peoples[i].second;
-    sort(peoples.begin() + 1, peoples.end(), [](const pair<ull, ull>& a, const pair<ull, ull>& b) {
-        if(a.first != b.first) return a.first > b.first;
-        return a.second > b.second;
-    });
-    ull ans = 0;
-    for(int i = 1; i <= sum_people; )
+    cin >> W >> n;
+    peoples.resize(n);
+    for(ull i = 0; i < n; i++) cin >> peoples[i].first >> peoples[i].second;
+    vector<ull> dp(1 << n, 1e9);
+    dp[0] = 0;
+    for(ull i = 0; i < (1 << n); i++)
     {
-        ull now_weight = 0, now_time = 0;
-        bool flag = false;
-        while(i <= sum_people && now_weight + peoples[i].second <= max_weight)
+        ull rest = ((1 << n) - 1) ^ i;
+        for(ull j = rest; j; j = (j - 1) & rest)
         {
-            if(!flag && (peoples[i].first != 0 && peoples[i].second != 0)) now_time = peoples[i].first, flag = true;
-            now_weight += peoples[i].second;
-            peoples[i].first = 0, peoples[i].second = 0;
-            i++;
+            if(!isValid(j)) continue;
+            ull next = i | j;
+            dp[next] = min(dp[next], dp[i] + getTime(j));
         }
-        int j = i;
-        while(j <= sum_people)
-        {
-            if(now_weight + peoples[j].second > max_weight)
-            {
-                j++;
-                continue;
-            }
-            now_weight += peoples[j].second;
-            peoples[j].first = 0, peoples[j].second = 0;
-            j++;
-        }
-        ans += now_time;
     }
-    cout << ans << endl;
+    cout << dp[(1 << n) - 1] << endl;
     return 0;
 }
