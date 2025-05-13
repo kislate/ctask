@@ -200,7 +200,6 @@ status  ListInsertTail(LinkList &L, ElemType e){
 }
 
 // ========== 附加功能 ==========
-
 // 链表翻转
 status reverseList(LinkList &L) {
     if(L == NULL) return INFEASIBLE;
