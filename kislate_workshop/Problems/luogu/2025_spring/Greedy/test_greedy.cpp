@@ -2,26 +2,40 @@
 using namespace std;
 int main(void)
 {
-    int n;
+    int n, ans = 1e9;
     cin >> n;
-    vector<pair<double, double>> randians;
+    map<int, int> power_map;
+    vector<pair<int, int>> power_sum;
     for(int i = 0; i < n; i++)
     {
-        double cx, cy, radius;
-        cin >> cx >> cy >> radius;
-        double theta = atan2(cy, cx);
-        double phi = asin(radius / sqrt(cx * cx + cy * cy));
-        randians.push_back({theta - phi, theta + phi});
+        int x;
+        cin >> x;
+        power_map[x]++;
     }
-    sort(randians.begin(), randians.end());
-    double _left = 0, _right = 0, ans = 0;// 不用考虑超出90度的情况;
-    for(int i = 0; i < n; i++)
+    for(auto it : power_map) power_sum.push_back(it);
+    int len = (int)power_sum.size();
+    for(int i = 0; i < len; i++)
     {
-        double l = randians[i].first, r = randians[i].second;
-        if(_right < l) ans += _right - _left, _left = l, _right = r;
-        else if(_right < r) _right = r;
+        while(power_sum[i].second > 0)
+        {
+            int cnt = 0;
+            for(int j = i; j < len; j++)
+            {
+                if(((j == len-1) || power_sum[j+1].first - power_sum[j].first != 1) || (power_sum[j+1].second < power_sum[j].second))
+                {
+                    power_sum[j].second--;
+                    cnt++;
+                    ans = min(ans, cnt);
+                    break;
+                }
+                else{
+                    power_sum[j].second--;
+                    cnt++;
+                }
+            }
+            ans = min(ans, cnt);
+        }
     }
-    ans += _right - _left;
-    cout << fixed << setprecision(3) << 1 - ans / atan2(1, 0) << endl;
+    cout << ans << endl;
     return 0;
 }
