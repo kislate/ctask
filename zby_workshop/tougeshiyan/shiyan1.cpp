@@ -313,7 +313,7 @@ void main(void) {
         case 1:
             if (InitList(L) == OK) {
                 printf("线性表创建成功！\n");
-                Lists.elem[currentListIndex].L = L; // 保存修改后的 L
+                Lists.elem[currentListIndex].L = L;
             }
             else {
                 printf("线性表已存在，无法再次创建！\n");
