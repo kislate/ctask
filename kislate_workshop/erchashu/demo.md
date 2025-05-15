@@ -157,3 +157,94 @@ status Assign(BiTree &T,KeyType e,TElemType value)
     /********** End **********/
 }
 ```
+
+- 第七关:
+```cpp
+status InsertNode(BiTree &T,KeyType e,int LR,TElemType c)
+//插入结点。此题允许通过增加其它函数辅助实现本关任务
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    if(T == NULL) return ERROR;
+    if(LR != 0 && LR != 1 && LR != -1) return ERROR;
+    if(LocateNode(T, c.key) != NULL) return ERROR; // 不能有相同的关键字
+    if(LR == -1)
+    {
+        BiTNode * newNode = (BiTNode *)malloc(sizeof(BiTNode));
+        if(!newNode) return OVERFLOW;
+        newNode->data = c;
+        newNode->rchild = T;
+        newNode->lchild = NULL;
+        T = newNode;
+        return OK;
+    }
+    BiTNode * node = LocateNode(T, e);
+    if(node == NULL) return ERROR;
+    if(LR == 0)
+    {
+        BiTNode * newNode = (BiTNode *)malloc(sizeof(BiTNode));
+        if(!newNode) return OVERFLOW;
+        newNode->data = c;
+        newNode->lchild = NULL;
+        newNode->rchild = node->lchild;
+        node->lchild = newNode;
+        return OK;
+    }
+    else if(LR == 1)
+    {
+        BiTNode * newNode = (BiTNode *)malloc(sizeof(BiTNode));
+        if(!newNode) return OVERFLOW;
+        newNode->data = c;
+        newNode->lchild = NULL;
+        newNode->rchild = node->rchild;
+        node->rchild = newNode;
+        return OK;
+    }
+    else return ERROR;
+    return ERROR;
+    /********** End **********/
+}
+```
+
+
+- 第八关:
+```cpp
+
+status DeleteNode(BiTree &T,KeyType e)
+//删除结点。此题允许通过增加其它函数辅助实现本关任务
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    if(T == NULL) return ERROR;
+    if (T->data.key == e) {
+    BiTNode *del = T;
+        // 度为0
+        if (T->lchild == NULL && T->rchild == NULL) {
+            T = NULL;
+        }
+        // 度为1
+        else if (T->lchild == NULL) {
+            T = T->rchild;
+        }
+        // 度为1（只有左孩子）
+        else if (T->rchild == NULL) {
+            T = T->lchild;
+        }
+        // 度为2
+        else {
+            BiTNode *p = T->lchild;
+            while (p->rchild != NULL) {
+                p = p->rchild;
+            }
+            p->rchild = T->rchild;
+            T = T->lchild;
+        }
+        free(del);
+        return OK;
+    }
+    // 递归;
+    if(T->lchild && DeleteNode(T->lchild, e) == OK) return OK;
+    if(T->rchild && DeleteNode(T->rchild, e) == OK) return OK;
+    /********** End **********/
+}
+```
