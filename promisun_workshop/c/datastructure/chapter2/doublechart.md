@@ -206,6 +206,6 @@ void adjust(DuLinkList L) {
     L->prior->next=L;
 }
 ```
-![演示图](../../picture/doublechart.jpg)
+![演示图](..\..\picture\doublechart.jpg)
 * 为何不行？？？？理论上计算机一步步走不会出现二义性和死循环呀
 
