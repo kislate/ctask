@@ -248,3 +248,102 @@ status DeleteNode(BiTree &T,KeyType e)
     /********** End **********/
 }
 ```
+
+- 中序和后序遍历(递归):
+```cpp
+status InOrderTraverse(BiTree T,void (*visit)(BiTree))
+//中序遍历二叉树T
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    if(T == NULL) return ERROR;
+    InOrderTraverse(T->lchild, visit);
+    visit(T);
+    InOrderTraverse(T->rchild, visit);
+    return OK;
+    /********** End **********/
+}
+
+status PostOrderTraverse(BiTree T,void (*visit)(BiTree))
+//后序遍历二叉树T
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    if(T == NULL) return ERROR;
+    PostOrderTraverse(T->lchild, visit);
+    PostOrderTraverse(T->rchild, visit);
+    visit(T);
+    return OK;
+    /********** End **********/
+}
+```
+
+- 前序(非递归):
+```cpp
+// 非递归
+status PreOrderTraverse(BiTree T, void (*visit)(BiTree)) {
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    BiTree stack[1000];
+    int top = 0;
+    if(T != NULL){
+        stack[top++] = T;
+    }
+    while(top > 0){
+        T = stack[--top]; // 弹出栈顶元素
+        visit(T); // 访问当前节点
+        
+        // 先压右孩子, 在压左孩子
+        if(T->rchild != NULL){
+            stack[top++] = T->rchild;
+        }
+        if(T->lchild != NULL){
+            stack[top++] = T->lchild;
+        }
+    }
+    return OK;
+    /********** End **********/
+}
+```
+
+- 层序:
+```cpp
+status LevelOrderTraverse(BiTree T,void (*visit)(BiTree))
+//按层遍历二叉树T
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    if(T == NULL) return ERROR;
+    BiTree queue[1000];
+    int front = 0, rear = 0;
+    queue[rear++] = T;
+    while(front < rear)
+    {
+        T = queue[front++];
+        visit(T);
+        if(T->lchild!=NULL) queue[rear++] = T->lchild;
+        if(T->rchild!=NULL) queue[rear++] = T->rchild;
+    }
+    return OK;
+    /********** End **********/
+}
+```
+
+- 获得兄弟节点:
+```cpp
+BiTNode* GetSibling(BiTree T,KeyType e)
+//实现获得兄弟结点
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    if(T == NULL) return NULL;
+    if(T->lchild && T->lchild->data.key == e) return T->rchild;
+    if(T->rchild && T->rchild->data.key == e) return T->lchild;
+    BiTNode* lres = GetSibling(T->lchild, e);
+    if(lres) return lres;
+    BiTNode* rres = GetSibling(T->rchild, e);
+    if(rres) return rres;
+    return NULL;
+    /********** End **********/
+}
+```

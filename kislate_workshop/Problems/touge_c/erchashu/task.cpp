@@ -149,6 +149,52 @@ status InsertNode(BiTree &T,KeyType e,int LR,TElemType c)
     /********** End **********/
 }
 
+// 非递归
+status PreOrderTraverse(BiTree T, void (*visit)(BiTree)) {
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    BiTree stack[1000];
+    int top = 0;
+    if(T != NULL){
+        stack[top++] = T;
+    }
+    while(top > 0){
+        T = stack[--top]; // 弹出栈顶元素
+        visit(T); // 访问当前节点
+        
+        // 先压右孩子, 在压左孩子
+        if(T->rchild != NULL){
+            stack[top++] = T->rchild;
+        }
+        if(T->lchild != NULL){
+            stack[top++] = T->lchild;
+        }
+    }
+    return OK;
+    /********** End **********/
+}
+
+status In_feidigui(BiTree T, void (*visit)(BiTree))
+{
+    BiTree stack[1000];
+    int top = 0;
+    stack[top++] = T;
+    while(top){
+        T = stack[top-1];
+        while(T)
+        {
+            T=T->lchild;
+            stack[top++] = T;
+        }
+        top--;
+        if(top){
+            T=stack[--top];
+            visit(T);
+            stack[top++] = T->rchild;
+        }
+    }
+    return OK;
+}
 status InOrderTraverse(BiTree T,void (*visit)(BiTree))
 //中序遍历二叉树T
 {
@@ -167,48 +213,14 @@ status PostOrderTraverse(BiTree T,void (*visit)(BiTree))
 {
     // 请在这里补充代码，完成本关任务
     /********** Begin *********/
-
-
+    if(T == NULL) return ERROR;
+    PostOrderTraverse(T->lchild, visit);
+    PostOrderTraverse(T->rchild, visit);
+    visit(T);
+    return OK;
     /********** End **********/
 }
 
-
-
-/*
-任务描述
-本关任务：编写一个函数实现结点删除
-函数原型：status DeleteNode(BiTree &T,KeyType e)；
-功能说明：e是和T中结点关键字类型相同的给定值。删除T中关键字为e的结点；同时，根据该被删结点的度进行讨论：
-
-如关键字为e的结点度为0，删除即可；
-如关键字为e的结点度为1，用关键字为e的结点孩子代替被删除的e位置；
-如关键字为e的结点度为2，用e的左子树（简称为LC）代替被删除的e位置，将e的右子树（简称为RC）作为LC中最右节点的右子树。
-成功删除结点后返回OK，否则返回ERROR。
-
-相关知识
-为了完成本关任务，你需要掌握：1.二叉树，2.二叉链表，3.删除结点的语义。
-
-编程要求
-根据提示，在右侧编辑器补充代码，完成函数DeleteNode的编写
-
-测试说明
-平台会自动提供输入，对你编写的代码进行测试：
-
-下列输入为结点在满二叉树中的编号和结点值的序列，当结点在满二叉树中的编号为0时表示输入结束。例如： 6 4 d  表示（4，d）的结点在满二叉树中的编号为6； 0 0 null代表结束标记。接着输入的是e值。正确完成删除后，通过输出先序和中序遍历序列检验正确性。
-
-
-测试输入：1 1 a    2 2 b     3 3 c    6 4 d    7 5 e    0 0 null   1
-预期输出： 
- 2,b 3,c 4,d 5,e
- 2,b 4,d 3,c 5,e
-
- 
-测试输入：1 1 a    2 2 b     3 3 c    6 4 d    7 5 e    0 0 null   10
- 预期输出：  删除操作失败
-
-开始你的任务吧，祝你成功！
-*/
-// 找到父亲节点
 status FindParent(BiTree T, KeyType e, BiTNode* &parent)
 {
     if(T == NULL) return ERROR;
@@ -265,6 +277,68 @@ status DeleteNode(BiTree &T,KeyType e)
     /********** End **********/
 }
 
+// 按层遍历
+status LevelOrderTraverse(BiTree T,void (*visit)(BiTree))
+//按层遍历二叉树T
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    if(T == NULL) return ERROR;
+    BiTree queue[1000];
+    int front = 0, rear = 0;
+    queue[rear++] = T;
+    while(front < rear)
+    {
+        T = queue[front++];
+        visit(T);
+        if(T->lchild!=NULL) queue[rear++] = T->lchild;
+        if(T->rchild!=NULL) queue[rear++] = T->rchild;
+    }
+    return OK;
+    /********** End **********/
+}
+
+void saveNode(BiTree T, FILE* fp){
+    if(T == NULL){
+        fputc(0, fp);
+        return;
+    }
+    fputc(1, fp);
+    fwrite(&T->data, sizeof(TElemType), 1, fp);
+    saveNode(T->lchild, fp);
+    saveNode(T->rchild, fp);
+}
+
+status SaveBiTree(BiTree T, const char FileName[])
+{
+    FILE* fp;
+    if((fp = fopen(FileName, "wb")) == NULL) return ERROR;
+    saveNode(T, fp);
+    fclose(fp);
+    return OK;
+}
+
+void loadNode(BiTree& T, FILE* fp){
+    int flag = fgetc(fp);
+    if(flag == 0){
+        T = NULL;
+        return;
+    }
+    T = (BiTNode*)malloc(sizeof(BiTNode));
+    fread(&T->data, sizeof(TElemType), 1, fp);
+    loadNode(T->lchild, fp);
+    loadNode(T->rchild, fp);
+}
+
+status LoadBiTree(BiTree& T, const char FileName[])
+{
+    FILE* fp;
+    if((fp = fopen(FileName, "rb")) == NULL) return ERROR;
+    loadNode(T, fp);
+    fclose(fp);
+    return OK;
+}
+
 //////////////////////////////
 status CreateBiTree(BiTree &T,DEF definition[])
 {
@@ -305,24 +379,3 @@ void InOrderTraverse(BiTree T)
     }
 }
 
-int main()
-{
-DEF definition[100];
-BiTree T;
-TElemType e;
-int ans,i=0,key;
-do {
-	scanf("%d%d%s",&definition[i].pos,&definition[i].data.key,definition[i].data.others);
-} while (definition[i++].pos);
-ans=CreateBiTree(T,definition);
-	scanf("%d%d%s",&key,&e.key,e.others);
-	ans=Assign(T,key,e);
-	if (ans==OK)
-	{
-	    PreOrderTraverse(T);
-	    printf("\n");
-	    InOrderTraverse(T);
-	}
-	else printf("赋值操作失败");
-	return 1;
-}
