@@ -381,4 +381,50 @@ status BFSTraverse(ALGraph &G,void (*visit)(VertexType))
 ```
 - 第十三关(文件读写)
 ```cpp
+status Save(ALGraph G, char FileName[], ArcNode *p, FILE *fp, int i)
+{
+    // 递归保存
+    if(p == NULL) return OK;
+    Save(G, FileName, p->nextarc, fp, i);
+    fprintf(fp, "%d %d\n", i, p->adjvex);
+}
+status SaveGraph(ALGraph G, char FileName[])
+//将图的数据写入到文件FileName中
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin 1 *********/
+    FILE *fp = fopen(FileName, "w");
+    fprintf(fp, "%d %d %d\n", G.vexnum, G.arcnum, G.kind);
+    for(int i = 0; i < G.vexnum; i++) {
+        fprintf(fp, "%d %s\n", G.vertices[i].data.key, G.vertices[i].data.others);
+    }
+    for(int i = 0; i < G.vexnum; i++) {
+        ArcNode *p = G.vertices[i].firstarc;
+        Save(G, FileName, p, fp, i);
+    }
+    fclose(fp);
+    /********** End 1 **********/
+}
+status LoadGraph(ALGraph &G, char FileName[])
+//读入文件FileName的图数据，创建图的邻接表
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin 2 *********/
+    FILE *fp = fopen(FileName, "r");
+    fscanf(fp, "%d%d%d", &G.vexnum, &G.arcnum, (int*)&G.kind);
+    for(int i = 0; i < G.vexnum; i++) {
+        fscanf(fp, "%d%s", &G.vertices[i].data.key, G.vertices[i].data.others);
+        G.vertices[i].firstarc = NULL;
+    }
+    int u, v;
+    while(fscanf(fp, "%d%d", &u, &v) == 2) {
+        // 插入邻接表两端
+        ArcNode *arc1 = (ArcNode*)malloc(sizeof(ArcNode));
+        arc1->adjvex = v;
+        arc1->nextarc = G.vertices[u].firstarc;
+        G.vertices[u].firstarc = arc1;
+    }
+    fclose(fp); 
+    /********** End 2 **********/
+}
 ```

@@ -398,6 +398,13 @@ status BFSTraverse(ALGraph &G,void (*visit)(VertexType))
     /********** End **********/
 }
 
+status Save(ALGraph G, char FileName[], ArcNode *p, FILE *fp, int i)
+{
+    // 递归保存
+    if(p == NULL) return OK;
+    Save(G, FileName, p->nextarc, fp, i);
+    fprintf(fp, "%d %d\n", i, p->adjvex);
+}
 status SaveGraph(ALGraph G, char FileName[])
 //将图的数据写入到文件FileName中
 {
@@ -410,11 +417,7 @@ status SaveGraph(ALGraph G, char FileName[])
     }
     for(int i = 0; i < G.vexnum; i++) {
         ArcNode *p = G.vertices[i].firstarc;
-        while(p) {
-            if(i < p->adjvex) // 无向图只保存一条
-                fprintf(fp, "%d %d\n", i, p->adjvex);
-            p = p->nextarc;
-        }
+        Save(G, FileName, p, fp, i);
     }
     fclose(fp);
     /********** End 1 **********/
@@ -437,12 +440,8 @@ status LoadGraph(ALGraph &G, char FileName[])
         arc1->adjvex = v;
         arc1->nextarc = G.vertices[u].firstarc;
         G.vertices[u].firstarc = arc1;
-        ArcNode *arc2 = (ArcNode*)malloc(sizeof(ArcNode));
-        arc2->adjvex = u;
-        arc2->nextarc = G.vertices[v].firstarc;
-        G.vertices[v].firstarc = arc2;
-}
-fclose(fp); 
+    }
+    fclose(fp); 
     /********** End 2 **********/
 }
 
