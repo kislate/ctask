@@ -253,7 +253,7 @@ status DeleteNode(BiTree &T, KeyType e) {
 // 访问结点
 void visit(BiTree T) {
     if(T->data.key != 0 || T->data.others[0] != '\0') // 空树不输出
-        printf("      %d,%s ", T->data.key, T->data.others);
+        printf("%d,%s ", T->data.key, T->data.others);
 }
 
 // 前序遍历（非递归）
@@ -481,7 +481,7 @@ void singleTreeMenu() {
     printf("      6. LocateNode         13. PostOrderTraverse\n");
     printf("      7. Assign             14. LevelOrderTraverse\n");
     printf("      15. MaxPathSum        16. LowestCommonAncestor\n");
-    printf("      17. InvertTree        18. PrintTree\n");
+    printf("      17. InvertTree        17. PrintTree\n");
     printf("      0. 返回多表菜单\n");
     printf("      =====================================\n");
     printf("      请选择你的操作[0~17]:");

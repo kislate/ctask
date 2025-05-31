@@ -62,6 +62,8 @@ status DFSTraverse(ALGraph &G, void (*visit)(VertexType));
 status BFSTraverse(ALGraph &G, void (*visit)(VertexType));
 status SaveGraph(ALGraph G, char FileName[]);
 status LoadGraph(ALGraph &G, char FileName[]);
+void PrintAdjMatrix(ALGraph &G);
+void PrintAllVertexAndIndex(ALGraph &G);
 
 // ====== 附加功能函数声明 ======
 void VerticesSetLessThanK(ALGraph &G, KeyType v, int k);
@@ -517,19 +519,21 @@ status LoadGraph(ALGraph &G, char FileName[]) {
 void singleGraphMenu() {
     printf("\n");
     printf("      ========== 单图操作菜单 ==========\n");
-    printf("      1. CreateCraph         8. DeleteVex\n");
-    printf("      2. DestroyGraph        9. InsertArc\n");
-    printf("      3. LocateVex          10. DeleteArc\n");
-    printf("      4. PutVex             11. DFSTraverse\n");
-    printf("      5. FirstAdjVex        12. BFSTraverse\n");
-    printf("      6. NextAdjVex         13. SaveGraph\n");
-    printf("      7. InsertVex          14. LoadGraph\n");
-    printf("      15. VerticesSetLessThanK\n");
-    printf("      16. ShortestPathLength\n");
-    printf("      17. ConnectedComponentsNums\n");
+    printf("      1. 创建邻接图          8. 删除顶点\n");
+    printf("      2. 销毁图              9. 插入边/弧\n");
+    printf("      3. 查找顶点           10. 删除边/弧\n");
+    printf("      4. 顶点赋值           11. 深度优先遍历\n");
+    printf("      5. 第一邻接点         12. 广度优先遍历\n");
+    printf("      6. 下一个邻接点       13. 保存图到文件\n");
+    printf("      7. 插入顶点           14. 从文件加载图\n");
+    printf("      15. 距离小于k的顶点集合\n");
+    printf("      16. 顶点间最短路径长度\n");
+    printf("      17. 连通分量个数\n");
+    printf("      18. 打印邻接矩阵\n");
+    printf("      19. 打印所有顶点及位序\n");
     printf("      0. 返回多图菜单\n");
     printf("      =====================================\n");
-    printf("      请选择你的操作[0~17]:");
+    printf("      请选择你的操作[0~19]:");
 }
 
 void singleGraphControl(ALGraph &G) {
@@ -543,7 +547,7 @@ void singleGraphControl(ALGraph &G) {
         singleGraphMenu();
         scanf("%d", &op);
 
-        if(op != 1 && op != 2 && G.vexnum == 0) {
+        if(op != 1 && op != 2 && op != 14 && G.vexnum == 0) {
             printf("      图不存在！\n");
             getchar(); printf("      按任意键继续...\n"); getchar();
             continue;
@@ -728,6 +732,16 @@ void singleGraphControl(ALGraph &G) {
                 getchar(); printf("      按任意键继续...\n"); getchar();
                 break;
             }
+            case 18: {
+                PrintAdjMatrix(G);
+                printf("      按任意键继续...\n"); getchar(); getchar();
+                break;
+            }
+            case 19: {
+                PrintAllVertexAndIndex(G);
+                printf("      按任意键继续...\n"); getchar(); getchar();
+                break;
+            }
             case 0:
                 break;
             default:
@@ -735,6 +749,53 @@ void singleGraphControl(ALGraph &G) {
                 getchar(); printf("      按任意键继续...\n"); getchar();
                 break;
         }
+    }
+}
+
+// ====== 邻接矩阵美观输出 ======
+void PrintAdjMatrix(ALGraph &G) {
+    if(G.vexnum == 0) {
+        printf("      图为空！\n");
+        return;
+    }
+    int matrix[MAX_VERTEX_NUM][MAX_VERTEX_NUM] = {0};
+    for(int i = 0; i < G.vexnum; i++) {
+        ArcNode *p = G.vertices[i].firstarc;
+        while(p) {
+            matrix[i][p->adjvex] = 1;
+            p = p->nextarc;
+        }
+    }
+    // 输出表头
+    printf("\n      邻接矩阵：\n\n");
+    printf("        ");
+    for(int i = 0; i < G.vexnum; i++)
+        printf("%6d", G.vertices[i].data.key);
+    printf("\n");
+    printf("         ");
+    for(int i = 0; i < G.vexnum; i++)
+        printf("------");
+    printf("\n");
+    for(int i = 0; i < G.vexnum; i++) {
+        printf("%6d |", G.vertices[i].data.key);
+        for(int j = 0; j < G.vexnum; j++) {
+            printf("%6d", matrix[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+
+void PrintAllVertexAndIndex(ALGraph &G) {
+    if(G.vexnum == 0) {
+        printf("      图为空！\n");
+        return;
+    }
+    printf("      顶点位序列表：\n");
+    printf("      位序    关键字    信息\n");
+    printf("      --------------------------\n");
+    for(int i = 0; i < G.vexnum; i++) {
+        printf("      %4d    %6d    %-10s\n", i, G.vertices[i].data.key, G.vertices[i].data.others);
     }
 }
 
