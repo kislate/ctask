@@ -175,8 +175,8 @@ status ListDelete(LinkList &L,int i,ElemType &e) {
 status ListTraverse(LinkList L) {
     if(L == NULL) return INFEASIBLE;
     LinkList p = L->next;
-	printf("      线性表元素为：\n");// new
-	printf("      ");
+    printf("      线性表元素为：\n");// new
+    printf("      ");
     while(p != NULL) {
         printf("%d", p->data);
         if(p->next != NULL) printf(" ");
@@ -187,16 +187,16 @@ status ListTraverse(LinkList L) {
 }
 
 status  ListInsertTail(LinkList &L, ElemType e){
-	if(L == NULL) return INFEASIBLE;
-	LinkList p = L;
-	int cnt = 1;
-	while(p->next != NULL) p = p->next, cnt++;
-	LinkList newNode = (LinkList)malloc(sizeof(LNode));
-	if(newNode == NULL) return OVERFLOW;
-	newNode->data = e;
-	newNode->next = NULL;
-	p->next = newNode;
-	return OK;
+    if(L == NULL) return INFEASIBLE;
+    LinkList p = L;
+    int cnt = 1;
+    while(p->next != NULL) p = p->next, cnt++;
+    LinkList newNode = (LinkList)malloc(sizeof(LNode));
+    if(newNode == NULL) return OVERFLOW;
+    newNode->data = e;
+    newNode->next = NULL;
+    p->next = newNode;
+    return OK;
 }
 
 // ========== 附加功能 ==========
@@ -226,7 +226,7 @@ status RemoveNthFromEnd(LinkList &L, int n) {
         fast = fast->next;
         slow = slow->next;
     }
-	printf("	  删除的元素为：%d\n", slow->next->data);
+    printf("      删除的元素为：%d\n", slow->next->data);
     LinkList toDel = slow->next;
     if(toDel == NULL) return ERROR;
     slow->next = toDel->next;
@@ -269,20 +269,20 @@ status SaveList(LinkList L, char FileName[]) {
 // 文件加载
 status LoadList(LinkList &L, char FileName[]) {
     if(L != NULL) 
-	{
-		printf("	  链表已存在，是否销毁后导入?(1: 销毁, 2: 取消加载)\n");
-		int op;
-		scanf("%d", &op);
-		if(op == 1) 
-		{
-			if(DestroyList(L) == OK) printf("      链表销毁成功！\n");
-			else{
-				printf("      链表销毁失败！\n");
-				return ERROR;
-			}
-		}
-		else return ERROR;
-	}
+    {
+        printf("      链表已存在，是否销毁后导入?(1: 销毁, 2: 取消加载)\n");
+        int op;
+        scanf("%d", &op);
+        if(op == 1) 
+        {
+            if(DestroyList(L) == OK) printf("      链表销毁成功！\n");
+            else{
+                printf("      链表销毁失败！\n");
+                return ERROR;
+            }
+        }
+        else return ERROR;
+    }
     FILE *fp = fopen(FileName, "rb");
     if(fp == NULL) return ERROR;
     L = (LinkList)malloc(sizeof(LNode));
@@ -363,7 +363,7 @@ void singleListMenu() {
     printf("      13. 链表翻转         14. 删除倒数第n个结点\n");
     printf("      15. 链表排序         16. 保存到文件\n");
     printf("      17. 从文件加载       18. 快速插入\n");
-	printf("      0. 返回多表\n");
+    printf("      0. 返回多表\n");
     printf("      =====================================\n");
     printf("      请选择你的操作[0~18]:");
 }
@@ -383,22 +383,22 @@ void singleListControl(LinkList &L) {
                 if(InitList(L)==OK) printf("      链表创建成功！\n");
                 else printf("      链表创建失败！\n");
                 getchar();
-				printf("      按任意键继续...\n");
-				getchar();
+                printf("      按任意键继续...\n");
+                getchar();
                 break;
             case 2:
                 if(DestroyList(L)==OK) printf("      链表销毁成功！\n");
                 else printf("      链表销毁失败！\n");
                 getchar(); 
-				printf("      按任意键继续...\n");
-				getchar();
+                printf("      按任意键继续...\n");
+                getchar();
                 break;
             case 3:
                 if(ClearList(L)==OK) printf("      链表清空成功！\n");
                 else printf("      链表清空失败！\n");
                 getchar(); 
-				printf("      按任意键继续...\n");
-				getchar();
+                printf("      按任意键继续...\n");
+                getchar();
                 break;
             case 4:
                 result = ListEmpty(L);
@@ -406,16 +406,16 @@ void singleListControl(LinkList &L) {
                 else if(result == TRUE) printf("      链表为空！\n");
                 else printf("      链表不为空！\n");
                 getchar(); 
-				printf("      按任意键继续...\n");
-				getchar();
+                printf("      按任意键继续...\n");
+                getchar();
                 break;
             case 5:
                 result = ListLength(L);
                 if(result == INFEASIBLE) printf("      链表不存在！\n");
                 else printf("      链表长度为%d\n", result);
                 getchar(); 
-				printf("      按任意键继续...\n");
-				getchar();
+                printf("      按任意键继续...\n");
+                getchar();
                 break;
             case 6:
                 printf("      请输入要获取的元素位置：");
@@ -425,8 +425,8 @@ void singleListControl(LinkList &L) {
                 else if(result == ERROR) printf("      位置不合法！\n");
                 else printf("      第%d个元素为：%d\n", pos, e);
                 getchar(); 
-				printf("      按任意键继续...\n");
-				getchar();
+                printf("      按任意键继续...\n");
+                getchar();
                 break;
             case 7:
                 printf("      请输入要查找的元素值：");
@@ -436,8 +436,8 @@ void singleListControl(LinkList &L) {
                 else if(loc == 0) printf("      未找到该元素！\n");
                 else printf("      元素%d的位置为：%d\n", e, loc);
                 getchar(); 
-				printf("      按任意键继续...\n");
-				getchar();
+                printf("      按任意键继续...\n");
+                getchar();
                 break;
             case 8:
                 printf("      请输入要查找前驱的元素值：");
@@ -447,8 +447,8 @@ void singleListControl(LinkList &L) {
                 else if(result == ERROR) printf("      元素不存在或无前驱！\n");
                 else printf("      元素%d的前驱为：%d\n", e, pre);
                 getchar(); 
-				printf("      按任意键继续...\n");
-				getchar();
+                printf("      按任意键继续...\n");
+                getchar();
                 break;
             case 9:
                 printf("      请输入要查找后继的元素值：");
@@ -458,8 +458,8 @@ void singleListControl(LinkList &L) {
                 else if(result == ERROR) printf("      元素不存在或无后继！\n");
                 else printf("      元素%d的后继为：%d\n", e, next);
                 getchar(); 
-				printf("      按任意键继续...\n");
-				getchar();
+                printf("      按任意键继续...\n");
+                getchar();
                 break;
             case 10:
                 printf("      请输入插入位置和元素值：");
@@ -469,8 +469,8 @@ void singleListControl(LinkList &L) {
                 else if(result == ERROR) printf("      位置不合法或内存不足！\n");
                 else printf("      插入成功！\n");
                 getchar(); 
-				printf("      按任意键继续...\n");
-				getchar();
+                printf("      按任意键继续...\n");
+                getchar();
                 break;
             case 11:
                 printf("      请输入删除位置：");
@@ -480,27 +480,27 @@ void singleListControl(LinkList &L) {
                 else if(result == ERROR) printf("      位置不合法！\n");
                 else printf("      删除的元素为：%d\n", e);
                 getchar(); 
-				printf("      按任意键继续...\n");
-				getchar();
+                printf("      按任意键继续...\n");
+                getchar();
                 break;
             case 12:
                 if(ListTraverse(L) == OK) printf("      链表遍历成功！\n");
                 else printf("      链表遍历失败！\n");
                 getchar(); 
-				printf("      按任意键继续...\n");
-				getchar();
+                printf("      按任意键继续...\n");
+                getchar();
                 break;
             case 13:
                 if(reverseList(L) == OK) 
-				{
-					printf("      链表翻转成功！\n");
-					printf("      翻转后的链表为：\n");
-					ListTraverse(L);
-				}
+                {
+                    printf("      链表翻转成功！\n");
+                    printf("      翻转后的链表为：\n");
+                    ListTraverse(L);
+                }
                 else printf("      链表翻转失败！\n");
                 getchar(); 
-				printf("      按任意键继续...\n");
-				getchar();
+                printf("      按任意键继续...\n");
+                getchar();
                 break;
             case 14:
                 printf("      请输入要删除的倒数第n个结点n：");
@@ -508,15 +508,15 @@ void singleListControl(LinkList &L) {
                 if(RemoveNthFromEnd(L, n) == OK) printf("      删除成功！\n");
                 else printf("      删除失败！\n");
                 getchar(); 
-				printf("      按任意键继续...\n");
-				getchar();
+                printf("      按任意键继续...\n");
+                getchar();
                 break;
             case 15:
                 if(sortList(L) == OK) printf("      排序完成！\n");
                 else printf("      排序失败！\n");
                 getchar(); 
-				printf("      按任意键继续...\n");
-				getchar();
+                printf("      按任意键继续...\n");
+                getchar();
                 break;
             case 16:
                 printf("      请输入要保存的文件名：");
@@ -524,8 +524,8 @@ void singleListControl(LinkList &L) {
                 if(SaveList(L, filename) == OK) printf("      保存成功！\n");
                 else printf("      保存失败！\n");
                 getchar(); 
-				printf("      按任意键继续...\n");
-				getchar();
+                printf("      按任意键继续...\n");
+                getchar();
                 break;
             case 17:
                 printf("      请输入要加载的文件名：");
@@ -533,33 +533,33 @@ void singleListControl(LinkList &L) {
                 if(LoadList(L, filename) == OK) printf("      加载成功！\n");
                 else printf("      加载失败！\n");
                 getchar(); 
-				printf("      按任意键继续...\n");
-				getchar();
+                printf("      按任意键继续...\n");
+                getchar();
                 break;
-			
-			case 18:// 快速插入:
-				printf("      请输入插入元素(非数字结束):");
-				while(scanf("%d", &e) == 1)
-				{
-					if(ListInsertTail(L, e) == OK){
-						printf("	  插入成功！\n");
-						printf("	  线性表长度为：%d\n", ListLength(L));
-					}
-					else printf("      插入失败！\n");
-					printf("      请输入插入元素(非数字结束):");
-				}
-				getchar();
-				printf("      按任意键继续...\n");
-				getchar();
-				break;
+            
+            case 18:// 快速插入:
+                printf("      请输入插入元素(非数字结束):");
+                while(scanf("%d", &e) == 1)
+                {
+                    if(ListInsertTail(L, e) == OK){
+                        printf("      插入成功！\n");
+                        printf("      线性表长度为：%d\n", ListLength(L));
+                    }
+                    else printf("      插入失败！\n");
+                    printf("      请输入插入元素(非数字结束):");
+                }
+                getchar();
+                printf("      按任意键继续...\n");
+                getchar();
+                break;
 
             case 0:
                 return;
             default:
                 printf("      无效的操作编号，请重新输入！\n");
                 getchar();
-				printf("      按任意键继续...\n"); 
-				getchar();
+                printf("      按任意键继续...\n"); 
+                getchar();
                 break;
         }
     }
@@ -574,9 +574,9 @@ void multiListMenu() {
     printf("      2. 删除链表\n");
     printf("      3. 打印所有链表名\n");
     printf("      4. 进入某个链表操作\n");
-	printf("      5. 保存某表到文件\n");
-	printf("      6. 从文件加载\n");
-	printf("      7. 遍历链表\n");
+    printf("      5. 保存某表到文件\n");
+    printf("      6. 从文件加载\n");
+    printf("      7. 遍历链表\n");
     printf("      0. 退出系统\n");
     printf("      =====================================\n");
     printf("      请选择你的操作[0~7]:");
@@ -596,138 +596,138 @@ int main(void) {
             case 1:
                 printf("      请输入新链表名(按Q返回)：");
                 scanf("%s", name);
-				if(strcmp(name, "Q") == 0 || strcmp(name, "q") == 0) break;
+                if(strcmp(name, "Q") == 0 || strcmp(name, "q") == 0) break;
                 if(AddList(Lists, name) == OK)
                     printf("      新建链表成功！\n");
                 else
                     printf("      新建链表失败！\n");
                 getchar(); 
-				printf("      按任意键继续...\n");
-				getchar();
+                printf("      按任意键继续...\n");
+                getchar();
                 break;
             case 2:
                 printf("      现有链表为:\n");
                 printAllListNames(Lists);
                 printf("      请输入要删除的链表名(按Q返回)：");
                 scanf("%s", name);
-				if(strcmp(name, "Q") == 0 || strcmp(name, "q") == 0) break;
-				// 如果输入的是编号也可以(未实现):
+                if(strcmp(name, "Q") == 0 || strcmp(name, "q") == 0) break;
+                // 如果输入的是编号也可以(未实现):
                 if(RemoveList(Lists, name) == OK)
                     printf("      删除链表成功！\n");
                 else
                     printf("      删除链表失败（不存在）！\n");
                 getchar(); 
-				printf("      按任意键继续...\n");
-				getchar();
+                printf("      按任意键继续...\n");
+                getchar();
                 break;
             case 3:
                 printAllListNames(Lists);
                 getchar(); 
-				printf("      按任意键继续...\n");
-				getchar();
+                printf("      按任意键继续...\n");
+                getchar();
                 break;
             case 4: {
                 printf("      现有链表为:\n");
                 printAllListNames(Lists);
                 printf("      请输入要进入的链表名(按Q返回)：");
                 scanf("%s", name);
-				if(strcmp(name, "Q") == 0 || strcmp(name, "q") == 0) break;
+                if(strcmp(name, "Q") == 0 || strcmp(name, "q") == 0) break;
                 int idx = LocateList(Lists, name);
                 if(idx > 0)
                     singleListControl(Lists.elem[idx-1].L);
                 else {
                     printf("      未找到该链表！\n");
                     getchar(); 
-					printf("      按任意键继续...\n");
-					getchar();
+                    printf("      按任意键继续...\n");
+                    getchar();
                 }
                 break;
             }
 
-			case 5:
-			{
-				printf("      现有链表为:\n");
-				printAllListNames(Lists);
-				printf("      请输入要保存的链表名(按Q返回)：");
-				scanf("%s", name);
-				if(strcmp(name, "Q") == 0 || strcmp(name, "q") == 0) break;
-				int idx = LocateList(Lists, name);
-				if(idx > 0) {
-					printf("      请输入文件名：");
-					scanf("%s", name);
-					SaveList(Lists.elem[idx-1].L, name);
-				} else {
-					printf("      未找到该链表！\n");
-				}
-				getchar();
-				printf("      按任意键继续...\n");
-				getchar();
-				break;
-			}
+            case 5:
+            {
+                printf("      现有链表为:\n");
+                printAllListNames(Lists);
+                printf("      请输入要保存的链表名(按Q返回)：");
+                scanf("%s", name);
+                if(strcmp(name, "Q") == 0 || strcmp(name, "q") == 0) break;
+                int idx = LocateList(Lists, name);
+                if(idx > 0) {
+                    printf("      请输入文件名：");
+                    scanf("%s", name);
+                    SaveList(Lists.elem[idx-1].L, name);
+                } else {
+                    printf("      未找到该链表！\n");
+                }
+                getchar();
+                printf("      按任意键继续...\n");
+                getchar();
+                break;
+            }
 
-			case 6:
-			{
-				printf("      现有链表为:\n");
-				printAllListNames(Lists);
-				printf("      请输入要加载到的链表名(按Q返回)：");
-				scanf("%s", name);
-				if(strcmp(name, "Q") == 0 || strcmp(name, "q") == 0) break;
-				int idx = LocateList(Lists, name);
-				if(idx > 0) {
-					printf("      请输入文件名：");
-					scanf("%s", name);
-					LoadList(Lists.elem[idx-1].L, name);
-				} else {
-					printf("      未找到该链表！\n");
-				}
-				getchar();
-				printf("      按任意键继续...\n");
-				getchar();
-				break;
-			}
+            case 6:
+            {
+                printf("      现有链表为:\n");
+                printAllListNames(Lists);
+                printf("      请输入要加载到的链表名(按Q返回)：");
+                scanf("%s", name);
+                if(strcmp(name, "Q") == 0 || strcmp(name, "q") == 0) break;
+                int idx = LocateList(Lists, name);
+                if(idx > 0) {
+                    printf("      请输入文件名：");
+                    scanf("%s", name);
+                    LoadList(Lists.elem[idx-1].L, name);
+                } else {
+                    printf("      未找到该链表！\n");
+                }
+                getchar();
+                printf("      按任意键继续...\n");
+                getchar();
+                break;
+            }
 
-			case 7:
-			{
-				printf("      现有链表为:\n");
-				printAllListNames(Lists);
-				printf("      遍历方式(1:所有遍历, 2:单个遍历, 0: 返回): ");
-				int showIndex;
-				scanf("%d", &showIndex);
-				if(showIndex == 1) {
-					for(int i = 0; i < Lists.length; i++) {
-						printf("      表名：%s\n", Lists.elem[i].name);
-						ListTraverse(Lists.elem[i].L);
-					}
-				}
-				else if(showIndex == 2) {
-					printf("      请输入要打印的表名：");
-					scanf("%s", name);
-					int idx = LocateList(Lists, name);
-					if(idx > 0) {
-						ListTraverse(Lists.elem[idx-1].L);
-					} else {
-						printf("      未找到该线性表！\n");
-					}
-				}
-				else{
-					break;
-				}
-				getchar();
-				printf("      按任意键继续...\n");
-				getchar();
-				break;
-			}
+            case 7:
+            {
+                printf("      现有链表为:\n");
+                printAllListNames(Lists);
+                printf("      遍历方式(1:所有遍历, 2:单个遍历, 0: 返回): ");
+                int showIndex;
+                scanf("%d", &showIndex);
+                if(showIndex == 1) {
+                    for(int i = 0; i < Lists.length; i++) {
+                        printf("      表名：%s\n", Lists.elem[i].name);
+                        ListTraverse(Lists.elem[i].L);
+                    }
+                }
+                else if(showIndex == 2) {
+                    printf("      请输入要打印的表名：");
+                    scanf("%s", name);
+                    int idx = LocateList(Lists, name);
+                    if(idx > 0) {
+                        ListTraverse(Lists.elem[idx-1].L);
+                    } else {
+                        printf("      未找到该线性表！\n");
+                    }
+                }
+                else{
+                    break;
+                }
+                getchar();
+                printf("      按任意键继续...\n");
+                getchar();
+                break;
+            }
             case 0:
-			{
+            {
                 printf("      再见！\n");
                 return 0;
-			}
-			
-           	default:
+            }
+            
+            default:
                 printf("      无效的操作编号，请重新输入！\n");
                 getchar(); 
-				printf("      按任意键继续...\n");
-				getchar();
+                printf("      按任意键继续...\n");
+                getchar();
                 break;
         }
     }
