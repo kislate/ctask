@@ -1,0 +1,34 @@
+// SubArrayNum 流程图
+digraph SubArrayNum_Flowchart {
+	graph [rankdir=TB]
+	node [shape=rectangle style=rounded]
+	start [label="开始" shape=ellipse]
+	init_count_sum [label="初始化 count = 0, sum = 0"]
+	init_offset [label="设置偏移量 offset = 100000"]
+	init_mp [label="定义哈希数组 mp[200001]，全部置为 0"]
+	mp_offset_1 [label="mp[offset] = 1 （表示前缀和为 0 的情况出现一次）"]
+	loop_start [label="i = 0"]
+	loop_condition [label="i < L.length?" shape=diamond]
+	sum_add_elem [label="sum += L.elem[i]"]
+	calc_idx [label="idx = sum - k + offset"]
+	check_idx [label="idx ∈ [0, 200001)?" shape=diamond]
+	count_add_mp [label="count += mp[idx]"]
+	mp_increment [label="mp[sum + offset]++"]
+	i_increment [label="i++"]
+	end [label="返回 count" shape=ellipse]
+	start -> init_count_sum
+	init_count_sum -> init_offset
+	init_offset -> init_mp
+	init_mp -> mp_offset_1
+	mp_offset_1 -> loop_start
+	loop_start -> loop_condition
+	loop_condition -> sum_add_elem [label="是"]
+	sum_add_elem -> calc_idx
+	calc_idx -> check_idx
+	check_idx -> count_add_mp [label="是"]
+	count_add_mp -> mp_increment
+	mp_increment -> i_increment
+	i_increment -> loop_condition
+	check_idx -> mp_increment [label="否"]
+	loop_condition -> end [label="否"]
+}

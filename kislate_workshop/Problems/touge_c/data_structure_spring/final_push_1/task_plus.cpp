@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <malloc.h>
+#include <bits/stdc++.h>
 #include <windows.h> 
 
 #define TRUE 1
@@ -103,17 +104,36 @@ int MaxSubArray(SqList L) {
 }
 // 附加功能2：和为K的子数组个数
 int SubArrayNum(SqList L, int k) {
-    int count = 0;
-    // O(n^2)的暴力解法
+    int count = 0, sum = 0;
+    std::unordered_map<int, int> mp;
+    mp[0] = 1;
     for(int i = 0; i < L.length; i++) {
-        int sum = 0;
-        for(int j = i; j < L.length; j++) {
-            sum += L.elem[j];
-            if(sum == k) count++;
-        }
+        sum += L.elem[i];
+        if(mp.count(sum - k)) count += mp[sum - k];
+        mp[sum]++;
     }
     return count;
 }
+
+// 无stl版本的和为K的子数组个数
+// // 附加功能2：和为K的子数组个数（C语言实现，前缀和+数组哈希，适合小范围）
+// int SubArrayNum(SqList L, int k) {
+//     int count = 0, sum = 0;
+//     // 假设前缀和范围在 [-100000, 100000]
+//     // 需要开 200001 大小的数组，偏移量为 100000
+//     static int mp[200001] = {0};
+//     int offset = 100000;
+//     for(int i = 0; i < 200001; i++) mp[i] = 0;
+//     mp[offset] = 1; // sum=0 出现1次
+//     for(int i = 0; i < L.length; i++) {
+//         sum += L.elem[i];
+//         int idx = sum - k + offset;
+//         if(idx >= 0 && idx < 200001) count += mp[idx];
+//         mp[sum + offset]++;
+//     }
+//     return count;
+// }
+
 // 附加功能3：顺序表排序
 void sortList(SqList &L) {
     if(L.elem == NULL) return; // 线性表不存在
@@ -360,6 +380,8 @@ void singleListControl(SqList &L) {
             case 16:
                 sortList(L);
                 printf("      排序完成！\n");
+                printf("      排序后的线性表为：\n");
+                ListTrabverse(L);
                 getchar();
                 printf("      按任意键继续...\n");
                 getchar();

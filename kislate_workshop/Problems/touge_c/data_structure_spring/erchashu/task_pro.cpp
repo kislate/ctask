@@ -775,6 +775,8 @@ int main(void) {
                     scanf("%s", filename);
                     if(LoadBiTreeFromFile(Trees.elem[pos-1].T, filename) == OK) {
                         printf("      加载二叉树成功！\n");
+                        printf("      二叉树 [%s] 的结构如下：\n", name);
+                        PrintTree(Trees.elem[pos-1].T);
                     } else {
                         printf("      加载二叉树失败！\n");
                     }
