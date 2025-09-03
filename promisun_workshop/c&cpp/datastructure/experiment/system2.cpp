@@ -3,6 +3,7 @@
 #include <malloc.h>
 #include <string.h>
 #include <ctype.h>
+#include <windows.h>
 
 #define TRUE 1
 #define FALSE 0
@@ -58,6 +59,7 @@ char Lname[30];//匹配多线性表的名称
 int mood=0; //mood=0表示单线性表操作，mood=1表示多线性表操作
 
 int main() {
+    SetConsoleOutputCP(65001); // 设置为UTF-8编码
     int op = 1;
   
     LISTS Lists;

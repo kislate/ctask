@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <windows.h>
 
 //前置定义
     #define MAX_TREES 10
@@ -68,6 +68,7 @@
 
 //框架构建
     int main() {
+        SetConsoleOutputCP(65001); // 设置为UTF-8编码
         int op = 1;
         char name[30];
         TElemType def[100];
