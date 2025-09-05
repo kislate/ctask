@@ -3,11 +3,13 @@
 #include <string.h>
 #include <stdbool.h>
 #include <time.h>
+#include <math.h>
 #include <windows.h>
 
 //////基于DPLL算法的SAT求解器---->优化可以对DPLL升级变为可以学习的CDCL算法
 
-
+//改进：
+//1.选取变元策略
 
         //define区
 #define TRUE 1
@@ -34,9 +36,13 @@ typedef struct{
     int varcount; //变量数
 }answer; //答案结构体
 
+typedef struct vars {
+    int var;           
+    struct vars* next; 
+} vars;
 
         //子函数声明区
-int readCNFFile(CNF &cnf);
+int readCNFFile(CNF &cnf,int** count,char* filename);
 CNF* createCNF(int varcount,int clausecount);
 answer* createAnswer(int varcount);
 void releaseCNF(CNF *cnf);
@@ -45,35 +51,48 @@ void releaseAns(answer *ans);
 int isClauseOk(clause* cl,answer* ans);
 int isUClause(clause* cl,answer* ans);
 int UintSpread(CNF *cnf,answer *ans);
-int dpll(CNF *cnf,answer *ans);
+int dpll(CNF *cnf,answer *ans,vars* find);
+vars *sortVar(int* count,int varcount);
+
 
 //主函数
 int main()
 {
     SetConsoleOutputCP(65001);
     clock_t start, end;
-    double milliseconds;
+    int milliseconds;
     
     CNF cnf;
+    int* count;
+    char filename[100];
 
     //初始化CNF结构体
     cnf.varcount = 0;
     cnf.clausecount = 0;
     cnf.clauses = NULL;
+    count = NULL;
 
     //读取CNF文件
-    if(readCNFFile(cnf) == ERROR) {
+    if(readCNFFile(cnf,&count,filename) == ERROR) {
         printf("读取CNF文件失败\n");
         return ERROR;
     }
     printf("CNF文件读取成功\n");
     answer *ans = createAnswer(cnf.varcount);
-   
+    int i=0;
+    for(;filename[i]!='.';i++);
+    filename[i+1]='r';filename[i+2]='e';filename[i+3]='s';filename[i+4]='\0';
+
+
     // 记录开始时间
     start = clock();
     
+    //变元活跃度排序（利用count数组创建链表）
+    vars* find=sortVar(count,cnf.varcount);
+    find=find->next;
+
     //调用DPLL算法求解
-    if(dpll(&cnf, ans)) {
+    if(dpll(&cnf, ans,find)) {
         printf("SAT\n");
         ans->assignments[0] = 1; //标记为满足
     } else {
@@ -83,19 +102,32 @@ int main()
     // 记录结束时间
     end = clock();
     
-    //打印结果
+    //释放find链表
+    vars* p=find;
+    while(p){
+        vars* temp=p;
+        p=p->next;
+        free(temp);
+    }
 
+    //打印结果
+if(ans->assignments[0]==1){
     for(int i=1;i<=cnf.varcount;i++){
         if(ans->assignments[i] != 0) { 
             printf("%2d ", ans->assignments[i] > 0 ? i : -i);
         }
         else {
-            printf("*%d ", i);
+            printf("%d ", i);
         }
     }
+}
     printf("\n");
-    milliseconds = ((double)(end - start) * 1000) / CLOCKS_PER_SEC;
-    printf("运行时间: %.2f 毫秒\n", milliseconds);
+    milliseconds = (int)(((double)(end - start) * 1000) / CLOCKS_PER_SEC);
+    printf("运行时间: %d 毫秒\n", milliseconds);
+        //打印至文件
+    printAnswerToFile(ans, filename,milliseconds);
+    printf("结果已输出至文件%s\n",filename);
+
 
     releaseCNF(&cnf);
     releaseAns(ans);
@@ -105,8 +137,7 @@ int main()
 
 //子函数模块
         //1.读取CNF文件
-int readCNFFile(CNF &cnf) {
-    char filename[100];
+int readCNFFile(CNF &cnf,int** count,char* filename) {
     printf("请输入CNF文件名: ");
     scanf("%s", filename);
     FILE *file = fopen(filename, "r");
@@ -120,6 +151,8 @@ int readCNFFile(CNF &cnf) {
         if(line[0] == 'p') {
             sscanf(line, "p cnf %d %d", &cnf.varcount, &cnf.clausecount);
             cnf.clauses = (clause *)malloc(cnf.clausecount * sizeof(clause));
+             *count = (int*)calloc(cnf.varcount + 1, sizeof(int));
+           
             for(int i=0; i<cnf.clausecount; i++) {
                 cnf.clauses[i].literals = (int *)malloc(literalincrement * sizeof(int));
                 cnf.clauses[i].literalcount = 0;
@@ -131,6 +164,7 @@ int readCNFFile(CNF &cnf) {
                         cnf.clauses[i].literals = (int *)realloc(cnf.clauses[i].literals, cap * sizeof(int));
                     }
                     cnf.clauses[i].literals[cnf.clauses[i].literalcount++] = lit;
+                    (*count)[abs(lit)]++;
                 }
             }
             break; // 只读取一次
@@ -171,7 +205,7 @@ void releaseCNF(CNF *cnf){
         // s求解结果//1表示满足，0表示不满足，-1表示在限定时间内未完成求解
         // v -1 2 -3 … //满足时，每个变元的赋值序列，-1表示第一个变元1取假，2表示第二个变元取真，用空格分开，此处为示例。
         // t 17     //以毫秒为单位的DPLL执行时间，可增加分支规则执行次数信息
-int printAnswerToFile(answer *ans, char *filename,double time){
+int printAnswerToFile(answer *ans, char *filename,int time){
     FILE *file=fopen(filename,"w");
     if(!file){
         return ERROR;
@@ -179,12 +213,11 @@ int printAnswerToFile(answer *ans, char *filename,double time){
     fprintf(file, "s %d\n", ans->assignments[0]); 
     fprintf(file, "v ");
     for(int i=1;i<=ans->varcount;i++){
-        if(ans->assignments[i] != 0) { //只输出已赋值的变量
-            fprintf(file, "%d ", ans->assignments[i] > 0 ? i : -i);
-        }
+        fprintf(file, "%d ", ans->assignments[i] > 0 ? i : -i);
     }
-    fprintf(file, "\nt %.2f 毫秒\n",time); 
+    fprintf(file, "\nt %d\n",time); 
     fclose(file);
+    return OK;
 }
 
         //6.释放答案结构体内存
@@ -237,8 +270,12 @@ int UintSpread(CNF *cnf,answer *ans){
 
             int var = isUClause(cl,ans);
             if(var) { 
-                        if(var > 0)     ans->assignments[var] = 1;
-                        else        ans->assignments[-var] = -1;
+                        if(var > 0){
+                            ans->assignments[var] = 1;
+                        }
+                        else{
+                            ans->assignments[-var] = -1;
+                        }
                         state=1;
                         break;
                     }
@@ -247,8 +284,8 @@ int UintSpread(CNF *cnf,answer *ans){
     return TRUE;    
 }
 
-int dpll(CNF *cnf,answer *ans){
-    
+int dpll(CNF *cnf,answer *ans,vars* find){
+
     if (!UintSpread(cnf, ans)) {
         return FALSE; 
     }
@@ -257,8 +294,11 @@ int dpll(CNF *cnf,answer *ans){
     int allsat=1;
     for(int i=0;i<cnf->clausecount;i++){
         clause *cl=&cnf->clauses[i];
-        if(isClauseOk(cl,ans)==0) {allsat=0;break;}
-        if(isClauseOk(cl,ans)==-1) return FALSE; 
+        int b=isClauseOk(cl,ans);
+        if(b==0) {allsat=0;break;}
+        if(b==-1) {
+            return FALSE; 
+        }
     }
     if(allsat==1){
         ans->assignments[0] = 1; //标记为满足
@@ -266,34 +306,56 @@ int dpll(CNF *cnf,answer *ans){
     }
 
     // 选择未赋值的变量
-    int var = 0;
-    for (int i = 1; i <= cnf->varcount; i++) {
-        if (ans->assignments[i] == 0) {
-            var = i;
+    int var=0;
+    vars* temp=find;
+    for(;temp!=NULL;temp=temp->next){
+        if(ans->assignments[temp->var]==0) 
+        {
+            var=temp->var;
             break;
         }
     }
-    
-    // 尝试赋值为真
-    answer* anscopy = createAnswer(cnf->varcount);
-    memcpy(anscopy->assignments, ans->assignments, (cnf->varcount + 1) * sizeof(int));
-    anscopy->assignments[var] = 1;
-    if (dpll(cnf, anscopy)) {
-        memcpy(ans->assignments, anscopy->assignments, (cnf->varcount + 1) * sizeof(int));
-        releaseAns(anscopy);
-        return TRUE;
-    }
-    releaseAns(anscopy);
 
-    // 尝试赋值为假
-    anscopy = createAnswer(cnf->varcount);
-    memcpy(anscopy->assignments, ans->assignments, (cnf->varcount + 1) * sizeof(int));
-    anscopy->assignments[var] = -1;
-    if (dpll(cnf, anscopy)) {
-        memcpy(ans->assignments, anscopy->assignments, (cnf->varcount + 1) * sizeof(int));
-        releaseAns(anscopy);
-        return TRUE;
-    }
+   // 尝试赋值为真
+answer* anscopy = createAnswer(cnf->varcount);
+memcpy(anscopy->assignments, ans->assignments, (cnf->varcount + 1) * sizeof(int));
+anscopy->assignments[var] = 1;
+if (dpll(cnf, anscopy,find)) {
+    memcpy(ans->assignments, anscopy->assignments, (cnf->varcount + 1) * sizeof(int));
     releaseAns(anscopy);
-    return FALSE;
+    return TRUE;
+}
+releaseAns(anscopy);
+
+// 尝试赋值为假
+anscopy = createAnswer(cnf->varcount);
+memcpy(anscopy->assignments, ans->assignments, (cnf->varcount + 1) * sizeof(int));
+anscopy->assignments[var] = -1;
+if (dpll(cnf, anscopy,find)) {
+    memcpy(ans->assignments, anscopy->assignments, (cnf->varcount + 1) * sizeof(int));
+    releaseAns(anscopy);
+    return TRUE;
+}
+releaseAns(anscopy);
+return FALSE;
+}
+
+//////辅助改进模块
+vars *sortVar(int* count,int varcount){//按出现次数从大到小排序,返回空头指针
+    vars *head=(vars *)malloc(sizeof(vars));
+    head->var=0;
+    head->next=NULL;
+    for(int i=1;i<=varcount;i++){
+        vars *newnode=(vars *)malloc(sizeof(vars));
+        newnode->var=i;
+        newnode->next=NULL;
+        vars *p=head;
+        // 出现次数多的排前面
+        while(p->next!=NULL && count[p->next->var] < count[i]){
+            p=p->next;
+        }
+        newnode->next=p->next;
+        p->next=newnode;
+    }
+    return head;
 }
