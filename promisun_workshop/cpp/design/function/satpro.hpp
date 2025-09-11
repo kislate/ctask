@@ -53,8 +53,8 @@ vars *sortVar(int* count,int varcount);
 
 // 数独相关声明
 #define N 9
-#define VAR(i,j,k) (i*81 + j*9 + k + 1)
+#define VAR(i,j,k) ((i)*81 + (j)*9 + (k) + 1)
 void shuduToCnf(int grid[N][N], char* filename);
-void analySat(char* filename, int grid[N][N]);
+int analySat(char* filename, int grid[N][N]);
 
 #endif

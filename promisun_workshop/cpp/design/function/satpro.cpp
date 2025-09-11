@@ -91,11 +91,14 @@ int printAnswerToFile(answer *ans, char *filename,int time){
         return ERROR;
     }
     fprintf(file, "s %d\n", ans->assignments[0]); 
-    fprintf(file, "v ");
-    for(int i=1;i<=ans->varcount;i++){
-        fprintf(file, "%d ", ans->assignments[i] > 0 ? i : -i);
+    if(ans->assignments[0]==1){
+        fprintf(file, "v ");
+        for(int i=1;i<=ans->varcount;i++){
+            fprintf(file, "%d ", ans->assignments[i] > 0 ? i : -i);
+        }
+        fprintf(file, "\n");
     }
-    fprintf(file, "\nt %d\n",time); 
+    fprintf(file, "t %d\n",time); 
     fclose(file);
     return OK;
 }

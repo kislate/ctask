@@ -1,6 +1,5 @@
 #include "satpro.hpp"
 int xian=0;
-char fname[100];
 
 
 int satmain(){
@@ -11,6 +10,7 @@ int satmain(){
     CNF cnf;
     int* count;
     char filename[100];
+    char ansname[100];
 
     //初始化CNF结构体
     cnf.varcount = 0;
@@ -26,8 +26,9 @@ int satmain(){
     printf("CNF文件读取成功\n");
     answer *ans = createAnswer(cnf.varcount);
     int i=0;
-    for(;filename[i]!='.';i++);
-    filename[i+1]='r';filename[i+2]='e';filename[i+3]='s';filename[i+4]='\0';
+    strcpy(ansname,filename);
+    for(;ansname[i]!='.';i++);
+    ansname[i+1]='r';ansname[i+2]='e';ansname[i+3]='s';ansname[i+4]='\0';
 
 
     // 记录开始时间
@@ -73,65 +74,67 @@ int satmain(){
     }
         //打印至文件
     printAnswerToFile(ans, filename,milliseconds);
-    printf("结果已输出至文件%s\n",filename);
-
+    if(!xian) printf("结果已输出至文件%s\n",ansname);
 
     releaseCNF(&cnf);
     releaseAns(ans);
+    printf("验证？\n");
+    int opt=0;
+    printf("1.verify.exe  2.verify5000.exe  0.不验证\n");
+    scanf("%d",&opt);
+    if(opt==1){
+        char command[150];
+        sprintf(command, "verify.exe %s %s", filename, ansname);
+        system(command);
+    }
+    else if(opt==2){
+        char command[150];
+        sprintf(command, "verify5000.exe %s", filename, ansname);
+        system(command);
+    }
     return 0;
 }
 
 
 int shudumain() {
-    int po=1;
+
     char shuduname[100];
-
-    while(po){
-            system("cls");	printf("\n\n");
-            printf("1.输入数独题目,生成对应cnf文件       2.利用dpll求解,输出数独结果          0.返回上级菜单\n");
-            printf("请选择你的操作[0~2]:");
-            scanf("%d",&po);
-            switch(po){
-                case 1:{
-                    int grid[N][N];
-                    printf("请输入要生成的cnf文件名:\n");
-                    scanf("%s",shuduname);
-                    printf("请输入9x9数独题目（空格用.表示）：\n");
-                    for(int i=0;i<N;i++)
-                        for(int j=0;j<N;j++){
-                            char ch ; 
-                            scanf("%c",&ch);
-                            if(ch=='.')
-                                grid[i][j]=0;
-                            else
-                                grid[i][j]=ch-'0';
-                        }
-                    shuduToCnf(grid, shuduname);
-                    getchar();
-                    getchar();
-                    break;
-                }
-                case 2:{
-                    // 解析SAT解
-                    xian=1;
-                    int answer[N][N] = {0};
-                    analySat(  , answer);
-
-                    printf("数独解：\n");
-                    for(int i=0;i<N;i++) {
-                        for(int j=0;j<N;j++)
-                            printf("%d ", answer[i][j]);
-                        printf("\n");
-                    }
-                    xian=0;
-                    getchar();
-                    getchar();
-                    break;
-                }
-                case 0:
-                    return 0;
-            }
+    int grid[N][N];
+    printf("请输入要生成的cnf文件名:\n");
+    scanf("%s",shuduname);
+    printf("请输入9x9数独（每行9个字符，空格用'.'表示）：\n");
+    for (int i = 0; i < 9; i++) {
+        char line[16];
+        scanf("%15s", line);
+        for (int j = 0; j < 9; j++) {
+            if (line[j] == '.') grid[i][j] = 0;
+            else grid[i][j] = line[j] - '0';
+        }
     }
+    shuduToCnf(grid, shuduname);
+    xian=1;
+    satmain();
+    int answer[N][N] = {0};
+    int a=0;
+    for(;shuduname[a]!='.';a++);
+    shuduname[a+1]='r';shuduname[a+2]='e';shuduname[a+3]='s';shuduname[a+4]='\0';
+    int ok=analySat(shuduname , answer);
+    if(ok==0 ||ok==-1){
+        if(ok==0)printf("该数独无解！\n");
+        xian=0;
+        return 0;
+    }
+    printf("数独解：\n");
+    for(int i=0;i<N;i++) {
+        for(int j=0;j<N;j++){
+            // if(answer[i][j]==0) printf("9 ");
+            //else
+            printf("%d ", answer[i][j]);
+        }
+        printf("\n");
+    }
+    xian=0;
+    return 1;
 }
 
 
