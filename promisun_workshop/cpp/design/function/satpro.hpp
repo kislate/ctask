@@ -57,4 +57,16 @@ vars *sortVar(int* count,int varcount);
 void shuduToCnf(int grid[N][N], char* filename);
 int analySat(char* filename, int grid[N][N]);
 
+bool isUniqueInRow(int grid[N][N], int row, int num);
+bool isUniqueInCol(int grid[N][N], int col, int num);
+bool isUniqueInBox(int grid[N][N], int startRow, int startCol, int num);
+bool isUniqueInSlashDiagonal(int grid[N][N], int num);
+bool isUniqueInExtraWindow(int grid[N][N], int windowRow, int windowCol, int num);
+bool isSafe(int grid[N][N], int row, int col, int num);
+bool generateFullSudoku(int grid[N][N]);
+void digHoles(int grid[N][N], int holes);
+void printSudoku(int grid[N][N]);
+void generatePercentSudoku(int difficulty);
+
+
 #endif
