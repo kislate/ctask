@@ -2,7 +2,7 @@
     P2679 子串 DP
     2025.4.18
 */
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 #define MOD 1000000007
 int main(void)
