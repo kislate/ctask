@@ -3,7 +3,7 @@
 #include <math.h>
 #include "solver.h"
 
-// ========== 单子句传播 ==========
+//单子句传播
 static int unit_propagate(Formula* F, int* assign, int var_num) {
     int changed = 1;
     while (changed) {
@@ -30,7 +30,7 @@ static int unit_propagate(Formula* F, int* assign, int var_num) {
     return 1;
 }
 
-// ========== 纯文字消元 ==========
+//纯文字消元
 static int pure_literal_assign(Formula* F, int* assign, int var_num) {
     int changed = 1;
     while (changed) {
@@ -43,14 +43,14 @@ static int pure_literal_assign(Formula* F, int* assign, int var_num) {
                 if (assign[v] == 0) {
                     if (seen[v] == 0) seen[v] = (lit > 0 ? 1 : -1);
                     else if ((seen[v] == 1 && lit < 0) || (seen[v] == -1 && lit > 0)) {
-                        seen[v] = 2; // 同时出现正负 → 非纯文字
+                        seen[v] = 2; //同时出现正负->非纯文字
                     }
                 }
             }
         }
         for (int v = 1; v <= var_num; v++) {
             if (assign[v] == 0 && (seen[v] == 1 || seen[v] == -1)) {
-                assign[v] = seen[v]; // 赋值纯文字
+                assign[v] = seen[v]; //赋值纯文字
                 changed = 1;
             }
         }
@@ -59,7 +59,7 @@ static int pure_literal_assign(Formula* F, int* assign, int var_num) {
     return 1;
 }
 
-// ========== 检查公式状态 ==========
+//检查公式
 static int check_formula(Formula* F, int* assign) {
     Clause* cl = F->head;
     while (cl) {
@@ -72,7 +72,7 @@ static int check_formula(Formula* F, int* assign) {
                 satisfied = 1; break;
             }
         }
-        if (!satisfied && unassigned == 0) return 0; // 有空子句 → UNSAT
+        if (!satisfied && unassigned == 0) return 0; //有空子句->UNSAT
         cl = cl->next;
     }
     cl = F->head;
@@ -88,10 +88,10 @@ static int check_formula(Formula* F, int* assign) {
         if (!satisfied) return 2; // 还有未满足的子句
         cl = cl->next;
     }
-    return 1; // 全部满足
+    return 1; //全部满足->SAT
 }
 
-// ========== JW 启发式变量选择 ==========
+//JW启发式
 static int choose_variable(Formula* F, int* assign, int var_num) {
     double* score = (double*)calloc(var_num + 1, sizeof(double));
     Clause* cl = F->head;
@@ -124,21 +124,21 @@ static int choose_variable(Formula* F, int* assign, int var_num) {
         }
     }
     free(score);
-    return best_v ? best_v : 1; // 没找到就退回 1
+    return best_v ? best_v : 1;
 }
 
-// ========== DPLL 主递归 ==========
+//DPLL主递归
 int DPLL(Formula* F, int* assign, int var_num) {
     unit_propagate(F, assign, var_num);
     pure_literal_assign(F, assign, var_num);
 
     int status = check_formula(F, assign);
-    if (status == 1) return 1; // SAT
-    if (status == 0) return 0; // UNSAT
+    if (status == 1) return 1;
+    if (status == 0) return 0;
 
     int v = choose_variable(F, assign, var_num);
 
-    // 尝试 v = true
+    //尝试v=true
     int* assign1 = (int*)malloc((var_num + 1) * sizeof(int));
     memcpy(assign1, assign, (var_num + 1) * sizeof(int));
     assign1[v] = 1;
@@ -149,7 +149,7 @@ int DPLL(Formula* F, int* assign, int var_num) {
     }
     free(assign1);
 
-    // 尝试 v = false
+    //尝试v=false
     int* assign2 = (int*)malloc((var_num + 1) * sizeof(int));
     memcpy(assign2, assign, (var_num + 1) * sizeof(int));
     assign2[v] = -1;

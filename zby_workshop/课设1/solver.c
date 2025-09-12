@@ -3,11 +3,11 @@
 #include "solver.h"
 
 // 单子句传播
-static int unit_propagate(Formula *F, int *assign, int var_num) {
+static int unit_propagate(Formula* F, int* assign, int var_num) {
     int changed = 1;
     while (changed) {
         changed = 0;
-        Clause *cl = F->head;
+        Clause* cl = F->head;
         while (cl) {
             int unassigned = 0, last_lit = 0, satisfied = 0;
             for (int i = 0; i < cl->len; i++) {
@@ -30,8 +30,8 @@ static int unit_propagate(Formula *F, int *assign, int var_num) {
 }
 
 // 判断公式是否已满足或有空子句
-static int check_formula(Formula *F, int *assign) {
-    Clause *cl = F->head;
+static int check_formula(Formula* F, int* assign) {
+    Clause* cl = F->head;
     while (cl) {
         int satisfied = 0, unassigned = 0;
         for (int i = 0; i < cl->len; i++) {
@@ -62,7 +62,7 @@ static int check_formula(Formula *F, int *assign) {
 }
 
 // DPLL递归
-int DPLL(Formula *F, int *assign, int var_num) {
+int DPLL(Formula* F, int* assign, int var_num) {
     unit_propagate(F, assign, var_num);
     int status = check_formula(F, assign);
     if (status == 1) return 1; // SAT
@@ -70,19 +70,19 @@ int DPLL(Formula *F, int *assign, int var_num) {
     int v = 1;
     while (v <= var_num && assign[v] != 0) v++;
     if (v > var_num) return 0;
-    int *assign1 = (int*)malloc((var_num+1)*sizeof(int));
-    memcpy(assign1, assign, (var_num+1)*sizeof(int));
+    int* assign1 = (int*)malloc((var_num + 1) * sizeof(int));
+    memcpy(assign1, assign, (var_num + 1) * sizeof(int));
     assign1[v] = 1;
     if (DPLL(F, assign1, var_num)) {
-        memcpy(assign, assign1, (var_num+1)*sizeof(int));
+        memcpy(assign, assign1, (var_num + 1) * sizeof(int));
         free(assign1);
         return 1;
     }
-    int *assign2 = (int*)malloc((var_num+1)*sizeof(int));
-    memcpy(assign2, assign, (var_num+1)*sizeof(int));
+    int* assign2 = (int*)malloc((var_num + 1) * sizeof(int));
+    memcpy(assign2, assign, (var_num + 1) * sizeof(int));
     assign2[v] = -1;
     int res = DPLL(F, assign2, var_num);
-    if (res) memcpy(assign, assign2, (var_num+1)*sizeof(int));
+    if (res) memcpy(assign, assign2, (var_num + 1) * sizeof(int));
     free(assign1); free(assign2);
     return res;
 }
